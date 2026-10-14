@@ -1,0 +1,46 @@
+{
+  "request": {
+    "example_id": "table/SERFF_TX_random_pages 1_page1299",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/table/SERFF_TX_random_pages 1_page1299.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline_name": "tesseract_eng",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "Sheet 5 of 5\n\nEXHIBIT A\n\nTEXAS WORKERS' COMPENSATION RELATIVITIES\nAVAILABLE FOR IMMEDIATE USE\nMANDATORY EFFECTIVE DATE 7/1/2016\n\n| Class\n8833 1. 08\n8837\n8838 0.87\n\n9014\n9015\n9016\n\n9040\n9052\n9058\n\n9079\n9080\n9089\n\n9154 3.19\n9156 2.61\n9170 28.56\n\n9552 10.88\n9586\n\n",
+        "width": 2713,
+        "height": 3511
+      }
+    ],
+    "num_pages": 1,
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    }
+  },
+  "output": {
+    "task_type": "parse",
+    "example_id": "table/SERFF_TX_random_pages 1_page1299",
+    "pipeline_name": "tesseract_eng",
+    "pages": [
+      {
+        "page_index": 0,
+        "markdown": "Sheet 5 of 5\n\nEXHIBIT A\n\nTEXAS WORKERS' COMPENSATION RELATIVITIES\nAVAILABLE FOR IMMEDIATE USE\nMANDATORY EFFECTIVE DATE 7/1/2016\n\n| Class\n8833 1. 08\n8837\n8838 0.87\n\n9014\n9015\n9016\n\n9040\n9052\n9058\n\n9079\n9080\n9089\n\n9154 3.19\n9156 2.61\n9170 28.56\n\n9552 10.88\n9586\n\n",
+        "line_numbers": []
+      }
+    ],
+    "layout_pages": [],
+    "grounded_pages": [],
+    "markdown": "Sheet 5 of 5\n\nEXHIBIT A\n\nTEXAS WORKERS' COMPENSATION RELATIVITIES\nAVAILABLE FOR IMMEDIATE USE\nMANDATORY EFFECTIVE DATE 7/1/2016\n\n| Class\n8833 1. 08\n8837\n8838 0.87\n\n9014\n9015\n9016\n\n9040\n9052\n9058\n\n9079\n9080\n9089\n\n9154 3.19\n9156 2.61\n9170 28.56\n\n9552 10.88\n9586\n\n",
+    "job_id": null
+  },
+  "started_at": "2026-10-14T17:09:47.542235",
+  "completed_at": "2026-10-14T17:09:53.112199",
+  "latency_in_ms": 5569
+}

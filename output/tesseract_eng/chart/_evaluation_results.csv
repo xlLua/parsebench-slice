@@ -1,0 +1,4 @@
+test_id,example_id,pipeline_name,product_type,success,error,tags,latency_ms,latency_ms_per_page,rule_chart_data_point_pass_rate,rule_pass_rate
+chart/US_Professional_Services_Partner_Compensation_Survey_2024_p11,chart/US_Professional_Services_Partner_Compensation_Survey_2024_p11,tesseract_eng,parse,True,,chart,5617.0,5617.0,0.0,0.0
+chart/ADL_Future_of_automotive_mobility_2024_1_p17,chart/ADL_Future_of_automotive_mobility_2024_1_p17,tesseract_eng,parse,True,,chart,6652.0,6652.0,0.0,0.0
+chart/05021ff2-en_p19,chart/05021ff2-en_p19,tesseract_eng,parse,True,,"chart,need_estimate",6518.0,6518.0,0.0,0.0

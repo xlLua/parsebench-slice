@@ -1,0 +1,48 @@
+{
+  "request": {
+    "example_id": "layout/20240924_000946_P40U_HOWLKAL1IL81NTE2.1_p44",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/layout/20240924_000946_P40U_HOWLKAL1IL81NTE2.1_p44.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "pymupdf_text",
+    "provider_name": "pymupdf",
+    "product_type": "parse",
+    "config": {
+      "text_format": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "Australia Properties\nCentrally located in Perth’s prime \nretail stretch, the David Jones \nBuilding sits on a freehold site of \napproximately 71,473 sq ft in the \nPerth CBD in Australia. It enjoys \ndual frontage to the bustling Murray \nStreet Mall and Hay Street Mall, the \nonly two retail pedestrian streets in \nthe city. \nThe property is a few minutes’ \nwalk from the Perth station and is \nalso linked seamlessly to another \nmajor shopping centre via a \ncovered walkway. The four-storey \nproperty, which has heritage-\nlisted components (including a \nbuilding constructed circa 1910 \nthat was formerly the Savoy Hotel), \nis anchored by the David Jones \ndepartment store.\nAs at 30 June 2024, the property’s \ncommitted occupancy was 99.3%. \nDavid Jones Pty Limited occupies \napproximately 95.1% of the total \ngross lettable area and accounts \nfor 87.1% of the gross rent for David \nJones Building as at 30 June 2024. \nDavid Jones\nBuilding\nFour-storey heritage-listed building for retail use.\nTenure \nFreehold\nNumber Of Tenants\n(As at 30 June 2024)\n7\n(including an anchor tenant)\nPurchase Price\nS$145.7M\nMarket Valuation\n(As at 30 June 2024)\nS$111.6M\nTotal Gross Lettable Area\n(As at 30 June 2024)\n259,098 SQ FT\nThe long-term lease with David \nJones provides for an upward-only \nrent review every three years and \nexpires in 2032. A rental uplift was \nsecured in August 2023. \nBesides David Jones, six specialty \nstores occupy a gross lettable area \nof about 10,764 sq ft and comprise \ninternational and national brands such \nas Rosendorff Diamonds, Superdry, \nSushi Gin and The Body Shop.\nNotes:\n(1) \nBased on committed leases as at the reporting date.\n(2) \nBased on gross rent as at 30 June 2024 and excludes gross turnover rent.\n(3) \nIncludes the David Jones lease.\nTop 5 Tenants based on gross rent(2)\n1. David Jones Pty Limited\n2. Lorna Jane Pty Ltd \n3. Clyde and Associates Pty Ltd \n4. The Body Shop Australia Pty Ltd \n5. Gin Sushiya Pty Ltd \n99.3%\n98.3%\n(As at 30 June 2024)\n(As at 30 June 2023)\nOccupancy Rate(1)\nRetail Trade Mix\nBy Gross Rental Contribution \n(As at 30 June 2024)\n David Jones \n(Anchor Tenant)\n Jewellery\n Fashion\n Health & Beauty\n Food & Beverage\n87.1%\n3.9%\n3.5%\n2.8%\n2.7%\n3.5\n0.0\n0.0\n0.0\n96.5(3)\nFY\n24/25\nFY\n25/26\nFY\n26/27\nFY\n27/28\nBeyond\nFY 27/28\n0\n20\n40\n60\n80\n100\nLease Expiry Profile by gross rent(1)\n(%)\n42\nSTARHILL GLOBAL REIT\n",
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.7",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "",
+      "producer": "",
+      "creationDate": "",
+      "modDate": "",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "started_at": "2026-10-14T17:11:00.493544",
+  "completed_at": "2026-10-14T17:11:02.002893",
+  "latency_in_ms": 1509
+}

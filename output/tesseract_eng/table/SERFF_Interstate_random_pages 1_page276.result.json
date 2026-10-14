@@ -1,0 +1,46 @@
+{
+  "request": {
+    "example_id": "table/SERFF_Interstate_random_pages 1_page276",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/table/SERFF_Interstate_random_pages 1_page276.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline_name": "tesseract_eng",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "ACTUARIAL MEMORANDUM\n\nSupporting Policy Form:\nICC18 ENT-06 1805 Single Premium Deferred Annuity Contract with Market\nValue Adjustment Feature\n\nICC18 ENT-06 1805 DP Data Page\n\nICC18 ENT-06 1805 DP-A Data Page\n\nICC18 ENT-06 1805 DP-B Data Page\n\nICC18 ENT-06 1805 DP-C Data Page\n\nICC18 ENT-06 1805 DP-D Data Page\n\nICC18 ENT-06 1805 DP-E Data Page\n\nICC22 EE.48 2208 Account Value Band Interest Rate Endorsement\n\nGateida x Woods.\n\nPatrick F. McCormack, FSA, MAAA\nAssistant Vice President\n\nAnnuity Products\n\nSeptember 7, 2022\n\nIam a member of the American Academy of Actuaries, and I meet the Qualifications Standards of the American\nAcademy of Actuaries to render the actuarial opinion contained herein.\n",
+        "width": 2550,
+        "height": 3300
+      }
+    ],
+    "num_pages": 1,
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    }
+  },
+  "output": {
+    "task_type": "parse",
+    "example_id": "table/SERFF_Interstate_random_pages 1_page276",
+    "pipeline_name": "tesseract_eng",
+    "pages": [
+      {
+        "page_index": 0,
+        "markdown": "ACTUARIAL MEMORANDUM\n\nSupporting Policy Form:\nICC18 ENT-06 1805 Single Premium Deferred Annuity Contract with Market\nValue Adjustment Feature\n\nICC18 ENT-06 1805 DP Data Page\n\nICC18 ENT-06 1805 DP-A Data Page\n\nICC18 ENT-06 1805 DP-B Data Page\n\nICC18 ENT-06 1805 DP-C Data Page\n\nICC18 ENT-06 1805 DP-D Data Page\n\nICC18 ENT-06 1805 DP-E Data Page\n\nICC22 EE.48 2208 Account Value Band Interest Rate Endorsement\n\nGateida x Woods.\n\nPatrick F. McCormack, FSA, MAAA\nAssistant Vice President\n\nAnnuity Products\n\nSeptember 7, 2022\n\nIam a member of the American Academy of Actuaries, and I meet the Qualifications Standards of the American\nAcademy of Actuaries to render the actuarial opinion contained herein.\n",
+        "line_numbers": []
+      }
+    ],
+    "layout_pages": [],
+    "grounded_pages": [],
+    "markdown": "ACTUARIAL MEMORANDUM\n\nSupporting Policy Form:\nICC18 ENT-06 1805 Single Premium Deferred Annuity Contract with Market\nValue Adjustment Feature\n\nICC18 ENT-06 1805 DP Data Page\n\nICC18 ENT-06 1805 DP-A Data Page\n\nICC18 ENT-06 1805 DP-B Data Page\n\nICC18 ENT-06 1805 DP-C Data Page\n\nICC18 ENT-06 1805 DP-D Data Page\n\nICC18 ENT-06 1805 DP-E Data Page\n\nICC22 EE.48 2208 Account Value Band Interest Rate Endorsement\n\nGateida x Woods.\n\nPatrick F. McCormack, FSA, MAAA\nAssistant Vice President\n\nAnnuity Products\n\nSeptember 7, 2022\n\nIam a member of the American Academy of Actuaries, and I meet the Qualifications Standards of the American\nAcademy of Actuaries to render the actuarial opinion contained herein.\n",
+    "job_id": null
+  },
+  "started_at": "2026-10-14T17:09:47.542180",
+  "completed_at": "2026-10-14T17:09:53.120169",
+  "latency_in_ms": 5577
+}

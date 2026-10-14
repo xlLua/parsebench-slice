@@ -1,0 +1,12 @@
+{
+  "total": 12,
+  "successful": 12,
+  "failed": 0,
+  "skipped": 0,
+  "total_latency_ms": 18114,
+  "avg_latency_ms": 1509.5,
+  "success_rate": 100.0,
+  "errors": [],
+  "started_at": "2026-10-14T17:11:00.487726",
+  "completed_at": "2026-10-14T17:11:02.009327"
+}

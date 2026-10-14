@@ -1,0 +1,46 @@
+{
+  "request": {
+    "example_id": "chart/US_Professional_Services_Partner_Compensation_Survey_2024_p11",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/chart/US_Professional_Services_Partner_Compensation_Survey_2024_p11.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline_name": "tesseract_eng",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "HEIDRICK & STRUGGLES\n\nYear-over-year\nhiring trends\n\nPartner turnover\n\nIn response to a slower 2023, wherein\npeople voluntarily or involuntarily\nchose to leave, respondents reported\npartner turnover was higher in 2024\ncompared to 2022: 49% of respondents\nsaid partner turnover was higher or\nsignificantly higher compared to their\nexpectations at the beginning of the\nyear; only 30% said the same in 2022.\n\nPartner turnover (%)\n\nIn your most recent fiscal year, how much partner turnover was there at your\nfirm compared to your expectations at the beginning of the fiscal year?\n\n2024 | 2022\n\nSignificantly lower\nLower 13\nAbout the same\nHigher\nSignificantly higher\n\nPrefer not to answer\n\nNote: Numbers may not sum to 100%, because of rounding.\n\nSource: Heidrick & Struggles US professional services partner compensation survey, 2024, n=144\n\n!\n\n",
+        "width": 2481,
+        "height": 3300
+      }
+    ],
+    "num_pages": 1,
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    }
+  },
+  "output": {
+    "task_type": "parse",
+    "example_id": "chart/US_Professional_Services_Partner_Compensation_Survey_2024_p11",
+    "pipeline_name": "tesseract_eng",
+    "pages": [
+      {
+        "page_index": 0,
+        "markdown": "HEIDRICK & STRUGGLES\n\nYear-over-year\nhiring trends\n\nPartner turnover\n\nIn response to a slower 2023, wherein\npeople voluntarily or involuntarily\nchose to leave, respondents reported\npartner turnover was higher in 2024\ncompared to 2022: 49% of respondents\nsaid partner turnover was higher or\nsignificantly higher compared to their\nexpectations at the beginning of the\nyear; only 30% said the same in 2022.\n\nPartner turnover (%)\n\nIn your most recent fiscal year, how much partner turnover was there at your\nfirm compared to your expectations at the beginning of the fiscal year?\n\n2024 | 2022\n\nSignificantly lower\nLower 13\nAbout the same\nHigher\nSignificantly higher\n\nPrefer not to answer\n\nNote: Numbers may not sum to 100%, because of rounding.\n\nSource: Heidrick & Struggles US professional services partner compensation survey, 2024, n=144\n\n!\n\n",
+        "line_numbers": []
+      }
+    ],
+    "layout_pages": [],
+    "grounded_pages": [],
+    "markdown": "HEIDRICK & STRUGGLES\n\nYear-over-year\nhiring trends\n\nPartner turnover\n\nIn response to a slower 2023, wherein\npeople voluntarily or involuntarily\nchose to leave, respondents reported\npartner turnover was higher in 2024\ncompared to 2022: 49% of respondents\nsaid partner turnover was higher or\nsignificantly higher compared to their\nexpectations at the beginning of the\nyear; only 30% said the same in 2022.\n\nPartner turnover (%)\n\nIn your most recent fiscal year, how much partner turnover was there at your\nfirm compared to your expectations at the beginning of the fiscal year?\n\n2024 | 2022\n\nSignificantly lower\nLower 13\nAbout the same\nHigher\nSignificantly higher\n\nPrefer not to answer\n\nNote: Numbers may not sum to 100%, because of rounding.\n\nSource: Heidrick & Struggles US professional services partner compensation survey, 2024, n=144\n\n!\n\n",
+    "job_id": null
+  },
+  "started_at": "2026-10-14T17:09:47.542269",
+  "completed_at": "2026-10-14T17:09:53.159439",
+  "latency_in_ms": 5617
+}

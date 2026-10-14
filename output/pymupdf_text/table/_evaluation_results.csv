@@ -1,0 +1,4 @@
+test_id,example_id,pipeline_name,product_type,success,error,tags,latency_ms,latency_ms_per_page,grits_con,grits_trm_composite,table_record_match,table_record_match_perfect
+table/222876fb_page22,table/222876fb_page22,pymupdf_text,parse,True,,"table,easy",1510.0,1510.0,0.0,0.0,0.0,0.0
+table/SERFF_Interstate_random_pages 1_page276,table/SERFF_Interstate_random_pages 1_page276,pymupdf_text,parse,True,,"table,easy",1510.0,1510.0,0.0,0.0,0.0,0.0
+table/SERFF_TX_random_pages 1_page1299,table/SERFF_TX_random_pages 1_page1299,pymupdf_text,parse,True,,"table,easy",1509.0,1509.0,0.0,0.0,0.0,0.0

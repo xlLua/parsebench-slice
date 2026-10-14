@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluation Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ───── Reset & variables (shared with detailed_report.py) ───── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --bg: #f8f7f4;
+    --fg: #1c1917;
+    --card: #ffffff;
+    --border: #e7e5e4;
+    --muted: #78716c;
+    --muted-light: #a8a29e;
+    --cream: #faf9f6;
+    --emerald: #059669;
+    --emerald-bg: #ecfdf5;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --blue: #2563eb;
+    --blue-bg: #eff6ff;
+    --font-heading: 'Newsreader', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --shadow-sm: 0 1px 2px rgba(28,25,23,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(28,25,23,0.07), 0 2px 4px -2px rgba(28,25,23,0.05);
+    --radius: 10px;
+    --radius-sm: 6px;
+}
+html { font-size: 15px; }
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ───── Scrollbar ───── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--muted-light); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ───── Layout ───── */
+.report-container {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+}
+
+/* ───── Header ───── */
+.report-header {
+    margin-bottom: 36px;
+}
+.report-header h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    line-height: 1.2;
+}
+.report-header .subtitle {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+/* ───── Summary cards ───── */
+.summary-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+}
+.summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s;
+}
+.summary-card:hover { box-shadow: var(--shadow-md); }
+.summary-card .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+.summary-card .big-number {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+/* ───── Section titles ───── */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+}
+
+/* ───── Categories grid ───── */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.category-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s;
+    cursor: pointer;
+    display: block;
+    color: inherit;
+}
+.category-card:hover { box-shadow: var(--shadow-md); }
+.category-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--fg);
+}
+.category-card h3 .file-count {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--muted);
+}
+.category-card .main-score {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 8px;
+}
+.color-emerald { color: var(--emerald); }
+.color-amber { color: var(--amber); }
+.color-red { color: var(--red); }
+
+/* ───── Progress bar ───── */
+.progress-bar-track {
+    height: 6px;
+    background: var(--cream);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+.bar-emerald { background: var(--emerald); }
+.bar-amber { background: var(--amber); }
+.bar-red { background: var(--red); }
+
+/* ───── Metric selector dropdown ───── */
+.metric-selector {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 6px 8px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--cream);
+    color: var(--fg);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s;
+}
+.metric-selector:focus { border-color: var(--blue); }
+
+/* ───── Metric rows ───── */
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    font-size: 0.82rem;
+    border-bottom: 1px solid var(--cream);
+}
+.metric-row:last-child { border-bottom: none; }
+.metric-row .metric-name {
+    color: var(--muted);
+    flex: 1;
+    min-width: 0;
+    line-height: 1.4;
+}
+.metric-row .metric-value {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-left: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.metric-row.selected .metric-name {
+    font-weight: 700;
+    color: var(--fg);
+}
+
+/* ───── Responsive ───── */
+@media (max-width: 900px) {
+    .summary-row { grid-template-columns: repeat(2, 1fr); }
+    .categories-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .report-container { padding: 16px 12px 48px; }
+    .summary-row { grid-template-columns: 1fr; }
+}
+/* ───── Metric Tooltips ───── */
+.metric-hint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+    flex-shrink: 0;
+    cursor: help;
+}
+.metric-hint::before {
+    content: '?';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--muted-light);
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--muted-light);
+    line-height: 1;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.metric-hint:hover::before {
+    border-color: var(--muted);
+    color: var(--card);
+    background: var(--muted);
+}
+/* Tooltip popup — rendered as a singleton fixed-position element via JS */
+#metric-tooltip {
+    position: fixed;
+    z-index: 10000;
+    width: 280px;
+    padding: 10px 13px;
+    background: var(--fg, #1c1917);
+    color: #f5f5f4;
+    font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.6;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(28,25,23,0.18), 0 2px 6px rgba(28,25,23,0.08);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+#metric-tooltip.visible {
+    opacity: 1;
+}
+#metric-tooltip::after {
+    content: '';
+    position: absolute;
+    border: 5px solid transparent;
+}
+#metric-tooltip.arrow-bottom::after {
+    top: 100%;
+    left: var(--arrow-left, 50%);
+    transform: translateX(-50%);
+    border-top-color: var(--fg, #1c1917);
+}
+#metric-tooltip.arrow-top::after {
+    bottom: 100%;
+    left: var(--arrow-left, 50%);
+    transform: translateX(-50%);
+    border-bottom-color: var(--fg, #1c1917);
+}
+</style>
+</head>
+<body>
+<div class="report-container">
+  <header class="report-header">
+    <h1 id="report-title">Evaluation Report</h1>
+    <p class="subtitle" id="subtitle"></p>
+  </header>
+
+  <div class="summary-row" id="summary-cards"></div>
+
+  <h2 class="section-title">Categories</h2>
+  <div class="categories-grid" id="categories-grid"></div>
+</div>
+
+<script>
+const DATA = {"pipelineName": "tesseract_eng", "pipelineMetadata": {"pipeline_name": "tesseract_eng", "provider_name": "tesseract", "product_type": "parse", "config": {"lang": "eng", "dpi": 300, "output_type": "text"}}, "generatedAt": "2026-10-14 15:09:59 UTC", "totalFiles": 15, "categories": [{"name": "chart", "displayName": "Chart", "files": 3, "defaultMetric": "rule_pass_rate", "metrics": [{"name": "rule_chart_data_point_pass_rate", "displayName": "Rule Chart Data Point Pass Rate", "value": 0.0}, {"name": "rule_pass_rate", "displayName": "Rule Pass Rate", "value": 0.0}]}, {"name": "layout", "displayName": "Layout", "files": 3, "defaultMetric": "", "metrics": []}, {"name": "table", "displayName": "Table", "files": 3, "defaultMetric": "grits_trm_composite", "metrics": [{"name": "grits_con", "displayName": "GriTS Con (All)", "value": 0.0}, {"name": "grits_trm_composite", "displayName": "GTRM", "value": 0.0}, {"name": "table_record_match", "displayName": "Table Record Match", "value": 0.0}, {"name": "table_record_match_perfect", "displayName": "Table Record Match Perfect", "value": 0.0}]}, {"name": "text_content", "displayName": "Text Content", "files": 3, "defaultMetric": "content_faithfulness", "metrics": [{"name": "content_faithfulness", "displayName": "Content Faithfulness", "value": 0.9177873302851469}, {"name": "normalized_order", "displayName": "Normalized Order", "value": 0.9131054131054132}, {"name": "normalized_text_correctness", "displayName": "Normalized Text Correctness", "value": 0.9201282888750137}, {"name": "normalized_text_score", "displayName": "Normalized Text Score", "value": 0.9166168509902134}, {"name": "rule_bag_of_digit_percent_pass_rate", "displayName": "Rule Bag Of Digit Percent Pass Rate", "value": 0.9235209235209235}, {"name": "rule_is_footer_pass_rate", "displayName": "Rule Is Footer Pass Rate", "value": 0.0}, {"name": "rule_is_header_pass_rate", "displayName": "Rule Is Header Pass Rate", "value": 0.0}, {"name": "rule_missing_sentence_percent_pass_rate", "displayName": "Rule Missing Sentence Percent Pass Rate", "value": 0.7688127090301003}, {"name": "rule_missing_specific_sentence_pass_rate", "displayName": "Rule Missing Specific Sentence Pass Rate", "value": 0.7764041514041514}, {"name": "rule_missing_specific_word_pass_rate", "displayName": "Rule Missing Specific Word Pass Rate", "value": 0.9862353030500239}, {"name": "rule_missing_word_percent_pass_rate", "displayName": "Rule Missing Word Percent Pass Rate", "value": 0.9786673511002416}, {"name": "rule_order_pass_rate", "displayName": "Rule Order Pass Rate", "value": 0.9131054131054132}, {"name": "rule_pass_rate", "displayName": "Rule Pass Rate", "value": 0.9422138452630806}, {"name": "rule_too_many_sentence_occurence_percent_pass_rate", "displayName": "Rule Too Many Sentence Occurence Percent Pass Rate", "value": 1.0}, {"name": "rule_too_many_word_occurence_percent_pass_rate", "displayName": "Rule Too Many Word Occurence Percent Pass Rate", "value": 0.9655172413793104}, {"name": "rule_unexpected_sentence_percent_pass_rate", "displayName": "Rule Unexpected Sentence Percent Pass Rate", "value": 0.8612012987012987}, {"name": "rule_unexpected_word_percent_pass_rate", "displayName": "Rule Unexpected Word Percent Pass Rate", "value": 0.9431784983932223}]}, {"name": "text_formatting", "displayName": "Text Formatting", "files": 3, "defaultMetric": "semantic_formatting", "metrics": [{"name": "normalized_text_score", "displayName": "Normalized Text Score", "value": 0.0}, {"name": "normalized_text_styling", "displayName": "Normalized Text Styling", "value": 0.0}, {"name": "normalized_title_accuracy", "displayName": "Normalized Title Accuracy", "value": 0.0}, {"name": "rule_is_bold_pass_rate", "displayName": "Rule Is Bold Pass Rate", "value": 0.0}, {"name": "rule_is_mark_pass_rate", "displayName": "Rule Is Mark Pass Rate", "value": 0.0}, {"name": "rule_is_strikeout_pass_rate", "displayName": "Rule Is Strikeout Pass Rate", "value": 0.0}, {"name": "rule_is_title_pass_rate", "displayName": "Rule Is Title Pass Rate", "value": 0.0}, {"name": "rule_is_underline_pass_rate", "displayName": "Rule Is Underline Pass Rate", "value": 0.0}, {"name": "rule_pass_rate", "displayName": "Rule Pass Rate", "value": 0.0}, {"name": "rule_title_hierarchy_percent_pass_rate", "displayName": "Rule Title Hierarchy Percent Pass Rate", "value": 0.0}, {"name": "semantic_formatting", "displayName": "Semantic Formatting", "value": 0.0}]}], "metricTooltips": {"teds": "Tree Edit Distance Similarity. Compares table HTML as trees using APTED algorithm: 1 − (edit_distance / max_nodes). Evaluates both structure and cell text content. Score is averaged across matched table pairs.", "teds_predicted": "Same as TEDS, but computed only among examples where tables were actually predicted (excludes examples with zero predicted tables).", "teds_struct": "TEDS structure-only variant. Compares table HTML tree structure while ignoring cell text content entirely.", "teds_struct_predicted": "Same as TEDS-Struct, but only among examples with predicted tables.", "teds_struct_bool": "TEDS structure variant with boolean content awareness. Penalizes when one cell is empty and the other is not, but ignores actual text differences.", "teds_struct_bool_predicted": "Same as TEDS-Struct+Bool, but only among examples with predicted tables.", "grits_top": "Grid Table Similarity for topology. F-score from 2D Most-Similar Substructures algorithm, using IoU on cell spans for structural comparison.", "grits_con": "Grid Table Similarity for content. F-score from 2D Most-Similar Substructures algorithm, using Longest Common Subsequence for cell text comparison.", "grits_trm_composite": "Composite GriTS score combining topology, recognition, and matching components.", "grits_top_predicted": "Same as GriTS Top, but only among examples with predicted tables.", "grits_con_predicted": "Same as GriTS Con, but only among examples with predicted tables.", "grits_precision_top": "Precision component of GriTS topology score.", "grits_recall_top": "Recall component of GriTS topology score.", "grits_precision_con": "Precision component of GriTS content score.", "grits_recall_con": "Recall component of GriTS content score.", "grits_top_upper_bound": "Upper bound for GriTS topology score based on table matching.", "grits_con_upper_bound": "Upper bound for GriTS content score based on table matching.", "ref_grits_top": "Reference GriTS topology score computed against reference tables.", "ref_grits_con": "Reference GriTS content score computed against reference tables.", "ref_grits_top_predicted": "Reference GriTS topology score, only among examples with predicted tables.", "ref_grits_con_predicted": "Reference GriTS content score, only among examples with predicted tables.", "header_composite": "Mean of 8 header submetrics: cell count, GriTS content, content bag, perfect match, structure, block order, block extent, and block relative position.", "header_composite_v3": "Version 3 of the header composite metric with updated submetric weights and components.", "header_cell_count": "Ratio of predicted header cells to expected. Penalizes both missing and extra header cells symmetrically.", "header_grits": "GriTS content score applied to contiguous header blocks only.", "header_content_bag": "Bag-of-cells exact content overlap: measures how many header cell texts match regardless of position.", "header_perfect": "Binary metric: 1.0 if the header structure matches the ground truth exactly, 0.0 otherwise.", "header_structure": "GriTS topology score applied to the header region, measuring grid structure accuracy.", "header_block_order": "Relative position preservation when multiple header blocks exist in a table.", "header_block_extent": "Location and size accuracy of each header block within the full table.", "header_block_proximity": "Nearest-edge distance between matched header blocks, measuring spatial closeness.", "header_block_relative_direction": "Cosine similarity of relative direction vectors between matched header blocks.", "header_block_relative_position": "Product of proximity (nearest-edge distance) and direction (cosine similarity) between matched header blocks.", "structural_consistency": "Self-consistency check on predicted tables (no ground truth comparison). Binary: 1.0 if every row has the same column count and every column has the same row count after resolving colspan/rowspan.", "table_composite": "Weighted combination of table metrics: 0.8 × (header_composite × grits_con) + 0.2 × structural_consistency. Balances content accuracy with structural integrity.", "table_composite_v3": "Version 3 of the table composite metric with updated component weights.", "table_composite_v3_harmonic": "Harmonic mean variant of table composite v3, penalizing low outlier scores more heavily.", "exp_header_composite_v3_generous": "Experimental header composite v3 with generous matching criteria.", "exp_table_composite_v3_generous": "Experimental table composite v3 with generous matching criteria.", "exp_table_composite_v3_generous_harmonic": "Harmonic mean variant of the experimental generous table composite v3.", "normalized_text_styling": "Normalized score for text styling accuracy (bold, italic, underline, etc.).", "normalized_text_correctness": "Normalized score for text content correctness.", "normalized_order": "Normalized score for reading order accuracy of text elements.", "normalized_title_accuracy": "Normalized score for title detection and content accuracy.", "normalized_code_block": "Normalized score for code block detection and content accuracy.", "normalized_latex": "Normalized score for LaTeX equation rendering accuracy.", "normalized_text_score": "Overall normalized text score combining multiple text quality dimensions.", "content_faithfulness": "Measures how faithfully the predicted content represents the source document.", "semantic_formatting": "Measures accuracy of semantic formatting elements (headings, lists, emphasis, etc.).", "text_similarity": "Normalized Levenshtein distance between expected and predicted text, scaled to 0–1 where 1.0 is a perfect match.", "rule_pass_rate": "Fraction of test rules that pass for each example: passed / total across all rule types.", "chart_data_point": "Pass rate for chart data point extraction rules.", "form_field": "Pass rate for form field rules (key-value, checkbox, signature). A rule passes when the labeled field is located in the parsed output and the extracted value matches the expected value (or any acceptable alternative when value is a list; signature rules pass on presence).", "order": "Pass rate for reading order rules, checking that elements appear in the expected sequence.", "is_bold": "Pass rate for bold formatting detection rules.", "is_footer": "Pass rate for footer section detection rules.", "is_header": "Pass rate for header section detection rules.", "is_sup": "Pass rate for superscript formatting detection rules.", "is_underline": "Pass rate for underline formatting detection rules.", "missing_sentence": "Pass rate for missing sentence rules. Checks that expected sentences appear in the output.", "missing_specific_sentence": "Pass rate for specific required sentence presence rules.", "missing_specific_word": "Pass rate for specific required word presence rules.", "missing_word": "Pass rate for missing word rules. Checks that expected words appear in the output.", "too_many_sentence_occurence": "Pass rate for sentence frequency rules. Penalizes when sentences appear more times than expected.", "too_many_word_occurence": "Pass rate for word frequency rules. Penalizes when words appear more times than expected.", "unexpected_sentence": "Pass rate for unexpected sentence rules. Penalizes extra sentences not in the ground truth.", "unexpected_word": "Pass rate for unexpected word rules. Penalizes extra words not in the ground truth.", "table_adjacent_down": "Pass rate for table adjacency rules checking cells directly below.", "table_adjacent_right": "Pass rate for table adjacency rules checking cells directly to the right.", "table_colspan": "Pass rate for column span detection rules in tables.", "table_rowspan": "Pass rate for row span detection rules in tables.", "table_no_above": "Pass rate for rules verifying no content exists above a given table cell.", "table_no_below": "Pass rate for rules verifying no content exists below a given table cell.", "table_no_left": "Pass rate for rules verifying no content exists to the left of a given table cell.", "table_no_right": "Pass rate for rules verifying no content exists to the right of a given table cell.", "table_same_column": "Pass rate for rules verifying that specific cells share the same column.", "table_same_row": "Pass rate for rules verifying that specific cells share the same row.", "table_top_header": "Pass rate for rules checking top header row identification in tables.", "accuracy": "JSON subset match comparing expected vs actual extracted data. Supports date normalization and weighted scoring by leaf node count.", "extract_value_precision": "Native extract value precision using schema-aware typed comparison and index-tolerant array matching: matched predicted values / predicted values.", "extract_value_recall": "Native extract value recall using schema-aware typed comparison and index-tolerant array matching: matched expected values / expected values.", "extract_value_f1": "Harmonic mean of native extract value precision and recall.", "extract_value_pass_rate": "Per-rule pass rate for native extract values using schema-aware typed comparison with index-tolerant array matching.", "extract_bbox_iou": "Per-document metric: mean of per-field-rule intersection-over-union between ground-truth extract-field bboxes and selected native extract field-citation bboxes.", "extract_bbox_recall": "Per-document metric: mean of per-field-rule ground-truth bbox area covered by selected native extract field-citation bboxes.", "extract_element_pass_rate": "Native extract per-field pass rate where localization and typed attribution both pass.", "extract_localization_pass_rate": "Native extract per-field pass rate where predicted field-citation bboxes meet strict or relaxed localization criteria.", "extract_attribution_pass_rate": "Native extract per-field pass rate where the localized structured prediction matches the expected value under typed comparison.", "extract_avg_iou": "Average per-rule IoU for extract field localization candidates.", "extract_avg_iou_matched": "Average per-rule IoU across native extract fields that passed localization.", "extract_avg_iou_unmatched": "Average per-rule IoU across native extract fields that failed localization.", "parse_field_element_pass_rate": "Parse-side field grounding pass rate where localization, trivial classification, and typed attribution all pass against extract_field rules.", "parse_field_rule_pass_rate": "Parse-side average pass rate across localization, classification, and attribution checks for extract_field rules.", "parse_field_localization_pass_rate": "Parse-side pass rate where granular parse support bboxes meet strict or relaxed localization criteria for extract_field rules.", "parse_field_classification_pass_rate": "Parse-side classification pass rate for extract_field rules. This is currently trivial because field rules do not carry class labels.", "parse_field_attribution_pass_rate": "Parse-side pass rate where localized support text matches the expected field value under typed comparison.", "parse_field_avg_iou": "Average per-rule IoU for parse-side field grounding candidates.", "parse_field_avg_iou_matched": "Average per-rule IoU across parse-side field rules that passed localization.", "parse_field_avg_iou_unmatched": "Average per-rule IoU across parse-side field rules that failed localization.", "parse_field_iou": "Per-document metric: mean of per-field-rule intersection-over-union between ground-truth extract-field bboxes and selected parse support bboxes.", "parse_field_bbox_recall": "Per-document metric: mean of per-field-rule ground-truth bbox area covered by selected parse support bboxes.", "parse_field_text_similarity": "Average typed text similarity for string extract_field rules matched to parse support text.", "parse_field_gt_count": "Number of non-stray extract_field rules evaluated against parse output support.", "af1": "Harmonic mean of LAP and LAR. Measures overall content attribution accuracy in spatial regions.", "lap": "For each predicted block, checks whether its text tokens are found in ground truth elements that spatially overlap with it.", "lar": "For each ground truth element, checks whether its text tokens are recovered by predicted blocks that spatially overlap with it.", "mAP@[.50:.95]": "Mean Average Precision averaged across IoU thresholds from 0.50 to 0.95 (step 0.05). Standard COCO object detection metric.", "AP50": "Average Precision at IoU threshold 0.50. Measures detection accuracy with a lenient overlap requirement.", "AP75": "Average Precision at IoU threshold 0.75. Measures detection accuracy with a strict overlap requirement.", "mean_f1": "Average F1 score across all layout element classes.", "layout_element_rule_pass_rate": "Overall per-element rule pass rate combining localization, classification, attribution, and reading order checks.", "layout_localization_rule_pass_rate": "Pass rate for bounding box localization rules. Checks spatial accuracy of predicted element positions.", "layout_classification_rule_pass_rate": "Pass rate for class label prediction rules. Checks whether predicted element types match ground truth.", "layout_attribution_rule_pass_rate": "Pass rate for content attribution rules. Checks whether predicted blocks contain the correct text content.", "layout_reading_order_pass_rate": "Pass rate for reading order rules. Checks whether layout elements are ordered correctly.", "qa_answer_match": "Binary pass/fail for each question. Supports single-choice, multiple-choice, numerical (with tolerance), and free-text answer types.", "qa_anls_star": "Average Normalized Levenshtein Similarity for free-text answers. Ranges from 0 (completely different) to 1 (perfect match)."}};
+</script>
+<script>
+(function() {
+  function colorClass(rate) {
+    if (rate >= 80) return 'emerald';
+    if (rate >= 50) return 'amber';
+    return 'red';
+  }
+
+  function pct(val, d) {
+    d = d !== undefined ? d : 1;
+    return val.toFixed(d) + '%';
+  }
+
+  function esc(s) {
+    if (s == null) return '';
+    var d = document.createElement('div');
+    d.textContent = String(s);
+    return d.innerHTML;
+  }
+
+  // ─── Metric tooltip system (fixed-position, never clipped) ───
+  var _tipEl = null;
+  var _tipHideTimer = null;
+  function _ensureTip() {
+    if (_tipEl) return _tipEl;
+    _tipEl = document.createElement('div');
+    _tipEl.id = 'metric-tooltip';
+    document.body.appendChild(_tipEl);
+    return _tipEl;
+  }
+  function _getTooltipText(metricKey) {
+    var tips = (typeof DATA !== 'undefined' && DATA.metricTooltips)
+      ? DATA.metricTooltips
+      : (typeof metricTooltips !== 'undefined' ? metricTooltips : {});
+    var text = tips[metricKey] || '';
+    if (!text) {
+      if (metricKey.indexOf('field_accuracy_') === 0) {
+        var field = metricKey.slice(15).replace(/_/g, ' ');
+        text = 'JSON subset match accuracy for the \u201c' + field + '\u201d field.';
+      } else if (metricKey.indexOf('rule_') === 0 && metricKey.lastIndexOf('_pass_rate') === metricKey.length - 10) {
+        var ruleType = metricKey.slice(5, metricKey.length - 10).replace(/_/g, ' ');
+        text = 'Fraction of \u201c' + ruleType + '\u201d rules that pass.';
+      } else if (metricKey.indexOf('f1_') === 0) {
+        var cls = metricKey.slice(3).replace(/_/g, ' ');
+        text = 'F1 score for the \u201c' + cls + '\u201d layout class: 2\u00d7P\u00d7R/(P+R).';
+      } else if (metricKey.indexOf('precision_') === 0) {
+        var cls2 = metricKey.slice(10).replace(/_/g, ' ');
+        text = 'Precision for the \u201c' + cls2 + '\u201d layout class: TP/(TP+FP).';
+      } else if (metricKey.indexOf('recall_') === 0) {
+        var cls3 = metricKey.slice(7).replace(/_/g, ' ');
+        text = 'Recall for the \u201c' + cls3 + '\u201d layout class: TP/(TP+FN).';
+      }
+    }
+    return text;
+  }
+  function _showTip(icon) {
+    clearTimeout(_tipHideTimer);
+    var key = icon.getAttribute('data-metric');
+    var text = _getTooltipText(key);
+    if (!text) return;
+    var tip = _ensureTip();
+    tip.textContent = text;
+    // Reset: position offscreen to measure, remove classes
+    tip.className = '';
+    tip.style.cssText = 'position:fixed;display:block;visibility:hidden;top:-9999px;left:-9999px';
+    // Measure after text is set
+    var iconRect = icon.getBoundingClientRect();
+    var tipW = tip.offsetWidth;
+    var tipH = tip.offsetHeight;
+    var gap = 8;
+    // Default: above
+    var top = iconRect.top - tipH - gap;
+    var arrowDir = 'arrow-bottom';
+    // If not enough room above, go below
+    if (top < 4) {
+      top = iconRect.bottom + gap;
+      arrowDir = 'arrow-top';
+    }
+    // Horizontal: center on icon, but clamp to viewport
+    var left = iconRect.left + iconRect.width / 2 - tipW / 2;
+    var maxLeft = window.innerWidth - tipW - 8;
+    if (left < 8) left = 8;
+    if (left > maxLeft) left = maxLeft;
+    // Arrow position relative to tooltip
+    var arrowLeft = (iconRect.left + iconRect.width / 2 - left);
+    arrowLeft = Math.max(12, Math.min(arrowLeft, tipW - 12));
+    // Apply final position — clear inline styles so CSS classes take effect
+    tip.style.cssText = '';
+    tip.style.top = top + 'px';
+    tip.style.left = left + 'px';
+    tip.style.setProperty('--arrow-left', arrowLeft + 'px');
+    tip.className = arrowDir + ' visible';
+  }
+  function _hideTip() {
+    _tipHideTimer = setTimeout(function() {
+      if (_tipEl) { _tipEl.className = ''; }
+    }, 80);
+  }
+  // Attach listeners via event delegation (mouseover/mouseout bubble, mouseenter/mouseleave do NOT)
+  var _currentHint = null;
+  document.addEventListener('mouseover', function(e) {
+    var icon = e.target.closest ? e.target.closest('.metric-hint') : null;
+    if (icon && icon !== _currentHint) {
+      _currentHint = icon;
+      _showTip(icon);
+    } else if (!icon && _currentHint) {
+      _currentHint = null;
+      _hideTip();
+    }
+  });
+  document.addEventListener('mouseout', function(e) {
+    if (!_currentHint) return;
+    var related = e.relatedTarget;
+    if (!related || !(related.closest && related.closest('.metric-hint') === _currentHint)) {
+      _currentHint = null;
+      _hideTip();
+    }
+  });
+
+  function tooltipIcon(metricKey) {
+    var text = _getTooltipText(metricKey);
+    if (!text) return '';
+    return '<span class="metric-hint" data-metric="' + esc(metricKey) + '"></span>';
+  }
+
+
+  // ─── State: selected metric per category ───
+  var selectedMetrics = {};
+  DATA.categories.forEach(function(cat) {
+    selectedMetrics[cat.name] = cat.defaultMetric;
+  });
+
+  // ─── Header ───
+  var titleText = DATA.pipelineName
+    ? DATA.pipelineName.replace(/_/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); })
+    : 'Evaluation Report';
+  document.getElementById('report-title').textContent = titleText;
+  document.getElementById('subtitle').textContent = 'Generated: ' + DATA.generatedAt;
+
+  // ─── Helpers ───
+  function getSelectedValue(cat) {
+    var sel = selectedMetrics[cat.name];
+    for (var i = 0; i < cat.metrics.length; i++) {
+      if (cat.metrics[i].name === sel) return cat.metrics[i].value * 100;
+    }
+    return 0;
+  }
+
+  function computeAvgScore() {
+    var sum = 0, count = 0;
+    DATA.categories.forEach(function(cat) {
+      sum += getSelectedValue(cat);
+      count++;
+    });
+    return count > 0 ? sum / count : 0;
+  }
+
+  // ─── Render summary cards ───
+  function renderSummary() {
+    var sc = document.getElementById('summary-cards');
+    sc.innerHTML = '';
+    var avg = computeAvgScore();
+    var ac = colorClass(avg);
+
+    // Total Files card
+    var d1 = document.createElement('div');
+    d1.className = 'summary-card';
+    d1.innerHTML = '<div class="label">TOTAL FILES</div><div class="big-number">' + DATA.totalFiles + '</div>';
+    sc.appendChild(d1);
+
+    // Avg Score card
+    var d2 = document.createElement('div');
+    d2.className = 'summary-card';
+    d2.innerHTML = '<div class="label">AVG SCORE</div><div class="big-number color-' + ac + '">' + pct(avg) + '</div>';
+    sc.appendChild(d2);
+  }
+
+  // ─── Render category cards ───
+  function renderCategories() {
+    var grid = document.getElementById('categories-grid');
+    grid.innerHTML = '';
+    // Set grid columns to match number of categories
+    var numCats = DATA.categories.length;
+    grid.style.gridTemplateColumns = 'repeat(' + numCats + ', 1fr)';
+
+    DATA.categories.forEach(function(cat) {
+      var card = document.createElement('div');
+      card.className = 'category-card';
+
+      var selMetric = selectedMetrics[cat.name];
+      var mainVal = getSelectedValue(cat);
+      var c = colorClass(mainVal);
+
+      var html = '<h3>' + esc(cat.displayName) + ' <span class="file-count">(' + cat.files + ' files)</span></h3>';
+      html += '<div class="main-score color-' + c + '">' + pct(mainVal) + '</div>';
+      html += '<div class="progress-bar-track"><div class="progress-bar-fill bar-' + c
+        + '" style="width:' + Math.min(mainVal, 100) + '%"></div></div>';
+
+      // Metric selector dropdown
+      html += '<select class="metric-selector" data-cat="' + esc(cat.name) + '">';
+      for (var i = 0; i < cat.metrics.length; i++) {
+        var m = cat.metrics[i];
+        var selected = m.name === selMetric ? ' selected' : '';
+        html += '<option value="' + esc(m.name) + '"' + selected + '>' + esc(m.displayName) + '</option>';
+      }
+      html += '</select>';
+
+      // Metric list: selected metric first, then the rest in original order
+      var sorted = [];
+      var rest = [];
+      for (var j = 0; j < cat.metrics.length; j++) {
+        if (cat.metrics[j].name === selMetric) {
+          sorted.unshift(cat.metrics[j]);
+        } else {
+          rest.push(cat.metrics[j]);
+        }
+      }
+      sorted = sorted.concat(rest);
+
+      for (var k = 0; k < sorted.length; k++) {
+        var sm = sorted[k];
+        var mc = colorClass(sm.value * 100);
+        var selClass = sm.name === selMetric ? ' selected' : '';
+        html += '<div class="metric-row' + selClass + '">';
+        html += '<span class="metric-name">' + esc(sm.displayName) + '</span>' + tooltipIcon(sm.name);
+        html += '<span class="metric-value color-' + mc + '">' + pct(sm.value * 100) + '</span>';
+        html += '</div>';
+      }
+
+      card.innerHTML = html;
+
+      // Click on card navigates to detailed report (but not when clicking dropdown)
+      card.addEventListener('click', function(e) {
+        if (e.target.tagName === 'SELECT' || e.target.tagName === 'OPTION') return;
+        if (e.target.closest && e.target.closest('.metric-hint')) return;
+        window.location.href = cat.name + '/_evaluation_report_detailed.html';
+      });
+
+      // Dropdown change updates selected metric and re-renders
+      var select = card.querySelector('.metric-selector');
+      if (select) {
+        select.addEventListener('change', function(e) {
+          e.stopPropagation();
+          selectedMetrics[cat.name] = e.target.value;
+          renderCategories();
+          renderSummary();
+        });
+      }
+
+      grid.appendChild(card);
+    });
+  }
+
+  renderSummary();
+  renderCategories();
+})();
+
+</script>
+</body>
+</html>

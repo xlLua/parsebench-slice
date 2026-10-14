@@ -1,0 +1,48 @@
+{
+  "request": {
+    "example_id": "table/222876fb_page22",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/table/222876fb_page22.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "pymupdf_text",
+    "provider_name": "pymupdf",
+    "product_type": "parse",
+    "config": {
+      "text_format": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "LTC2228/LTC2227/LTC2226\n22\n222876fb\n APPLICATIONS INFORMATION\ndigital outputs of the LTC2228/LTC2227/LTC2226 should \ndrive a minimal capacitive load to avoid possible interaction \nbetween the digital outputs and sensitive input circuitry. \nThe output should be buffered with a device such as an \nALVCH16373 CMOS latch. For full speed operation the \ncapacitive load should be kept under 10pF. \nLower OVDD voltages will also help reduce interference \nfrom the digital outputs.\nData Format\nUsing the MODE pin, the LTC2228/LTC2227/LTC2226 \nparallel digital output can be selected for offset binary \nor 2’s complement format. Connecting MODE to GND or \n1/3VDD selects offset binary output format. Connecting \nMODE to 2/3VDD or VDD selects 2’s complement output \nformat. An external resistor divider can be used to set the \n1/3VDD or 2/3VDD logic values. Table 2 shows the logic \nstates for the MODE pin.\nTable 2. MODE Pin Function\nMODE PIN\nOUTPUT FORMAT\nCLOCK DUTY\nCYCLE STABILIZER\n0\nOffset Binary\nOff\n1/3VDD\nOffset Binary\nOn\n2/3VDD\n2’s Complement \nOn\nVDD\n2’s Complement \nOff\nOverfl ow Bit\nWhen OF outputs a logic high the converter is either over-\nranged or underranged.\nOutput Driver Power\nSeparate output power and ground pins allow the output \ndrivers to be isolated from the analog circuitry. The power \nsupply for the digital output buffers, OVDD, should be tied \nto the same power supply as for the logic being driven. \nFor example if the converter is driving a DSP powered \nby a 1.8V supply, then OVDD should be tied to that same \n1.8V supply.\nOVDD can be powered with any voltage from 500mV up to \n3.6V. OGND can be powered with any voltage from GND \nup to 1V and must be less than OVDD. The logic outputs \nwill swing between OGND and OVDD.\nOutput Enable\nThe outputs may be disabled with the output enable pin, \nOE. OE high disables all data outputs including OF. The \ndata access and bus relinquish times are too slow to allow \nthe outputs to be enabled and disabled during full speed \noperation. The output Hi-Z state is intended for use during \nlong periods of inactivity.\nSleep and Nap Modes\nThe converter may be placed in shutdown or nap modes \nto conserve power. Connecting SHDN to GND results in \nnormal operation. Connecting SHDN to VDD and OE to VDD \nresults in sleep mode, which powers down all circuitry \nincluding the reference and typically dissipates 1mW. When \nexiting sleep mode it will take milliseconds for the output \ndata to become valid because the reference capacitors \nhave to recharge and stabilize. Connecting SHDN to VDD \nand OE to GND results in nap mode, which typically dis-\nsipates 15mW. In nap mode, the on-chip reference circuit \nis kept on, so that recovery from nap mode is faster than \nthat from sleep mode, typically taking 100 clock cycles. In \nboth sleep and nap modes, all digital outputs are disabled \nand enter the Hi-Z state.\nGrounding and Bypassing\nThe LTC2228/LTC2227/LTC2226 require a printed circuit \nboard with a clean, unbroken ground plane. A multilayer \nboard with an internal ground plane is recommended. \nLayout for the printed circuit board should ensure that \ndigital and analog signal lines are separated as much \nas possible. In particular, care should be taken not to \nrun any digital track alongside an analog signal track or \nunderneath the ADC.\nHigh quality ceramic bypass capacitors should be used at \nthe VDD, OVDD, VCM, REFH, and REFL pins. Bypass capaci-\ntors must be located as close to the pins as possible. Of \nparticular importance is the 0.1μF capacitor between REFH \nand REFL. This capacitor should be placed as close to the \ndevice as possible (1.5mm or less). A size 0402 ceramic \ncapacitor is recommended. The large 2.2μF capacitor be-\ntween REFH and REFL can be somewhat further away. The \ntraces connecting the pins and bypass capacitors must be \nkept short and should be made as wide as possible.\n",
+        "width": 612.0,
+        "height": 792.0
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.7",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+      "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+      "creationDate": "D:20260408015539Z",
+      "modDate": "D:20260408015539Z",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "started_at": "2026-10-14T17:11:00.493699",
+  "completed_at": "2026-10-14T17:11:02.004111",
+  "latency_in_ms": 1510
+}

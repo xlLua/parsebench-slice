@@ -1,0 +1,48 @@
+{
+  "request": {
+    "example_id": "chart/05021ff2-en_p19",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/chart/05021ff2-en_p19.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "pymupdf_text",
+    "provider_name": "pymupdf",
+    "product_type": "parse",
+    "config": {
+      "text_format": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "   17 \n \nA DECADE OF OECD COMPETITION TRENDS, DATA AND INSIGHTS © OECD 2025 \n  \nFigure 2.2. Total merger notifications (left) and the average annual growth rate (right) for OECD and \nNon-OECD jurisdictions, 2015-2024 \n \nNote: Data based on the 59 jurisdictions in the OECD CompStats database that provided data for each of the variables for the period 2015-\n2024. \nSource: OECD CompStats database \nGlobal trends in mergers and acquisitions in the past ten years have been impacted by macroeconomic \ndynamics and the correlation between merger notifications and variables such as GDP growth, inflation \nand interest rates is strong. Periods of strong GDP growth tend to spur deals, while periods of recession \nor slower growth dampen them (see Figure 2.3). The most impactful shock in the last decade was the \nCOVID-19 pandemic, where OECD jurisdictions observed a decrease of -4.75% in their GDP (and OECD \nestimates for the decrease in the World’s GDP were around 3%  (OECD, 2020[14]; 2021[15]) that correlated \nwith a drop in M&A activity in 2020 compared to 2019. This represented on average 10.3% fewer \nnotifications, while the post pandemic rebound saw record deal volumes in 2021. This initial decline was \nobserved in 70% of the jurisdictions in the sample, with Latin American jurisdictions being the ones that \nobserved the biggest drop – as notifications fell more than 40% in Barbados, Ecuador, Panama and Chile. \nThe subsequent recovery, which on average increased notifications by 40% in 2021 compared to 2020, \nwas observed in 80% of those jurisdictions. In Latvia, the United States, Malta, the Slovak Republic and \nGreece, the increase was higher than 100% with respect to notifications in 2020.  \nAfter the two years with significant changes, 2022 presented a mixed picture. In OECD jurisdictions \nnotifications decreased, although they remained higher than the pre COVID-19 period, while in non-OECD \njurisdictions they increased further. A sudden increase in the number of mergers notified in 2021, which \ndirectly impact merger reviews, may have impacted the resources that authorities had to dedicate to \nmerger reviews.4 More mergers to assess require more time and, often, a more flexible allocation of the \nstaff from other enforcement areas. Challenges on resource allocation, case prioritisation and the \ninteraction between increased activity in one of the areas of work and the resources dedicated to others \nhave raised concerns from competition authorities recently.5  \n 0\n2 000\n4 000\n6 000\n8 000\n10 000\n12 000\n14 000\n2015 2016 2017 2018 2019 2020 2021 2022 2023 2024\nOECD\nNon-OECD\nTotal number of merger notifications\n-30%\n-20%\n-10%\n0%\n10%\n20%\n30%\n40%\n50%\n2015/2016\n2016/2017\n2017/2018\n2018/2019\n2019/2020\n2020/2021\n2021/2022\n2022/2023\n2023/2024\nAnnual growth rate\nOECD\nNon-OECD\n",
+        "width": 595.2760009765625,
+        "height": 793.7009887695312
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.7",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "",
+      "producer": "",
+      "creationDate": "",
+      "modDate": "",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "started_at": "2026-10-14T17:11:00.493743",
+  "completed_at": "2026-10-14T17:11:02.004796",
+  "latency_in_ms": 1511
+}

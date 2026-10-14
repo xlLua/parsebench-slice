@@ -1,0 +1,55 @@
+{
+  "request": {
+    "example_id": "table/SERFF_Interstate_random_pages 1_page276",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/table/SERFF_Interstate_random_pages 1_page276.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": " \n \n \n \n \n \n \n \n \nACTUARIAL MEMORANDUM \n \n \n \n \n \nSupporting Policy Form: \n \n \nICC18 ENT-06 1805 \nSingle Premium Deferred Annuity Contract with Market \nValue Adjustment Feature \nICC18 ENT-06 1805 DP \nData Page \nICC18 ENT-06 1805 DP-A \nData Page \nICC18 ENT-06 1805 DP-B \nData Page \nICC18 ENT-06 1805 DP-C \nData Page \nICC18 ENT-06 1805 DP-D \nData Page \nICC18 ENT-06 1805 DP-E \nData Page \nICC22 EE.48 2208 \nAccount Value Band Interest Rate Endorsement \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n   \n          \n \n                \nPatrick F. McCormack, FSA, MAAA \nAssistant Vice President \nAnnuity Products \nSeptember 7, 2022 \n \nI am a member of the American Academy of Actuaries, and I meet the Qualifications Standards of the American \nAcademy of Actuaries to render the actuarial opinion contained herein. \n",
+        "width": 612.0,
+        "height": 792.0
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.7",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+      "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+      "creationDate": "D:20260408015539Z",
+      "modDate": "D:20260408015539Z",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "output": {
+    "task_type": "parse",
+    "example_id": "table/SERFF_Interstate_random_pages 1_page276",
+    "pipeline_name": "pymupdf_text",
+    "pages": [
+      {
+        "page_index": 0,
+        "markdown": " \n \n \n \n \n \n \n \n \nACTUARIAL MEMORANDUM \n \n \n \n \n \nSupporting Policy Form: \n \n \nICC18 ENT-06 1805 \nSingle Premium Deferred Annuity Contract with Market \nValue Adjustment Feature \nICC18 ENT-06 1805 DP \nData Page \nICC18 ENT-06 1805 DP-A \nData Page \nICC18 ENT-06 1805 DP-B \nData Page \nICC18 ENT-06 1805 DP-C \nData Page \nICC18 ENT-06 1805 DP-D \nData Page \nICC18 ENT-06 1805 DP-E \nData Page \nICC22 EE.48 2208 \nAccount Value Band Interest Rate Endorsement \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n   \n          \n \n                \nPatrick F. McCormack, FSA, MAAA \nAssistant Vice President \nAnnuity Products \nSeptember 7, 2022 \n \nI am a member of the American Academy of Actuaries, and I meet the Qualifications Standards of the American \nAcademy of Actuaries to render the actuarial opinion contained herein. \n",
+        "line_numbers": []
+      }
+    ],
+    "layout_pages": [],
+    "grounded_pages": [],
+    "markdown": " \n \n \n \n \n \n \n \n \nACTUARIAL MEMORANDUM \n \n \n \n \n \nSupporting Policy Form: \n \n \nICC18 ENT-06 1805 \nSingle Premium Deferred Annuity Contract with Market \nValue Adjustment Feature \nICC18 ENT-06 1805 DP \nData Page \nICC18 ENT-06 1805 DP-A \nData Page \nICC18 ENT-06 1805 DP-B \nData Page \nICC18 ENT-06 1805 DP-C \nData Page \nICC18 ENT-06 1805 DP-D \nData Page \nICC18 ENT-06 1805 DP-E \nData Page \nICC22 EE.48 2208 \nAccount Value Band Interest Rate Endorsement \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n   \n          \n \n                \nPatrick F. McCormack, FSA, MAAA \nAssistant Vice President \nAnnuity Products \nSeptember 7, 2022 \n \nI am a member of the American Academy of Actuaries, and I meet the Qualifications Standards of the American \nAcademy of Actuaries to render the actuarial opinion contained herein. \n",
+    "job_id": null
+  },
+  "started_at": "2026-10-14T17:11:00.493731",
+  "completed_at": "2026-10-14T17:11:02.003828",
+  "latency_in_ms": 1510
+}

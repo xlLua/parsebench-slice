@@ -1,0 +1,35 @@
+{
+  "pipeline": {
+    "pipeline_name": "tesseract_eng",
+    "provider_name": "tesseract",
+    "product_type": "parse",
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    }
+  },
+  "run_config": {
+    "max_concurrent": 20,
+    "per_file_timeout": 1800.0,
+    "timeout_retries": 2,
+    "save_raw": true,
+    "save_normalized": true,
+    "force": false,
+    "randomize_external_filenames": true
+  },
+  "summary": {
+    "total": 12,
+    "successful": 12,
+    "failed": 0,
+    "skipped": 0,
+    "total_latency_ms": 75370,
+    "avg_latency_ms": 6280.83,
+    "success_rate": 100.0,
+    "errors": [],
+    "started_at": "2026-10-14T17:09:47.536021",
+    "completed_at": "2026-10-14T17:09:54.585341"
+  },
+  "test_cases_dir": "/Users/dario/projects/Delen/parsebench-slice/data/test",
+  "parse_bench_version": "1.0.4"
+}

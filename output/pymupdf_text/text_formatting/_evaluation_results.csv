@@ -1,0 +1,4 @@
+test_id,example_id,pipeline_name,product_type,success,error,tags,latency_ms,latency_ms_per_page,normalized_text_score,normalized_text_styling,normalized_title_accuracy,rule_is_bold_pass_rate,rule_is_mark_pass_rate,rule_is_strikeout_pass_rate,rule_is_title_pass_rate,rule_is_underline_pass_rate,rule_pass_rate,rule_title_hierarchy_percent_pass_rate,semantic_formatting
+text/text_ocr__p4013,text/text_ocr__p4013,pymupdf_text,parse,True,,"text_formatting,ocr,hard",1510.0,1510.0,0.0,0.0,,,,0.0,,0.0,0.0,,0.0
+text/text_simple__results,text/text_simple__results,pymupdf_text,parse,True,,"text_formatting,simple,easy",1509.0,1509.0,0.0,0.0,0.0,0.0,,,0.0,0.0,0.0,0.0,0.0
+text/text_simple__edited,text/text_simple__edited,pymupdf_text,parse,True,,"text_formatting,simple,easy",1509.0,1509.0,0.0,0.0,0.0,0.0,0.0,,0.0,,0.0,0.0,0.0

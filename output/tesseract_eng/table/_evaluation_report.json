@@ -1,0 +1,297 @@
+{
+  "total_examples": 3,
+  "successful": 3,
+  "failed": 0,
+  "skipped": 0,
+  "aggregate_metrics": {
+    "avg_grits_con": 0.0,
+    "min_grits_con": 0.0,
+    "max_grits_con": 0.0,
+    "avg_table_record_match": 0.0,
+    "min_table_record_match": 0.0,
+    "max_table_record_match": 0.0,
+    "avg_table_record_match_perfect": 0.0,
+    "min_table_record_match_perfect": 0.0,
+    "max_table_record_match_perfect": 0.0,
+    "avg_grits_trm_composite": 0.0,
+    "min_grits_trm_composite": 0.0,
+    "max_grits_trm_composite": 0.0
+  },
+  "per_example_results": [
+    {
+      "test_id": "table/222876fb_page22",
+      "example_id": "table/222876fb_page22",
+      "pipeline_name": "tesseract_eng",
+      "product_type": "parse",
+      "success": true,
+      "metrics": [
+        {
+          "metric_name": "grits_con",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "tables_found_expected": 1,
+            "tables_found_actual": 0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "table_record_match",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "n_gt_tables": 1,
+            "n_pred_tables": 0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "table_record_match_perfect",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "n_perfect": 0,
+            "n_gt_tables": 1
+          },
+          "details": []
+        },
+        {
+          "metric_name": "grits_trm_composite",
+          "value": 0.0,
+          "metadata": {
+            "grits_con": 0.0,
+            "trm": 0.0,
+            "fallback": null
+          },
+          "details": [
+            "0.000 = 0.5 × grits_con(0.000) + 0.5 × trm(0.000)"
+          ]
+        }
+      ],
+      "error": null,
+      "evaluated_at": "2026-10-14T17:09:57.060056",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "table",
+        "easy"
+      ],
+      "stats": [
+        {
+          "name": "latency_ms",
+          "value": 6827.0,
+          "unit": "ms"
+        },
+        {
+          "name": "latency_ms_per_page",
+          "value": 6827.0,
+          "unit": "ms/page"
+        }
+      ]
+    },
+    {
+      "test_id": "table/SERFF_Interstate_random_pages 1_page276",
+      "example_id": "table/SERFF_Interstate_random_pages 1_page276",
+      "pipeline_name": "tesseract_eng",
+      "product_type": "parse",
+      "success": true,
+      "metrics": [
+        {
+          "metric_name": "grits_con",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "tables_found_expected": 1,
+            "tables_found_actual": 0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "table_record_match",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "n_gt_tables": 1,
+            "n_pred_tables": 0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "table_record_match_perfect",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "n_perfect": 0,
+            "n_gt_tables": 1
+          },
+          "details": []
+        },
+        {
+          "metric_name": "grits_trm_composite",
+          "value": 0.0,
+          "metadata": {
+            "grits_con": 0.0,
+            "trm": 0.0,
+            "fallback": null
+          },
+          "details": [
+            "0.000 = 0.5 × grits_con(0.000) + 0.5 × trm(0.000)"
+          ]
+        }
+      ],
+      "error": null,
+      "evaluated_at": "2026-10-14T17:09:57.060153",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "table",
+        "easy"
+      ],
+      "stats": [
+        {
+          "name": "latency_ms",
+          "value": 5577.0,
+          "unit": "ms"
+        },
+        {
+          "name": "latency_ms_per_page",
+          "value": 5577.0,
+          "unit": "ms/page"
+        }
+      ]
+    },
+    {
+      "test_id": "table/SERFF_TX_random_pages 1_page1299",
+      "example_id": "table/SERFF_TX_random_pages 1_page1299",
+      "pipeline_name": "tesseract_eng",
+      "product_type": "parse",
+      "success": true,
+      "metrics": [
+        {
+          "metric_name": "grits_con",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "tables_found_expected": 1,
+            "tables_found_actual": 0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "table_record_match",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "n_gt_tables": 1,
+            "n_pred_tables": 0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "table_record_match_perfect",
+          "value": 0.0,
+          "metadata": {
+            "tables_predicted": false,
+            "n_perfect": 0,
+            "n_gt_tables": 1
+          },
+          "details": []
+        },
+        {
+          "metric_name": "grits_trm_composite",
+          "value": 0.0,
+          "metadata": {
+            "grits_con": 0.0,
+            "trm": 0.0,
+            "fallback": null
+          },
+          "details": [
+            "0.000 = 0.5 × grits_con(0.000) + 0.5 × trm(0.000)"
+          ]
+        }
+      ],
+      "error": null,
+      "evaluated_at": "2026-10-14T17:09:57.063035",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "table",
+        "easy"
+      ],
+      "stats": [
+        {
+          "name": "latency_ms",
+          "value": 5569.0,
+          "unit": "ms"
+        },
+        {
+          "name": "latency_ms_per_page",
+          "value": 5569.0,
+          "unit": "ms/page"
+        }
+      ]
+    }
+  ],
+  "confusion_matrix": null,
+  "parse_bench_version": "1.0.4",
+  "started_at": "2026-10-14T17:09:57.247102",
+  "completed_at": "2026-10-14T17:09:57.247172",
+  "tag_metrics": {
+    "easy": {
+      "avg_grits_con": 0.0,
+      "min_grits_con": 0.0,
+      "max_grits_con": 0.0,
+      "avg_table_record_match": 0.0,
+      "min_table_record_match": 0.0,
+      "max_table_record_match": 0.0,
+      "avg_table_record_match_perfect": 0.0,
+      "min_table_record_match_perfect": 0.0,
+      "max_table_record_match_perfect": 0.0,
+      "avg_grits_trm_composite": 0.0,
+      "min_grits_trm_composite": 0.0,
+      "max_grits_trm_composite": 0.0,
+      "example_count": 3.0
+    },
+    "table": {
+      "avg_grits_con": 0.0,
+      "min_grits_con": 0.0,
+      "max_grits_con": 0.0,
+      "avg_table_record_match": 0.0,
+      "min_table_record_match": 0.0,
+      "max_table_record_match": 0.0,
+      "avg_table_record_match_perfect": 0.0,
+      "min_table_record_match_perfect": 0.0,
+      "max_table_record_match_perfect": 0.0,
+      "avg_grits_trm_composite": 0.0,
+      "min_grits_trm_composite": 0.0,
+      "max_grits_trm_composite": 0.0,
+      "example_count": 3.0
+    }
+  },
+  "aggregate_stats": {
+    "latency_ms": {
+      "total": 17973.0,
+      "avg": 5991.0,
+      "min": 5569.0,
+      "max": 6827.0,
+      "p50": 5577.0,
+      "p90": 6827.0,
+      "p95": 6827.0,
+      "p99": 6827.0,
+      "count": 3,
+      "unit": "ms"
+    },
+    "latency_ms_per_page": {
+      "total": 17973.0,
+      "avg": 5991.0,
+      "min": 5569.0,
+      "max": 6827.0,
+      "p50": 5577.0,
+      "p90": 6827.0,
+      "p95": 6827.0,
+      "p99": 6827.0,
+      "count": 3,
+      "unit": "ms/page"
+    }
+  }
+}

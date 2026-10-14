@@ -1,0 +1,46 @@
+{
+  "request": {
+    "example_id": "text/text_simple__results",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/text/text_simple__results.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline_name": "tesseract_eng",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "1997D0107 — SV — 21.07.2012 — 003.001 — 1\n\nDetta dokument dr endast avsett som dokumentationshjalpmedel och institutionerna ansvarar inte for innehallet\n\n>B KOMMISSIONENS BESLUT\nav den 16 januari 1997\nom godkannande av metoder for att klassificera slaktkroppar av gris i Belgien\n(Endast de franska och nederlandska versionerna 4r giltiga.)\n(97/107/EG)\n(EGT L 39, 8.2.1997, s. 17)\n\nupphavd genom:\n\nOfficiella tidningen\n\nnr sida datum\n\nKommissionens genomfoérandebeslut 2012/416/EU av den 19 juli 2012 L 194 33 21.7.2012\n\nDen sista konsoliderade versionen av rattsakten innan den upphavdes:\n\nhttp://eur-lex.europa.eu/Lex UriServ/LexUriServ.do?uri=CONSLEG: 1997D0107:20080301:SV:PDF\n\n",
+        "width": 2481,
+        "height": 3508
+      }
+    ],
+    "num_pages": 1,
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    }
+  },
+  "output": {
+    "task_type": "parse",
+    "example_id": "text/text_simple__results",
+    "pipeline_name": "tesseract_eng",
+    "pages": [
+      {
+        "page_index": 0,
+        "markdown": "1997D0107 — SV — 21.07.2012 — 003.001 — 1\n\nDetta dokument dr endast avsett som dokumentationshjalpmedel och institutionerna ansvarar inte for innehallet\n\n>B KOMMISSIONENS BESLUT\nav den 16 januari 1997\nom godkannande av metoder for att klassificera slaktkroppar av gris i Belgien\n(Endast de franska och nederlandska versionerna 4r giltiga.)\n(97/107/EG)\n(EGT L 39, 8.2.1997, s. 17)\n\nupphavd genom:\n\nOfficiella tidningen\n\nnr sida datum\n\nKommissionens genomfoérandebeslut 2012/416/EU av den 19 juli 2012 L 194 33 21.7.2012\n\nDen sista konsoliderade versionen av rattsakten innan den upphavdes:\n\nhttp://eur-lex.europa.eu/Lex UriServ/LexUriServ.do?uri=CONSLEG: 1997D0107:20080301:SV:PDF\n\n",
+        "line_numbers": []
+      }
+    ],
+    "layout_pages": [],
+    "grounded_pages": [],
+    "markdown": "1997D0107 — SV — 21.07.2012 — 003.001 — 1\n\nDetta dokument dr endast avsett som dokumentationshjalpmedel och institutionerna ansvarar inte for innehallet\n\n>B KOMMISSIONENS BESLUT\nav den 16 januari 1997\nom godkannande av metoder for att klassificera slaktkroppar av gris i Belgien\n(Endast de franska och nederlandska versionerna 4r giltiga.)\n(97/107/EG)\n(EGT L 39, 8.2.1997, s. 17)\n\nupphavd genom:\n\nOfficiella tidningen\n\nnr sida datum\n\nKommissionens genomfoérandebeslut 2012/416/EU av den 19 juli 2012 L 194 33 21.7.2012\n\nDen sista konsoliderade versionen av rattsakten innan den upphavdes:\n\nhttp://eur-lex.europa.eu/Lex UriServ/LexUriServ.do?uri=CONSLEG: 1997D0107:20080301:SV:PDF\n\n",
+    "job_id": null
+  },
+  "started_at": "2026-10-14T17:09:47.541711",
+  "completed_at": "2026-10-14T17:09:53.077596",
+  "latency_in_ms": 5535
+}

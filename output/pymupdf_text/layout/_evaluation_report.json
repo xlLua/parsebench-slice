@@ -1,0 +1,76 @@
+{
+  "total_examples": 3,
+  "successful": 0,
+  "failed": 3,
+  "skipped": 0,
+  "aggregate_metrics": {},
+  "per_example_results": [
+    {
+      "test_id": "layout/20240924_000946_P40U_HOWLKAL1IL81NTE2.1_p44",
+      "example_id": "layout/20240924_000946_P40U_HOWLKAL1IL81NTE2.1_p44",
+      "pipeline_name": "pymupdf_text",
+      "product_type": "parse",
+      "success": false,
+      "metrics": [],
+      "error": "Worker error: Inference output is not LayoutOutput and no provider adapter matched.",
+      "evaluated_at": "2026-10-14T17:11:03.459815",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "layout",
+        "easy"
+      ],
+      "stats": []
+    },
+    {
+      "test_id": "layout/2602.19961v1_p1",
+      "example_id": "layout/2602.19961v1_p1",
+      "pipeline_name": "pymupdf_text",
+      "product_type": "parse",
+      "success": false,
+      "metrics": [],
+      "error": "Worker error: Inference output is not LayoutOutput and no provider adapter matched.",
+      "evaluated_at": "2026-10-14T17:11:03.459923",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "layout",
+        "easy"
+      ],
+      "stats": []
+    },
+    {
+      "test_id": "layout/3m-2025-global-impact-report_p26",
+      "example_id": "layout/3m-2025-global-impact-report_p26",
+      "pipeline_name": "pymupdf_text",
+      "product_type": "parse",
+      "success": false,
+      "metrics": [],
+      "error": "Worker error: Inference output is not LayoutOutput and no provider adapter matched.",
+      "evaluated_at": "2026-10-14T17:11:03.459964",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "layout",
+        "hard"
+      ],
+      "stats": []
+    }
+  ],
+  "confusion_matrix": null,
+  "parse_bench_version": "1.0.4",
+  "started_at": "2026-10-14T17:11:03.637025",
+  "completed_at": "2026-10-14T17:11:03.637175",
+  "tag_metrics": {
+    "easy": {
+      "example_count": 2.0
+    },
+    "hard": {
+      "example_count": 1.0
+    },
+    "layout": {
+      "example_count": 3.0
+    }
+  },
+  "aggregate_stats": {}
+}

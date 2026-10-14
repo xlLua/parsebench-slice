@@ -1,0 +1,1071 @@
+{
+  "total_examples": 3,
+  "successful": 3,
+  "failed": 0,
+  "skipped": 0,
+  "aggregate_metrics": {
+    "avg_rule_pass_rate": 0.0,
+    "min_rule_pass_rate": 0.0,
+    "max_rule_pass_rate": 0.0,
+    "avg_rule_is_underline_pass_rate": 0.0,
+    "min_rule_is_underline_pass_rate": 0.0,
+    "max_rule_is_underline_pass_rate": 0.0,
+    "avg_rule_is_strikeout_pass_rate": 0.0,
+    "min_rule_is_strikeout_pass_rate": 0.0,
+    "max_rule_is_strikeout_pass_rate": 0.0,
+    "avg_normalized_text_styling": 0.0,
+    "min_normalized_text_styling": 0.0,
+    "max_normalized_text_styling": 0.0,
+    "avg_normalized_text_score": 0.0,
+    "min_normalized_text_score": 0.0,
+    "max_normalized_text_score": 0.0,
+    "avg_semantic_formatting": 0.0,
+    "min_semantic_formatting": 0.0,
+    "max_semantic_formatting": 0.0,
+    "avg_rule_is_title_pass_rate": 0.0,
+    "min_rule_is_title_pass_rate": 0.0,
+    "max_rule_is_title_pass_rate": 0.0,
+    "avg_rule_title_hierarchy_percent_pass_rate": 0.0,
+    "min_rule_title_hierarchy_percent_pass_rate": 0.0,
+    "max_rule_title_hierarchy_percent_pass_rate": 0.0,
+    "avg_rule_is_bold_pass_rate": 0.0,
+    "min_rule_is_bold_pass_rate": 0.0,
+    "max_rule_is_bold_pass_rate": 0.0,
+    "avg_normalized_title_accuracy": 0.0,
+    "min_normalized_title_accuracy": 0.0,
+    "max_normalized_title_accuracy": 0.0,
+    "avg_rule_is_mark_pass_rate": 0.0,
+    "min_rule_is_mark_pass_rate": 0.0,
+    "max_rule_is_mark_pass_rate": 0.0,
+    "total_rule_pass_rate_passed": 0.0,
+    "total_rule_pass_rate_evaluated": 36.0,
+    "micro_rule_pass_rate": 0.0
+  },
+  "per_example_results": [
+    {
+      "test_id": "text/text_ocr__p4013",
+      "example_id": "text/text_ocr__p4013",
+      "pipeline_name": "tesseract_eng",
+      "product_type": "parse",
+      "success": true,
+      "metrics": [
+        {
+          "metric_name": "rule_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "passed": 0,
+            "total": 3,
+            "ambiguous_anchor_failures": 0,
+            "skipped_over_budget": 0,
+            "skipped_inapplicable": 0,
+            "skipped_inapplicable_detail": [],
+            "rule_results": [
+              {
+                "type": "is_underline",
+                "id": "text_ocr__p4013_is_underline_0",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'LIGHT AIRCRAFT PHOTOGRAPHIC MODIFICATION' to be formatted as underline, but no underline formatting found"
+              },
+              {
+                "type": "is_underline",
+                "id": "text_ocr__p4013_is_underline_1",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'QM BATH UNITS SOUGHT AS BRIDGE BUILDING ' to be formatted as underline, but no underline formatting found"
+              },
+              {
+                "type": "is_strikeout",
+                "id": "text_ocr__p4013_is_strikeout_2",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'CONFIDENTIAL' to be formatted as strikeout, but no strikeout formatting found"
+              }
+            ]
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_is_underline_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 2,
+            "rule_type": "is_underline"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_is_strikeout_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 1,
+            "rule_type": "is_strikeout"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "normalized_text_styling",
+          "value": 0.0,
+          "metadata": {
+            "num_pos_rules": 1,
+            "num_neg_rules": 0,
+            "pos_score": 0.0,
+            "neg_score": 1.0,
+            "included_types": [
+              "is_strikeout"
+            ],
+            "per_type_scores": {
+              "is_strikeout": 0.0
+            }
+          },
+          "details": []
+        },
+        {
+          "metric_name": "normalized_text_score",
+          "value": 0.0,
+          "metadata": {
+            "weights": {
+              "normalized_text_styling": 1.0
+            },
+            "category_scores": {
+              "normalized_text_styling": 0.0
+            },
+            "weight_sum": 1.0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "semantic_formatting",
+          "value": 0.0,
+          "metadata": {
+            "weights": {
+              "normalized_text_styling": 1.0
+            },
+            "category_scores": {
+              "normalized_text_styling": 0.0
+            },
+            "weight_sum": 1.0
+          },
+          "details": []
+        }
+      ],
+      "error": null,
+      "evaluated_at": "2026-10-14T17:09:58.947656",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "text_formatting",
+        "ocr",
+        "hard"
+      ],
+      "stats": [
+        {
+          "name": "latency_ms",
+          "value": 6536.0,
+          "unit": "ms"
+        },
+        {
+          "name": "latency_ms_per_page",
+          "value": 6536.0,
+          "unit": "ms/page"
+        }
+      ]
+    },
+    {
+      "test_id": "text/text_simple__results",
+      "example_id": "text/text_simple__results",
+      "pipeline_name": "tesseract_eng",
+      "product_type": "parse",
+      "success": true,
+      "metrics": [
+        {
+          "metric_name": "rule_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "passed": 0,
+            "total": 11,
+            "ambiguous_anchor_failures": 0,
+            "skipped_over_budget": 0,
+            "skipped_inapplicable": 0,
+            "skipped_inapplicable_detail": [],
+            "rule_results": [
+              {
+                "type": "is_title",
+                "id": "text_simple__results_is_title_0",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected '► B KOMMISSIONENS BESLUT' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__results_is_title_1",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'av den 16 januari 1997' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__results_is_title_2",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'om godkännande av metoder för att klassi' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__results_is_title_3",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected '(Endast de franska och nederländska vers' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "title_hierarchy_percent",
+                "id": "text_simple__results_title_hierarchy_percent_4",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Title hierarchy score=0.000; missing title '(endast de franska och nederlandska versionerna ar giltiga.)'; missing title 'av den 16 januari 1997'; missing title 'om godkannande av metoder for att klassificera slaktkroppar av gris i belgien'; missing title '► b kommissionens beslut'"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__results_is_bold_5",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected '► B KOMMISSIONENS BESLUT' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__results_is_bold_6",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'av den 16 januari 1997' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__results_is_bold_7",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'om godkännande av metoder för att klassi' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__results_is_bold_8",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected '(Endast de franska och nederländska vers' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_underline",
+                "id": "text_simple__results_is_underline_9",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'B' to be formatted as underline, but no underline formatting found"
+              },
+              {
+                "type": "is_underline",
+                "id": "text_simple__results_is_underline_10",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'upphävd genom:' to be formatted as underline, but no underline formatting found"
+              }
+            ]
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_is_title_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 4,
+            "rule_type": "is_title"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_title_hierarchy_percent_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 1,
+            "rule_type": "title_hierarchy_percent"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_is_bold_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 4,
+            "rule_type": "is_bold"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_is_underline_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 2,
+            "rule_type": "is_underline"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "normalized_text_styling",
+          "value": 0.0,
+          "metadata": {
+            "num_pos_rules": 4,
+            "num_neg_rules": 0,
+            "pos_score": 0.0,
+            "neg_score": 1.0,
+            "included_types": [
+              "is_bold"
+            ],
+            "per_type_scores": {
+              "is_bold": 0.0
+            }
+          },
+          "details": []
+        },
+        {
+          "metric_name": "normalized_title_accuracy",
+          "value": 0.0,
+          "metadata": {
+            "num_rule_types": 2,
+            "per_type_scores": {
+              "is_title": 0.0,
+              "title_hierarchy_percent": 0.0
+            }
+          },
+          "details": []
+        },
+        {
+          "metric_name": "normalized_text_score",
+          "value": 0.0,
+          "metadata": {
+            "weights": {
+              "normalized_text_styling": 1.0,
+              "normalized_title_accuracy": 1.0
+            },
+            "category_scores": {
+              "normalized_text_styling": 0.0,
+              "normalized_title_accuracy": 0.0
+            },
+            "weight_sum": 2.0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "semantic_formatting",
+          "value": 0.0,
+          "metadata": {
+            "weights": {
+              "normalized_text_styling": 1.0,
+              "normalized_title_accuracy": 1.0
+            },
+            "category_scores": {
+              "normalized_text_styling": 0.0,
+              "normalized_title_accuracy": 0.0
+            },
+            "weight_sum": 2.0
+          },
+          "details": []
+        }
+      ],
+      "error": null,
+      "evaluated_at": "2026-10-14T17:09:58.959283",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "text_formatting",
+        "simple",
+        "easy"
+      ],
+      "stats": [
+        {
+          "name": "latency_ms",
+          "value": 5535.0,
+          "unit": "ms"
+        },
+        {
+          "name": "latency_ms_per_page",
+          "value": 5535.0,
+          "unit": "ms/page"
+        }
+      ]
+    },
+    {
+      "test_id": "text/text_simple__edited",
+      "example_id": "text/text_simple__edited",
+      "pipeline_name": "tesseract_eng",
+      "product_type": "parse",
+      "success": true,
+      "metrics": [
+        {
+          "metric_name": "rule_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "passed": 0,
+            "total": 22,
+            "ambiguous_anchor_failures": 0,
+            "skipped_over_budget": 0,
+            "skipped_inapplicable": 0,
+            "skipped_inapplicable_detail": [],
+            "rule_results": [
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_0",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'NATIONAL UNION FIRE INSURANCE COMPANY OF' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_1",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'PSYCHIATRISTS PROFESSIONAL LIABILITY INS' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_2",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'CALIFORNIA MANUAL RULES' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_3",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Rule 10. Schedule Rating Plan – Group Ac' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_4",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Employees (+/-5)' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_5",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Risk Management (+/-5)' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_6",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Medical Records/Informed Consent (+/-5)' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_7",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Performance of experimental procedures (' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "is_title",
+                "id": "text_simple__edited_is_title_8",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Rule 11. Locum Tenens' to be a title, but no matching heading or bold formatting found"
+              },
+              {
+                "type": "title_hierarchy_percent",
+                "id": "text_simple__edited_title_hierarchy_percent_9",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Title hierarchy score=0.000; missing title 'california manual rules'; missing title 'employees (+/-5)'; missing title 'medical records/informed consent (+/-5)'; missing title 'national union fire insurance company of pittsburgh, pa'; missing title 'performance of experimental procedures (+5)'"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_10",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'NATIONAL UNION FIRE INSURANCE COMPANY OF' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_11",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'PSYCHIATRISTS PROFESSIONAL LIABILITY INS' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_12",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'CALIFORNIA MANUAL RULES' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_13",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Rule 10.' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_14",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Schedule Rating Plan – Group Accounts (c' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_15",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Employees (+/-5)' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_16",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Risk Management (+/-5)' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_17",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Medical Records/Informed Consent (+/-5)' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_18",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Performance of experimental procedures (' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_19",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Rule 11.' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_bold",
+                "id": "text_simple__edited_is_bold_20",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected 'Locum Tenens' to be formatted as bold, but no bold formatting found"
+              },
+              {
+                "type": "is_mark",
+                "id": "text_simple__edited_is_mark_21",
+                "page": null,
+                "tags": [],
+                "layout_id": null,
+                "layout_ids": [],
+                "layout_bindings": {},
+                "passed": false,
+                "score": 0.0,
+                "explanation": "Expected '6-11' to be formatted as mark, but no mark formatting found"
+              }
+            ]
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_is_title_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 9,
+            "rule_type": "is_title"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_title_hierarchy_percent_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 1,
+            "rule_type": "title_hierarchy_percent"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_is_bold_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 11,
+            "rule_type": "is_bold"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "rule_is_mark_pass_rate",
+          "value": 0.0,
+          "metadata": {
+            "score_sum": 0.0,
+            "total": 1,
+            "rule_type": "is_mark"
+          },
+          "details": []
+        },
+        {
+          "metric_name": "normalized_text_styling",
+          "value": 0.0,
+          "metadata": {
+            "num_pos_rules": 11,
+            "num_neg_rules": 0,
+            "pos_score": 0.0,
+            "neg_score": 1.0,
+            "included_types": [
+              "is_bold"
+            ],
+            "per_type_scores": {
+              "is_bold": 0.0
+            }
+          },
+          "details": []
+        },
+        {
+          "metric_name": "normalized_title_accuracy",
+          "value": 0.0,
+          "metadata": {
+            "num_rule_types": 2,
+            "per_type_scores": {
+              "title_hierarchy_percent": 0.0,
+              "is_title": 0.0
+            }
+          },
+          "details": []
+        },
+        {
+          "metric_name": "normalized_text_score",
+          "value": 0.0,
+          "metadata": {
+            "weights": {
+              "normalized_text_styling": 1.0,
+              "normalized_title_accuracy": 1.0
+            },
+            "category_scores": {
+              "normalized_text_styling": 0.0,
+              "normalized_title_accuracy": 0.0
+            },
+            "weight_sum": 2.0
+          },
+          "details": []
+        },
+        {
+          "metric_name": "semantic_formatting",
+          "value": 0.0,
+          "metadata": {
+            "weights": {
+              "normalized_text_styling": 1.0,
+              "normalized_title_accuracy": 1.0
+            },
+            "category_scores": {
+              "normalized_text_styling": 0.0,
+              "normalized_title_accuracy": 0.0
+            },
+            "weight_sum": 2.0
+          },
+          "details": []
+        }
+      ],
+      "error": null,
+      "evaluated_at": "2026-10-14T17:09:58.971676",
+      "job_id": null,
+      "parse_job_id": null,
+      "tags": [
+        "text_formatting",
+        "simple",
+        "easy"
+      ],
+      "stats": [
+        {
+          "name": "latency_ms",
+          "value": 6506.0,
+          "unit": "ms"
+        },
+        {
+          "name": "latency_ms_per_page",
+          "value": 6506.0,
+          "unit": "ms/page"
+        }
+      ]
+    }
+  ],
+  "confusion_matrix": null,
+  "parse_bench_version": "1.0.4",
+  "started_at": "2026-10-14T17:09:59.156839",
+  "completed_at": "2026-10-14T17:09:59.156938",
+  "tag_metrics": {
+    "easy": {
+      "avg_rule_pass_rate": 0.0,
+      "min_rule_pass_rate": 0.0,
+      "max_rule_pass_rate": 0.0,
+      "avg_rule_is_title_pass_rate": 0.0,
+      "min_rule_is_title_pass_rate": 0.0,
+      "max_rule_is_title_pass_rate": 0.0,
+      "avg_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "min_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "max_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "avg_rule_is_bold_pass_rate": 0.0,
+      "min_rule_is_bold_pass_rate": 0.0,
+      "max_rule_is_bold_pass_rate": 0.0,
+      "avg_rule_is_underline_pass_rate": 0.0,
+      "min_rule_is_underline_pass_rate": 0.0,
+      "max_rule_is_underline_pass_rate": 0.0,
+      "avg_normalized_text_styling": 0.0,
+      "min_normalized_text_styling": 0.0,
+      "max_normalized_text_styling": 0.0,
+      "avg_normalized_title_accuracy": 0.0,
+      "min_normalized_title_accuracy": 0.0,
+      "max_normalized_title_accuracy": 0.0,
+      "avg_normalized_text_score": 0.0,
+      "min_normalized_text_score": 0.0,
+      "max_normalized_text_score": 0.0,
+      "avg_semantic_formatting": 0.0,
+      "min_semantic_formatting": 0.0,
+      "max_semantic_formatting": 0.0,
+      "avg_rule_is_mark_pass_rate": 0.0,
+      "min_rule_is_mark_pass_rate": 0.0,
+      "max_rule_is_mark_pass_rate": 0.0,
+      "total_rule_pass_rate_passed": 0.0,
+      "total_rule_pass_rate_evaluated": 33.0,
+      "micro_rule_pass_rate": 0.0,
+      "example_count": 2.0
+    },
+    "hard": {
+      "avg_rule_pass_rate": 0.0,
+      "min_rule_pass_rate": 0.0,
+      "max_rule_pass_rate": 0.0,
+      "avg_rule_is_underline_pass_rate": 0.0,
+      "min_rule_is_underline_pass_rate": 0.0,
+      "max_rule_is_underline_pass_rate": 0.0,
+      "avg_rule_is_strikeout_pass_rate": 0.0,
+      "min_rule_is_strikeout_pass_rate": 0.0,
+      "max_rule_is_strikeout_pass_rate": 0.0,
+      "avg_normalized_text_styling": 0.0,
+      "min_normalized_text_styling": 0.0,
+      "max_normalized_text_styling": 0.0,
+      "avg_normalized_text_score": 0.0,
+      "min_normalized_text_score": 0.0,
+      "max_normalized_text_score": 0.0,
+      "avg_semantic_formatting": 0.0,
+      "min_semantic_formatting": 0.0,
+      "max_semantic_formatting": 0.0,
+      "total_rule_pass_rate_passed": 0.0,
+      "total_rule_pass_rate_evaluated": 3.0,
+      "micro_rule_pass_rate": 0.0,
+      "example_count": 1.0
+    },
+    "ocr": {
+      "avg_rule_pass_rate": 0.0,
+      "min_rule_pass_rate": 0.0,
+      "max_rule_pass_rate": 0.0,
+      "avg_rule_is_underline_pass_rate": 0.0,
+      "min_rule_is_underline_pass_rate": 0.0,
+      "max_rule_is_underline_pass_rate": 0.0,
+      "avg_rule_is_strikeout_pass_rate": 0.0,
+      "min_rule_is_strikeout_pass_rate": 0.0,
+      "max_rule_is_strikeout_pass_rate": 0.0,
+      "avg_normalized_text_styling": 0.0,
+      "min_normalized_text_styling": 0.0,
+      "max_normalized_text_styling": 0.0,
+      "avg_normalized_text_score": 0.0,
+      "min_normalized_text_score": 0.0,
+      "max_normalized_text_score": 0.0,
+      "avg_semantic_formatting": 0.0,
+      "min_semantic_formatting": 0.0,
+      "max_semantic_formatting": 0.0,
+      "total_rule_pass_rate_passed": 0.0,
+      "total_rule_pass_rate_evaluated": 3.0,
+      "micro_rule_pass_rate": 0.0,
+      "example_count": 1.0
+    },
+    "simple": {
+      "avg_rule_pass_rate": 0.0,
+      "min_rule_pass_rate": 0.0,
+      "max_rule_pass_rate": 0.0,
+      "avg_rule_is_title_pass_rate": 0.0,
+      "min_rule_is_title_pass_rate": 0.0,
+      "max_rule_is_title_pass_rate": 0.0,
+      "avg_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "min_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "max_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "avg_rule_is_bold_pass_rate": 0.0,
+      "min_rule_is_bold_pass_rate": 0.0,
+      "max_rule_is_bold_pass_rate": 0.0,
+      "avg_rule_is_underline_pass_rate": 0.0,
+      "min_rule_is_underline_pass_rate": 0.0,
+      "max_rule_is_underline_pass_rate": 0.0,
+      "avg_normalized_text_styling": 0.0,
+      "min_normalized_text_styling": 0.0,
+      "max_normalized_text_styling": 0.0,
+      "avg_normalized_title_accuracy": 0.0,
+      "min_normalized_title_accuracy": 0.0,
+      "max_normalized_title_accuracy": 0.0,
+      "avg_normalized_text_score": 0.0,
+      "min_normalized_text_score": 0.0,
+      "max_normalized_text_score": 0.0,
+      "avg_semantic_formatting": 0.0,
+      "min_semantic_formatting": 0.0,
+      "max_semantic_formatting": 0.0,
+      "avg_rule_is_mark_pass_rate": 0.0,
+      "min_rule_is_mark_pass_rate": 0.0,
+      "max_rule_is_mark_pass_rate": 0.0,
+      "total_rule_pass_rate_passed": 0.0,
+      "total_rule_pass_rate_evaluated": 33.0,
+      "micro_rule_pass_rate": 0.0,
+      "example_count": 2.0
+    },
+    "text_formatting": {
+      "avg_rule_pass_rate": 0.0,
+      "min_rule_pass_rate": 0.0,
+      "max_rule_pass_rate": 0.0,
+      "avg_rule_is_underline_pass_rate": 0.0,
+      "min_rule_is_underline_pass_rate": 0.0,
+      "max_rule_is_underline_pass_rate": 0.0,
+      "avg_rule_is_strikeout_pass_rate": 0.0,
+      "min_rule_is_strikeout_pass_rate": 0.0,
+      "max_rule_is_strikeout_pass_rate": 0.0,
+      "avg_normalized_text_styling": 0.0,
+      "min_normalized_text_styling": 0.0,
+      "max_normalized_text_styling": 0.0,
+      "avg_normalized_text_score": 0.0,
+      "min_normalized_text_score": 0.0,
+      "max_normalized_text_score": 0.0,
+      "avg_semantic_formatting": 0.0,
+      "min_semantic_formatting": 0.0,
+      "max_semantic_formatting": 0.0,
+      "avg_rule_is_title_pass_rate": 0.0,
+      "min_rule_is_title_pass_rate": 0.0,
+      "max_rule_is_title_pass_rate": 0.0,
+      "avg_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "min_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "max_rule_title_hierarchy_percent_pass_rate": 0.0,
+      "avg_rule_is_bold_pass_rate": 0.0,
+      "min_rule_is_bold_pass_rate": 0.0,
+      "max_rule_is_bold_pass_rate": 0.0,
+      "avg_normalized_title_accuracy": 0.0,
+      "min_normalized_title_accuracy": 0.0,
+      "max_normalized_title_accuracy": 0.0,
+      "avg_rule_is_mark_pass_rate": 0.0,
+      "min_rule_is_mark_pass_rate": 0.0,
+      "max_rule_is_mark_pass_rate": 0.0,
+      "total_rule_pass_rate_passed": 0.0,
+      "total_rule_pass_rate_evaluated": 36.0,
+      "micro_rule_pass_rate": 0.0,
+      "example_count": 3.0
+    }
+  },
+  "aggregate_stats": {
+    "latency_ms": {
+      "total": 18577.0,
+      "avg": 6192.333333333333,
+      "min": 5535.0,
+      "max": 6536.0,
+      "p50": 6506.0,
+      "p90": 6536.0,
+      "p95": 6536.0,
+      "p99": 6536.0,
+      "count": 3,
+      "unit": "ms"
+    },
+    "latency_ms_per_page": {
+      "total": 18577.0,
+      "avg": 6192.333333333333,
+      "min": 5535.0,
+      "max": 6536.0,
+      "p50": 6506.0,
+      "p90": 6536.0,
+      "p95": 6536.0,
+      "p99": 6536.0,
+      "count": 3,
+      "unit": "ms/page"
+    }
+  }
+}

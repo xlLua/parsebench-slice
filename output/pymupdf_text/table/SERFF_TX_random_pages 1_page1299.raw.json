@@ -1,0 +1,48 @@
+{
+  "request": {
+    "example_id": "table/SERFF_TX_random_pages 1_page1299",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/table/SERFF_TX_random_pages 1_page1299.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "pymupdf_text",
+    "provider_name": "pymupdf",
+    "product_type": "parse",
+    "config": {
+      "text_format": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "Sheet 5 of 5\nClass\nClass\nEXHIBIT A\nTEXAS WORKERS' COMPENSATION RELATIVITIES\nAVAILABLE FOR IMMEDIATE USE\nMANDATORY EFFECTIVE DATE 7/1/2016\nRelativity\nRelativity\n8833\n1.08\n8837\n'a'\n8838\n0.87\n8858\n0.41\n8868\n0.88\n8901\n0.26\n9014\n5.05\n9015\n4.70\n9016\n5.26\n9019\n4.22\n9032\n6.75\n9033\n4.80\n9040\n5.11\n9052\n4.26\n9058\n2.85\n9060\n3.03\n9061\n1.85\n9063\n1.75\n9079\n2.25\n9080\n1.98\n9089\n1.27\n9093\n2.09\n9101\n5.59\n9102\n4.89\n9154\n3.19\n9156\n2.61\n9170\n28.56\n9178\n13.31\n9179\n13.82\n9182\n4.10\n9186\n14.62\n9220\n11.80\n9402\n8.58\n9501\n3.75\n9522\n7.12\n9529\n5.22\n9552\n10.88\n9586\n1.38\n9600\n2.24\n9620\n1.65\n9984\n'a'\n9985\n'a'\n",
+        "width": 651.0599975585938,
+        "height": 842.5499877929688
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.7",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+      "producer": "pdf-lib (https://github.com/Hopding/pdf-lib)",
+      "creationDate": "D:20260408015539Z",
+      "modDate": "D:20260408015539Z",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "started_at": "2026-10-14T17:11:00.493884",
+  "completed_at": "2026-10-14T17:11:02.003562",
+  "latency_in_ms": 1509
+}

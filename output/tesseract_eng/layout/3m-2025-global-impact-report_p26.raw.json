@@ -1,0 +1,41 @@
+{
+  "request": {
+    "example_id": "layout/3m-2025-global-impact-report_p26",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/layout/3m-2025-global-impact-report_p26.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "tesseract_eng",
+    "provider_name": "tesseract",
+    "product_type": "parse",
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "tesseract_eng",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "— Introduction Our workplace Innovation\n\nScope 1 and 2 emissions\n\nIn 2002 we calculated our first GHG inventories\nusing IPCC TAR. Since then, our actions have included\njoining RE100 and the Department of Energy’s\n(DOE) Low Carbon Pilot and Better Plants programs,\nworking with the Environmental Protection Agency\n(EPA) on methodology for calculating emissions,\n\nand co-authoring the IPCC National GHG Inventory\nGuidelines.\n\nHaving achieved our first emissions reduction goal\nunder EPA Climate Leaders, we’ve met, then reset,\nour goals as we gain momentum:\n\n2015 — We set a goal to have our scope 1 and 2\nGHG emissions be at least 50% below our 2002\nbase year calculation by 2025.\n\n2021 — We updated our near-term commitment to\na minimum 50% reduction in absolute scope 1 and 2\nGHG emissions by 2030 in alignment with the IPCC\n1.5 °C pathways.\n\nCircularity Climate Communities Governance\n\n2024 - The Science Based\nTargets initiative (SBTi)\nvalidated our new near-term\ntargets and classified our\nscope 1 and 2 target as in\nline with a 1.5 °C trajectory.\n\nSCIENCE\nBASED\nTARGETS\n\nDRIVING AMBITIOUS CORPORATE CLIMATE ACTION,\n\nTarget: Reduce absolute scope 1 and 2 GHG\nemissions 52.6% by 2030 from a 2019 base year\nry) 59 q oe reduction in absolute\ne|”O  scope1and 2 GHG\nemissions since 2019\n\nTarget: Reduce absolute scope 3 GHG\nemissions 42% by 2030 from a 2021 base year\n\n(vy) 30 1% reduction in absolute\n. O scope 3 GHG emissions\nsince 2021, aligning\nwith SBTi\n\nScopes defined\n\nfq i\n\nScope 1 — Direct emissions\ngenerated from 3M’s\nactivity. For example,\nmaking a product.\n\nScope 2 — Indirect\nemissions from our activity.\nFor example, purchasing\nelectricity to light a factory.\n\ncD\n228\n\nScope 3 — Indirect emissions\nfrom related activity up\n\nand down our value chain.\nFor example, the emissions\nproduced by a customer\nwhen using our products.\n\nAppendix 3M | 2025 Global Impact Report 26\n\n3M Villach\n\nOur site in Villach, Austria, implemented an energy repurposing project in 2024 that captures\nwaste heat from production processes to heat the site and supply Villach’s public teleheating grid.\n\n2\nfo}\n\nReduces CO2\nemissions by up to\n\n2,978\n\nRecovers up to\n\n12 GWh\n\nof waste energy\n\nAchieves significant cost\nreductions with more savings\n\n. rojected\nannually metric tons Hed\nannually\nUp to of the total investment was Reduces reliance on external\n\ncovered by EU funding under\nthe Green Deal\n\nenergy sources and enhances\noperational resilience\n\n30%\n",
+        "width": 4200,
+        "height": 2550
+      }
+    ],
+    "num_pages": 1,
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    }
+  },
+  "started_at": "2026-10-14T17:09:47.542187",
+  "completed_at": "2026-10-14T17:09:54.122425",
+  "latency_in_ms": 6580
+}

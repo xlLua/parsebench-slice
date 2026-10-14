@@ -1,0 +1,48 @@
+{
+  "request": {
+    "example_id": "text/text_simple__results",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/text/text_simple__results.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "pymupdf_text",
+    "provider_name": "pymupdf",
+    "product_type": "parse",
+    "config": {
+      "text_format": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "Detta dokument är endast avsett som dokumentationshjälpmedel och institutionerna ansvarar inte för innehållet \n►B \nKOMMISSIONENS BESLUT \nav den 16 januari 1997 \nom godkännande av metoder för att klassificera slaktkroppar av gris i Belgien \n(Endast de franska och nederländska versionerna är giltiga.) \n(97/107/EG) \n(EGT L 39, 8.2.1997, s. 17) \nupphävd genom: \nOfficiella tidningen \nnr \nsida \ndatum \nKommissionens genomförandebeslut 2012/416/EU av den 19 juli 2012 \nL 194 \n33 \n21.7.2012 \nDen sista konsoliderade versionen av rättsakten innan den upphävdes: \nhttp://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CONSLEG:1997D0107:20080301:SV:PDF \n1997D0107 — SV — 21.07.2012 — 003.001 — 1\n",
+        "width": 595.2760009765625,
+        "height": 841.8900146484375
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.3",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "",
+      "producer": "macOS Version 15.6.1 (Build 24G90) Quartz PDFContext",
+      "creationDate": "D:20260312222440Z00'00'",
+      "modDate": "D:20260312222440Z00'00'",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "started_at": "2026-10-14T17:11:00.493429",
+  "completed_at": "2026-10-14T17:11:02.002737",
+  "latency_in_ms": 1509
+}

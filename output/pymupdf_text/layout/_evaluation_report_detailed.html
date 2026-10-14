@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluation Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ───── Reset & variables ───── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --bg: #f8f7f4;
+    --fg: #1c1917;
+    --card: #ffffff;
+    --border: #e7e5e4;
+    --muted: #78716c;
+    --muted-light: #a8a29e;
+    --cream: #faf9f6;
+    --emerald: #059669;
+    --emerald-bg: #ecfdf5;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --blue: #2563eb;
+    --blue-bg: #eff6ff;
+    --font-heading: 'Newsreader', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --shadow-sm: 0 1px 2px rgba(28,25,23,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(28,25,23,0.07), 0 2px 4px -2px rgba(28,25,23,0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(28,25,23,0.08), 0 4px 6px -4px rgba(28,25,23,0.04);
+    --radius: 10px;
+    --radius-sm: 6px;
+}
+html { font-size: 15px; }
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ───── Scrollbar ───── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--muted-light); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ───── Layout ───── */
+.report-container {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+}
+
+/* ───── Header ───── */
+.report-header {
+    margin-bottom: 36px;
+}
+.report-header h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    line-height: 1.2;
+}
+.report-header .subtitle {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+/* ───── Summary cards ───── */
+.summary-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+}
+.summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s;
+}
+.summary-card:hover { box-shadow: var(--shadow-md); }
+.summary-card .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+.summary-card .big-number {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+.summary-card.card-success .big-number { color: var(--emerald); }
+.summary-card.card-failed .big-number { color: var(--red); }
+.summary-card.card-skipped .big-number { color: var(--muted-light); }
+
+/* ───── Section titles ───── */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+}
+
+/* ───── Aggregate metrics ───── */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-bottom: 36px;
+}
+.metric-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+}
+.metric-card .metric-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.metric-card .metric-avg {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.metric-card .metric-bar-track {
+    height: 6px;
+    background: var(--cream);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+.metric-card .metric-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+.bar-emerald { background: var(--emerald); }
+.bar-amber { background: var(--amber); }
+.bar-red { background: var(--red); }
+.color-emerald { color: var(--emerald); }
+.color-amber { color: var(--amber); }
+.color-red { color: var(--red); }
+.metric-card .metric-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--muted-light);
+}
+
+/* ───── Aggregate stats (collapsible) ───── */
+.stats-section { margin-bottom: 36px; }
+.stats-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--fg);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    width: 100%;
+    text-align: left;
+    margin-bottom: 16px;
+}
+.stats-toggle .chevron {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 0.9rem;
+}
+.stats-toggle.open .chevron { transform: rotate(90deg); }
+.stats-body {
+    display: none;
+    overflow: hidden;
+}
+.stats-body.open { display: block; }
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+}
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+}
+.stat-card .stat-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+.stat-card .stat-avg {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.stat-card .stat-detail {
+    font-size: 0.72rem;
+    color: var(--muted-light);
+    line-height: 1.7;
+}
+.stat-card .stat-detail span {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* ───── Tag metrics ───── */
+.tag-metrics-section { margin-bottom: 36px; }
+.tag-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+}
+.tag-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+}
+.tag-card .tag-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: var(--fg);
+}
+.tag-card .tag-metric-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--cream);
+}
+.tag-card .tag-metric-row:last-child { border-bottom: none; }
+.tag-card .tag-metric-name { color: var(--muted); }
+.tag-card .tag-metric-value { font-weight: 600; font-family: var(--font-mono); font-size: 0.75rem; }
+
+/* ───── Controls bar ───── */
+.controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 14px 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+.controls-bar label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.controls-bar select,
+.controls-bar input[type="text"] {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--cream);
+    color: var(--fg);
+    outline: none;
+    transition: border-color 0.15s;
+}
+.controls-bar select:focus,
+.controls-bar input[type="text"]:focus {
+    border-color: var(--blue);
+}
+.controls-bar input[type="text"] { width: 180px; }
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Range slider */
+.range-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.range-group input[type="range"] {
+    -webkit-appearance: none;
+    width: 90px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+}
+.range-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--blue);
+    border-radius: 50%;
+    cursor: pointer;
+}
+.range-group .range-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Tag pills */
+.tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.tag-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+}
+.tag-pill:hover { border-color: var(--blue); color: var(--blue); }
+.tag-pill.active {
+    background: var(--blue);
+    color: #fff;
+    border-color: var(--blue);
+}
+
+/* Results count */
+.results-count {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+/* ───── Examples table ───── */
+.table-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+.examples-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.examples-table > thead > tr > th {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+.examples-table > tbody > tr > td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    vertical-align: middle;
+}
+.examples-table tbody tr {
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.examples-table tbody tr:hover { background: var(--cream); }
+.examples-table tbody tr.selected { background: var(--blue-bg); }
+
+/* Column widths */
+.col-status { width: 36px; }
+.col-id { width: 40%; }
+.col-score { width: 30%; }
+.col-tags { width: 30%; }
+
+/* Status dot */
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.status-dot.ok { background: var(--emerald); }
+.status-dot.fail { background: var(--red); }
+
+/* Score bar inline */
+.score-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.score-bar-track {
+    flex: 1;
+    height: 5px;
+    background: var(--cream);
+    border-radius: 3px;
+    overflow: hidden;
+    min-width: 40px;
+}
+.score-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.2s;
+}
+.score-value {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    min-width: 42px;
+    text-align: right;
+}
+
+/* Tags in table */
+.tag-badges { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag-badge {
+    font-size: 0.65rem;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+/* ───── Pagination ───── */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+    margin-bottom: 36px;
+}
+.pagination button {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--card);
+    color: var(--fg);
+    cursor: pointer;
+    transition: all 0.12s;
+}
+.pagination button:hover:not(:disabled) {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+.pagination button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.pagination button.active {
+    background: var(--blue);
+    color: #fff;
+    border-color: var(--blue);
+}
+.pagination .page-info {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: 0 8px;
+}
+
+/* ───── Detail panel ───── */
+.detail-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    margin: -1px 0 0;
+    padding: 24px;
+    animation: slideDown 0.2s ease;
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.detail-panel .detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+.detail-panel .detail-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    word-break: break-all;
+}
+.detail-close {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--muted);
+    transition: all 0.12s;
+}
+.detail-close:hover { border-color: var(--red); color: var(--red); }
+
+.detail-panel .detail-error {
+    background: var(--red-bg);
+    border-left: 3px solid var(--red);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+    color: var(--red);
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Detail sub-tables */
+.detail-section { margin-bottom: 18px; }
+.detail-section-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+.detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+.detail-table th {
+    text-align: left;
+    padding: 6px 10px;
+    background: var(--cream);
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+}
+.detail-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+}
+.detail-table td.mono {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+}
+
+/* Rule result badges */
+.rule-pass {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--emerald-bg);
+    color: var(--emerald);
+    font-weight: 500;
+}
+.rule-fail {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--red-bg);
+    color: var(--red);
+    font-weight: 500;
+}
+
+/* PDF viewer area */
+.pdf-viewer-section { margin-bottom: 18px; }
+.pdf-url-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.pdf-url-bar label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+}
+.pdf-url-bar input {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--cream);
+    color: var(--fg);
+    outline: none;
+}
+.pdf-url-bar input:focus { border-color: var(--blue); }
+.pdf-url-bar button {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    border: 1px solid var(--blue);
+    border-radius: var(--radius-sm);
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+}
+.pdf-canvas-wrap {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #e5e5e5;
+    height: 600px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: auto;
+    position: relative;
+}
+.pdf-canvas-wrap canvas {
+    display: block;
+}
+.pdf-placeholder {
+    color: var(--muted-light);
+    font-size: 0.85rem;
+    padding: 40px;
+    text-align: center;
+}
+.pdf-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+.pdf-nav button {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--card);
+    cursor: pointer;
+}
+.pdf-nav button:disabled { opacity: 0.4; cursor: default; }
+
+/* Collapsible detail sections */
+.detail-collapsible {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+.detail-collapsible-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--cream);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-align: left;
+}
+.detail-collapsible-toggle:hover { background: var(--border); }
+.detail-collapsible-toggle .chevron {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 0.7rem;
+}
+.detail-collapsible-toggle.open .chevron { transform: rotate(90deg); }
+.detail-collapsible-body {
+    display: none;
+    padding: 0;
+}
+.detail-collapsible-body.open { display: block; }
+.detail-collapsible-body .detail-table { margin: 0; }
+
+/* Output panels (side-by-side) */
+.output-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+@media (max-width: 900px) {
+    .output-columns { grid-template-columns: 1fr; }
+}
+.output-panel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+.output-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    padding: 10px 14px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+}
+.output-view-toggle {
+    display: inline-flex;
+    gap: 2px;
+    background: var(--border);
+    border-radius: var(--radius-sm);
+    padding: 2px;
+}
+.output-view-btn {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: 0;
+    transition: all 0.12s;
+}
+.output-view-btn.active {
+    background: var(--card);
+    color: var(--fg);
+    box-shadow: var(--shadow-sm);
+}
+.output-copy-btn {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    margin-left: 6px;
+    transition: all 0.12s;
+}
+.output-copy-btn:hover { background: var(--border); color: var(--fg); }
+.output-copy-btn.copied { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+.output-panel-body {
+    padding: 12px 14px;
+    max-height: 500px;
+    overflow: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: var(--card);
+}
+.output-panel-body.rendered-md {
+    font-family: var(--font-body);
+    white-space: normal;
+}
+.output-panel-body.rendered-md table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.8rem; }
+.output-panel-body.rendered-md th,
+.output-panel-body.rendered-md td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+.output-panel-body.rendered-md th { background: var(--cream); font-weight: 600; }
+.output-panel-body.rendered-md pre { background: var(--cream); padding: 10px; border-radius: var(--radius-sm); overflow-x: auto; font-size: 0.78rem; }
+.output-panel-body.rendered-md code { font-family: var(--font-mono); font-size: 0.85em; background: var(--cream); padding: 1px 4px; border-radius: 3px; }
+.output-panel-body.rendered-md pre code { background: none; padding: 0; }
+.output-panel-body.rendered-md h1, .output-panel-body.rendered-md h2, .output-panel-body.rendered-md h3,
+.output-panel-body.rendered-md h4, .output-panel-body.rendered-md h5, .output-panel-body.rendered-md h6 {
+    margin: 16px 0 8px; font-family: var(--font-heading);
+}
+.output-panel-body.rendered-md p { margin: 8px 0; }
+.output-panel-body.rendered-md ul, .output-panel-body.rendered-md ol { margin: 8px 0; padding-left: 24px; }
+.output-panel-body.rendered-md blockquote { border-left: 3px solid var(--border); margin: 8px 0; padding: 4px 12px; color: var(--muted); }
+.output-panel-body.rendered-md img { max-width: 100%; }
+.output-panel-body.rendered-md hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+.output-empty {
+    color: var(--muted-light);
+    font-style: italic;
+    font-family: var(--font-body);
+}
+
+/* Placeholder sections */
+.placeholder-note {
+    font-size: 0.82rem;
+    color: var(--muted-light);
+    font-style: italic;
+    padding: 12px 0;
+}
+
+/* ───── Responsive ───── */
+@media (max-width: 768px) {
+    .report-container { padding: 16px 12px; }
+    .controls-bar { flex-direction: column; align-items: stretch; }
+    .controls-bar input[type="text"] { width: 100%; }
+    .col-tags { display: none; }
+}
+/* ───── Metric Tooltips ───── */
+.metric-hint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+    flex-shrink: 0;
+    cursor: help;
+}
+.metric-hint::before {
+    content: '?';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--muted-light);
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--muted-light);
+    line-height: 1;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.metric-hint:hover::before {
+    border-color: var(--muted);
+    color: var(--card);
+    background: var(--muted);
+}
+/* Tooltip popup — rendered as a singleton fixed-position element via JS */
+#metric-tooltip {
+    position: fixed;
+    z-index: 10000;
+    width: 280px;
+    padding: 10px 13px;
+    background: var(--fg, #1c1917);
+    color: #f5f5f4;
+    font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.6;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(28,25,23,0.18), 0 2px 6px rgba(28,25,23,0.08);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+#metric-tooltip.visible {
+    opacity: 1;
+}
+#metric-tooltip::after {
+    content: '';
+    position: absolute;
+    border: 5px solid transparent;
+}
+#metric-tooltip.arrow-bottom::after {
+    top: 100%;
+    left: var(--arrow-left, 50%);
+    transform: translateX(-50%);
+    border-top-color: var(--fg, #1c1917);
+}
+#metric-tooltip.arrow-top::after {
+    bottom: 100%;
+    left: var(--arrow-left, 50%);
+    transform: translateX(-50%);
+    border-bottom-color: var(--fg, #1c1917);
+}
+</style>
+</head>
+<body>
+<div class="report-container">
+    <div class="report-header">
+        <h1>Evaluation Report</h1>
+        <div class="subtitle" id="report-subtitle"></div>
+    </div>
+    <div class="summary-row" id="summary-cards"></div>
+    <div id="agg-metrics"></div>
+    <div class="stats-section" id="agg-stats"></div>
+    <div class="tag-metrics-section" id="tag-metrics"></div>
+    <div id="examples-section">
+        <h2 class="section-title">Examples</h2>
+        <div class="controls-bar" id="controls"></div>
+        <div class="tag-filters" id="tag-filters"></div>
+        <div class="results-count" id="results-count"></div>
+        <div class="table-wrap">
+            <table class="examples-table">
+                <thead>
+                    <tr>
+                        <th class="col-status"></th>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-score">Score</th>
+                        <th class="col-tags">Tags</th>
+                    </tr>
+                </thead>
+                <tbody id="examples-tbody"></tbody>
+            </table>
+        </div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+</div>
+<script>document.querySelector(".report-header h1").textContent = "Pymupdf Text \u2014 Layout";document.getElementById("report-subtitle").textContent = "Provider: pymupdf  |  Product: parse  |  Generated: 2026-10-14 17:11:03 UTC";</script>
+<script>
+const DATA = {"summary": {"total": 3, "successful": 0, "failed": 3, "skipped": 0, "completedAt": "2026-10-14T17:11:03.637175"}, "aggMetrics": [], "aggStats": [], "metricNames": {}, "metricTooltips": {"teds": "Tree Edit Distance Similarity. Compares table HTML as trees using APTED algorithm: 1 − (edit_distance / max_nodes). Evaluates both structure and cell text content. Score is averaged across matched table pairs.", "teds_predicted": "Same as TEDS, but computed only among examples where tables were actually predicted (excludes examples with zero predicted tables).", "teds_struct": "TEDS structure-only variant. Compares table HTML tree structure while ignoring cell text content entirely.", "teds_struct_predicted": "Same as TEDS-Struct, but only among examples with predicted tables.", "teds_struct_bool": "TEDS structure variant with boolean content awareness. Penalizes when one cell is empty and the other is not, but ignores actual text differences.", "teds_struct_bool_predicted": "Same as TEDS-Struct+Bool, but only among examples with predicted tables.", "grits_top": "Grid Table Similarity for topology. F-score from 2D Most-Similar Substructures algorithm, using IoU on cell spans for structural comparison.", "grits_con": "Grid Table Similarity for content. F-score from 2D Most-Similar Substructures algorithm, using Longest Common Subsequence for cell text comparison.", "grits_trm_composite": "Composite GriTS score combining topology, recognition, and matching components.", "grits_top_predicted": "Same as GriTS Top, but only among examples with predicted tables.", "grits_con_predicted": "Same as GriTS Con, but only among examples with predicted tables.", "grits_precision_top": "Precision component of GriTS topology score.", "grits_recall_top": "Recall component of GriTS topology score.", "grits_precision_con": "Precision component of GriTS content score.", "grits_recall_con": "Recall component of GriTS content score.", "grits_top_upper_bound": "Upper bound for GriTS topology score based on table matching.", "grits_con_upper_bound": "Upper bound for GriTS content score based on table matching.", "ref_grits_top": "Reference GriTS topology score computed against reference tables.", "ref_grits_con": "Reference GriTS content score computed against reference tables.", "ref_grits_top_predicted": "Reference GriTS topology score, only among examples with predicted tables.", "ref_grits_con_predicted": "Reference GriTS content score, only among examples with predicted tables.", "header_composite": "Mean of 8 header submetrics: cell count, GriTS content, content bag, perfect match, structure, block order, block extent, and block relative position.", "header_composite_v3": "Version 3 of the header composite metric with updated submetric weights and components.", "header_cell_count": "Ratio of predicted header cells to expected. Penalizes both missing and extra header cells symmetrically.", "header_grits": "GriTS content score applied to contiguous header blocks only.", "header_content_bag": "Bag-of-cells exact content overlap: measures how many header cell texts match regardless of position.", "header_perfect": "Binary metric: 1.0 if the header structure matches the ground truth exactly, 0.0 otherwise.", "header_structure": "GriTS topology score applied to the header region, measuring grid structure accuracy.", "header_block_order": "Relative position preservation when multiple header blocks exist in a table.", "header_block_extent": "Location and size accuracy of each header block within the full table.", "header_block_proximity": "Nearest-edge distance between matched header blocks, measuring spatial closeness.", "header_block_relative_direction": "Cosine similarity of relative direction vectors between matched header blocks.", "header_block_relative_position": "Product of proximity (nearest-edge distance) and direction (cosine similarity) between matched header blocks.", "structural_consistency": "Self-consistency check on predicted tables (no ground truth comparison). Binary: 1.0 if every row has the same column count and every column has the same row count after resolving colspan/rowspan.", "table_composite": "Weighted combination of table metrics: 0.8 × (header_composite × grits_con) + 0.2 × structural_consistency. Balances content accuracy with structural integrity.", "table_composite_v3": "Version 3 of the table composite metric with updated component weights.", "table_composite_v3_harmonic": "Harmonic mean variant of table composite v3, penalizing low outlier scores more heavily.", "exp_header_composite_v3_generous": "Experimental header composite v3 with generous matching criteria.", "exp_table_composite_v3_generous": "Experimental table composite v3 with generous matching criteria.", "exp_table_composite_v3_generous_harmonic": "Harmonic mean variant of the experimental generous table composite v3.", "normalized_text_styling": "Normalized score for text styling accuracy (bold, italic, underline, etc.).", "normalized_text_correctness": "Normalized score for text content correctness.", "normalized_order": "Normalized score for reading order accuracy of text elements.", "normalized_title_accuracy": "Normalized score for title detection and content accuracy.", "normalized_code_block": "Normalized score for code block detection and content accuracy.", "normalized_latex": "Normalized score for LaTeX equation rendering accuracy.", "normalized_text_score": "Overall normalized text score combining multiple text quality dimensions.", "content_faithfulness": "Measures how faithfully the predicted content represents the source document.", "semantic_formatting": "Measures accuracy of semantic formatting elements (headings, lists, emphasis, etc.).", "text_similarity": "Normalized Levenshtein distance between expected and predicted text, scaled to 0–1 where 1.0 is a perfect match.", "rule_pass_rate": "Fraction of test rules that pass for each example: passed / total across all rule types.", "chart_data_point": "Pass rate for chart data point extraction rules.", "form_field": "Pass rate for form field rules (key-value, checkbox, signature). A rule passes when the labeled field is located in the parsed output and the extracted value matches the expected value (or any acceptable alternative when value is a list; signature rules pass on presence).", "order": "Pass rate for reading order rules, checking that elements appear in the expected sequence.", "is_bold": "Pass rate for bold formatting detection rules.", "is_footer": "Pass rate for footer section detection rules.", "is_header": "Pass rate for header section detection rules.", "is_sup": "Pass rate for superscript formatting detection rules.", "is_underline": "Pass rate for underline formatting detection rules.", "missing_sentence": "Pass rate for missing sentence rules. Checks that expected sentences appear in the output.", "missing_specific_sentence": "Pass rate for specific required sentence presence rules.", "missing_specific_word": "Pass rate for specific required word presence rules.", "missing_word": "Pass rate for missing word rules. Checks that expected words appear in the output.", "too_many_sentence_occurence": "Pass rate for sentence frequency rules. Penalizes when sentences appear more times than expected.", "too_many_word_occurence": "Pass rate for word frequency rules. Penalizes when words appear more times than expected.", "unexpected_sentence": "Pass rate for unexpected sentence rules. Penalizes extra sentences not in the ground truth.", "unexpected_word": "Pass rate for unexpected word rules. Penalizes extra words not in the ground truth.", "table_adjacent_down": "Pass rate for table adjacency rules checking cells directly below.", "table_adjacent_right": "Pass rate for table adjacency rules checking cells directly to the right.", "table_colspan": "Pass rate for column span detection rules in tables.", "table_rowspan": "Pass rate for row span detection rules in tables.", "table_no_above": "Pass rate for rules verifying no content exists above a given table cell.", "table_no_below": "Pass rate for rules verifying no content exists below a given table cell.", "table_no_left": "Pass rate for rules verifying no content exists to the left of a given table cell.", "table_no_right": "Pass rate for rules verifying no content exists to the right of a given table cell.", "table_same_column": "Pass rate for rules verifying that specific cells share the same column.", "table_same_row": "Pass rate for rules verifying that specific cells share the same row.", "table_top_header": "Pass rate for rules checking top header row identification in tables.", "accuracy": "JSON subset match comparing expected vs actual extracted data. Supports date normalization and weighted scoring by leaf node count.", "extract_value_precision": "Native extract value precision using schema-aware typed comparison and index-tolerant array matching: matched predicted values / predicted values.", "extract_value_recall": "Native extract value recall using schema-aware typed comparison and index-tolerant array matching: matched expected values / expected values.", "extract_value_f1": "Harmonic mean of native extract value precision and recall.", "extract_value_pass_rate": "Per-rule pass rate for native extract values using schema-aware typed comparison with index-tolerant array matching.", "extract_bbox_iou": "Per-document metric: mean of per-field-rule intersection-over-union between ground-truth extract-field bboxes and selected native extract field-citation bboxes.", "extract_bbox_recall": "Per-document metric: mean of per-field-rule ground-truth bbox area covered by selected native extract field-citation bboxes.", "extract_element_pass_rate": "Native extract per-field pass rate where localization and typed attribution both pass.", "extract_localization_pass_rate": "Native extract per-field pass rate where predicted field-citation bboxes meet strict or relaxed localization criteria.", "extract_attribution_pass_rate": "Native extract per-field pass rate where the localized structured prediction matches the expected value under typed comparison.", "extract_avg_iou": "Average per-rule IoU for extract field localization candidates.", "extract_avg_iou_matched": "Average per-rule IoU across native extract fields that passed localization.", "extract_avg_iou_unmatched": "Average per-rule IoU across native extract fields that failed localization.", "parse_field_element_pass_rate": "Parse-side field grounding pass rate where localization, trivial classification, and typed attribution all pass against extract_field rules.", "parse_field_rule_pass_rate": "Parse-side average pass rate across localization, classification, and attribution checks for extract_field rules.", "parse_field_localization_pass_rate": "Parse-side pass rate where granular parse support bboxes meet strict or relaxed localization criteria for extract_field rules.", "parse_field_classification_pass_rate": "Parse-side classification pass rate for extract_field rules. This is currently trivial because field rules do not carry class labels.", "parse_field_attribution_pass_rate": "Parse-side pass rate where localized support text matches the expected field value under typed comparison.", "parse_field_avg_iou": "Average per-rule IoU for parse-side field grounding candidates.", "parse_field_avg_iou_matched": "Average per-rule IoU across parse-side field rules that passed localization.", "parse_field_avg_iou_unmatched": "Average per-rule IoU across parse-side field rules that failed localization.", "parse_field_iou": "Per-document metric: mean of per-field-rule intersection-over-union between ground-truth extract-field bboxes and selected parse support bboxes.", "parse_field_bbox_recall": "Per-document metric: mean of per-field-rule ground-truth bbox area covered by selected parse support bboxes.", "parse_field_text_similarity": "Average typed text similarity for string extract_field rules matched to parse support text.", "parse_field_gt_count": "Number of non-stray extract_field rules evaluated against parse output support.", "af1": "Harmonic mean of LAP and LAR. Measures overall content attribution accuracy in spatial regions.", "lap": "For each predicted block, checks whether its text tokens are found in ground truth elements that spatially overlap with it.", "lar": "For each ground truth element, checks whether its text tokens are recovered by predicted blocks that spatially overlap with it.", "mAP@[.50:.95]": "Mean Average Precision averaged across IoU thresholds from 0.50 to 0.95 (step 0.05). Standard COCO object detection metric.", "AP50": "Average Precision at IoU threshold 0.50. Measures detection accuracy with a lenient overlap requirement.", "AP75": "Average Precision at IoU threshold 0.75. Measures detection accuracy with a strict overlap requirement.", "mean_f1": "Average F1 score across all layout element classes.", "layout_element_rule_pass_rate": "Overall per-element rule pass rate combining localization, classification, attribution, and reading order checks.", "layout_localization_rule_pass_rate": "Pass rate for bounding box localization rules. Checks spatial accuracy of predicted element positions.", "layout_classification_rule_pass_rate": "Pass rate for class label prediction rules. Checks whether predicted element types match ground truth.", "layout_attribution_rule_pass_rate": "Pass rate for content attribution rules. Checks whether predicted blocks contain the correct text content.", "layout_reading_order_pass_rate": "Pass rate for reading order rules. Checks whether layout elements are ordered correctly.", "qa_answer_match": "Binary pass/fail for each question. Supports single-choice, multiple-choice, numerical (with tolerance), and free-text answer types.", "qa_anls_star": "Average Normalized Levenshtein Similarity for free-text answers. Ranges from 0 (completely different) to 1 (perfect match)."}, "tags": ["easy", "hard", "layout"], "tagMetrics": {"easy": {"example_count": 2.0}, "hard": {"example_count": 1.0}, "layout": {"example_count": 3.0}}, "examples": [{"id": "layout/20240924_000946_P40U_HOWLKAL1IL81NTE2.1_p44", "success": false, "error": "Worker error: Inference output is not LayoutOutput and no provider adapter matched.", "tags": ["layout", "easy"], "productType": "parse", "jobId": "", "parseJobId": "", "parseJobLogsUrl": "", "parseJobLogsLocalPath": "", "parseJobLogsHtmlPath": "", "metrics": {}, "stats": {}, "ruleDetails": {}, "ruleResults": {}, "metricDetails": {}, "predictedOutput": "Australia Properties\nCentrally located in Perth’s prime \nretail stretch, the David Jones \nBuilding sits on a freehold site of \napproximately 71,473 sq ft in the \nPerth CBD in Australia. It enjoys \ndual frontage to the bustling Murray \nStreet Mall and Hay Street Mall, the \nonly two retail pedestrian streets in \nthe city. \nThe property is a few minutes’ \nwalk from the Perth station and is \nalso linked seamlessly to another \nmajor shopping centre via a \ncovered walkway. The four-storey \nproperty, which has heritage-\nlisted components (including a \nbuilding constructed circa 1910 \nthat was formerly the Savoy Hotel), \nis anchored by the David Jones \ndepartment store.\nAs at 30 June 2024, the property’s \ncommitted occupancy was 99.3%. \nDavid Jones Pty Limited occupies \napproximately 95.1% of the total \ngross lettable area and accounts \nfor 87.1% of the gross rent for David \nJones Building as at 30 June 2024. \nDavid Jones\nBuilding\nFour-storey heritage-listed building for retail use.\nTenure \nFreehold\nNumber Of Tenants\n(As at 30 June 2024)\n7\n(including an anchor tenant)\nPurchase Price\nS$145.7M\nMarket Valuation\n(As at 30 June 2024)\nS$111.6M\nTotal Gross Lettable Area\n(As at 30 June 2024)\n259,098 SQ FT\nThe long-term lease with David \nJones provides for an upward-only \nrent review every three years and \nexpires in 2032. A rental uplift was \nsecured in August 2023. \nBesides David Jones, six specialty \nstores occupy a gross lettable area \nof about 10,764 sq ft and comprise \ninternational and national brands such \nas Rosendorff Diamonds, Superdry, \nSushi Gin and The Body Shop.\nNotes:\n(1) \nBased on committed leases as at the reporting date.\n(2) \nBased on gross rent as at 30 June 2024 and excludes gross turnover rent.\n(3) \nIncludes the David Jones lease.\nTop 5 Tenants based on gross rent(2)\n1. David Jones Pty Limited\n2. Lorna Jane Pty Ltd \n3. Clyde and Associates Pty Ltd \n4. The Body Shop Australia Pty Ltd \n5. Gin Sushiya Pty Ltd \n99.3%\n98.3%\n(As at 30 June 2024)\n(As at 30 June 2023)\nOccupancy Rate(1)\nRetail Trade Mix\nBy Gross Rental Contribution \n(As at 30 June 2024)\n David Jones \n(Anchor Tenant)\n Jewellery\n Fashion\n Health & Beauty\n Food & Beverage\n87.1%\n3.9%\n3.5%\n2.8%\n2.7%\n3.5\n0.0\n0.0\n0.0\n96.5(3)\nFY\n24/25\nFY\n25/26\nFY\n26/27\nFY\n27/28\nBeyond\nFY 27/28\n0\n20\n40\n60\n80\n100\nLease Expiry Profile by gross rent(1)\n(%)\n42\nSTARHILL GLOBAL REIT\n", "expectedOutput": "", "predictedHtml": "<p>Australia Properties<br>\nCentrally located in Perth’s prime<br>\nretail stretch, the David Jones<br>\nBuilding sits on a freehold site of<br>\napproximately 71,473 sq ft in the<br>\nPerth CBD in Australia. It enjoys<br>\ndual frontage to the bustling Murray<br>\nStreet Mall and Hay Street Mall, the<br>\nonly two retail pedestrian streets in<br>\nthe city.<br>\nThe property is a few minutes’<br>\nwalk from the Perth station and is<br>\nalso linked seamlessly to another<br>\nmajor shopping centre via a<br>\ncovered walkway. The four-storey<br>\nproperty, which has heritage-<br>\nlisted components (including a<br>\nbuilding constructed circa 1910<br>\nthat was formerly the Savoy Hotel),<br>\nis anchored by the David Jones<br>\ndepartment store.<br>\nAs at 30 June 2024, the property’s<br>\ncommitted occupancy was 99.3%.<br>\nDavid Jones Pty Limited occupies<br>\napproximately 95.1% of the total<br>\ngross lettable area and accounts<br>\nfor 87.1% of the gross rent for David<br>\nJones Building as at 30 June 2024.<br>\nDavid Jones<br>\nBuilding<br>\nFour-storey heritage-listed building for retail use.<br>\nTenure<br>\nFreehold<br>\nNumber Of Tenants<br>\n(As at 30 June 2024)<br>\n7<br>\n(including an anchor tenant)<br>\nPurchase Price<br>\nS$145.7M<br>\nMarket Valuation<br>\n(As at 30 June 2024)<br>\nS$111.6M<br>\nTotal Gross Lettable Area<br>\n(As at 30 June 2024)<br>\n259,098 SQ FT<br>\nThe long-term lease with David<br>\nJones provides for an upward-only<br>\nrent review every three years and<br>\nexpires in 2032. A rental uplift was<br>\nsecured in August 2023.<br>\nBesides David Jones, six specialty<br>\nstores occupy a gross lettable area<br>\nof about 10,764 sq ft and comprise<br>\ninternational and national brands such<br>\nas Rosendorff Diamonds, Superdry,<br>\nSushi Gin and The Body Shop.<br>\nNotes:<br>\n(1)<br>\nBased on committed leases as at the reporting date.<br>\n(2)<br>\nBased on gross rent as at 30 June 2024 and excludes gross turnover rent.<br>\n(3)<br>\nIncludes the David Jones lease.<br>\nTop 5 Tenants based on gross rent(2)<br>\n1. David Jones Pty Limited<br>\n2. Lorna Jane Pty Ltd<br>\n3. Clyde and Associates Pty Ltd<br>\n4. The Body Shop Australia Pty Ltd<br>\n5. Gin Sushiya Pty Ltd<br>\n99.3%<br>\n98.3%<br>\n(As at 30 June 2024)<br>\n(As at 30 June 2023)<br>\nOccupancy Rate(1)<br>\nRetail Trade Mix<br>\nBy Gross Rental Contribution<br>\n(As at 30 June 2024)<br>\n David Jones<br>\n(Anchor Tenant)<br>\n Jewellery<br>\n Fashion<br>\n Health &amp; Beauty<br>\n Food &amp; Beverage<br>\n87.1%<br>\n3.9%<br>\n3.5%<br>\n2.8%<br>\n2.7%<br>\n3.5<br>\n0.0<br>\n0.0<br>\n0.0<br>\n96.5(3)<br>\nFY<br>\n24/25<br>\nFY<br>\n25/26<br>\nFY<br>\n26/27<br>\nFY<br>\n27/28<br>\nBeyond<br>\nFY 27/28<br>\n0<br>\n20<br>\n40<br>\n60<br>\n80<br>\n100<br>\nLease Expiry Profile by gross rent(1)<br>\n(%)<br>\n42<br>\nSTARHILL GLOBAL REIT</p>\n", "expectedHtml": ""}, {"id": "layout/2602.19961v1_p1", "success": false, "error": "Worker error: Inference output is not LayoutOutput and no provider adapter matched.", "tags": ["layout", "easy"], "productType": "parse", "jobId": "", "parseJobId": "", "parseJobLogsUrl": "", "parseJobLogsLocalPath": "", "parseJobLogsHtmlPath": "", "metrics": {}, "stats": {}, "ruleDetails": {}, "ruleResults": {}, "metricDetails": {}, "predictedOutput": "Unlocking Multimodal Document Intelligence:\nFrom Current Triumphs to Future Frontiers of Visual Document Retrieval\nYibo Yan1,2,3, Jiahao Huo1,2,4, Guanbo Feng1, Mingdong Ou2,*, Yi Cao2,\nXin Zou1,3, Shuliang Liu1,3, Yuanhuiyi Lyu1,3, Yu Huang1,2, Jungang Li1, Kening Zheng4,\nXu Zheng1,3, Philip S. Yu4, James Kwok3, Xuming Hu1,3,†\n1Hong Kong University of Science and Technology (Guangzhou), 2Alibaba Cloud Computing,\n3Hong Kong University of Science and Technology, 4University of Illinois Chicago\nyanyibo70@gmail.com, xuminghu@hkust-gz.edu.cn\nAbstract\nWith the rapid proliferation of multimodal in-\nformation, Visual Document Retrieval (VDR)\nhas emerged as a critical frontier in bridging\nthe gap between unstructured visually rich data\nand precise information acquisition. Unlike\ntraditional natural image retrieval, visual doc-\numents exhibit unique characteristics defined\nby dense textual content, intricate layouts, and\nfine-grained semantic dependencies. This pa-\nper presents the first comprehensive survey\nof the VDR landscape, specifically through\nthe lens of the Multimodal Large Language\nModel (MLLM) era. We begin by examin-\ning the benchmark landscape, and subsequently\ndive into the methodological evolution, cat-\negorizing approaches into three primary as-\npects: multimodal embedding models, multi-\nmodal reranker models, and the integration of\nRetrieval-Augmented Generation (RAG) and\nAgentic systems for complex document intel-\nligence. Finally, we identify persistent chal-\nlenges and outline promising future directions,\naiming to provide a clear roadmap for future\nmultimodal document intelligence.\n1\nIntroduction\nMultimodal retrieval, the task of retrieving relevant\nmultimodal information from a large-scale collec-\ntion using queries that span multiple modalities like\ntext and vision, has become a cornerstone of mod-\nern information retrieval (Mei et al., 2025; Zheng\net al., 2025a). Historically, research in this domain\nhas predominantly focused on natural image re-\ntrieval, targeting datasets of photographs and web\nimages where the primary goal is to match objects,\nscenes, or holistic visual concepts (Wu et al., 2024a;\nArslan et al., 2024).\nHowever, both academia\nand industry begin to turn their attention to a dis-\ntinct yet ubiquitous data type: visual documents1.\n*Project Lead\n†Corresponding Author\n1They are also commonly referred to as visually rich docu-\nments, document images, etc. We use “visual documents” as a\nCat\nSofa\n(Left) natural image\nQuery\nA cat\nsitting on \na sofa\nChart\nNotation\n(Right) visual document\nQuery\nMethod \nsection of \na paper\nMain \nText\nCaption\nFigure 1: Comparison of retrieval of natural image (left) and\nvisual document (right), the focus of this survey.\nThese documents, ranging from scanned PDFs and\nbusiness reports to invoices and academic papers,\nare characterized by a dense interplay of textual\ncontent, complex layouts, and graphical elements\n(Tang et al., 2023; Li et al., 2024d).\nThe pivot towards Visual Document Retrieval\n(VDR) is driven by three fundamental differences\nthat distinguish visual documents from natural\nimages, as illustrated in Figure 1. ❶Informa-\ntion modality and density: unlike natural images\nwhich convey semantic meaning through holistic\nscenes, visual documents are hybrid entities where\nmeaning is co-determined by rich textual informa-\ntion and a structured spatial layout. The informa-\ntion is dense, hierarchical, and multi-modal by na-\nture. ❷Semantic granularity: retrieval in natu-\nral images often targets high-level concepts (e.g.,\n\"a cat sitting on a sofa\"), whereas VDR demands\na much finer-grained understanding. Users may\nquery for specific facts embedded within a table, a\nparticular sentence in a paragraph, or information\ncontingent on its document-level position (e.g., \"the\nmethodology section of a paper\"). ❸User intent\nand task complexity: VDR is typically geared\ntowards precise information-seeking, question an-\nswering, and evidence-based reasoning, rather than\nconceptual or aesthetic matching.\nFurthermore, as the general capabilities of Multi-\nmodal Large Language Models (MLLMs) advance\n(Song et al., 2025; Yan et al., 2025b,a), the VDR\nunifying term. See more illustrative examples in Appendix A.\n1\narXiv:2602.19961v1  [cs.CL]  23 Feb 2026\n", "expectedOutput": "", "predictedHtml": "<p>Unlocking Multimodal Document Intelligence:<br>\nFrom Current Triumphs to Future Frontiers of Visual Document Retrieval<br>\nYibo Yan1,2,3, Jiahao Huo1,2,4, Guanbo Feng1, Mingdong Ou2,*, Yi Cao2,<br>\nXin Zou1,3, Shuliang Liu1,3, Yuanhuiyi Lyu1,3, Yu Huang1,2, Jungang Li1, Kening Zheng4,<br>\nXu Zheng1,3, Philip S. Yu4, James Kwok3, Xuming Hu1,3,†<br>\n1Hong Kong University of Science and Technology (Guangzhou), 2Alibaba Cloud Computing,<br>\n3Hong Kong University of Science and Technology, 4University of Illinois Chicago<br>\nyanyibo70@gmail.com, xuminghu@hkust-gz.edu.cn<br>\nAbstract<br>\nWith the rapid proliferation of multimodal in-<br>\nformation, Visual Document Retrieval (VDR)<br>\nhas emerged as a critical frontier in bridging<br>\nthe gap between unstructured visually rich data<br>\nand precise information acquisition. Unlike<br>\ntraditional natural image retrieval, visual doc-<br>\numents exhibit unique characteristics defined<br>\nby dense textual content, intricate layouts, and<br>\nfine-grained semantic dependencies. This pa-<br>\nper presents the first comprehensive survey<br>\nof the VDR landscape, specifically through<br>\nthe lens of the Multimodal Large Language<br>\nModel (MLLM) era. We begin by examin-<br>\ning the benchmark landscape, and subsequently<br>\ndive into the methodological evolution, cat-<br>\negorizing approaches into three primary as-<br>\npects: multimodal embedding models, multi-<br>\nmodal reranker models, and the integration of<br>\nRetrieval-Augmented Generation (RAG) and<br>\nAgentic systems for complex document intel-<br>\nligence. Finally, we identify persistent chal-<br>\nlenges and outline promising future directions,<br>\naiming to provide a clear roadmap for future<br>\nmultimodal document intelligence.<br>\n1<br>\nIntroduction<br>\nMultimodal retrieval, the task of retrieving relevant<br>\nmultimodal information from a large-scale collec-<br>\ntion using queries that span multiple modalities like<br>\ntext and vision, has become a cornerstone of mod-<br>\nern information retrieval (Mei et al., 2025; Zheng<br>\net al., 2025a). Historically, research in this domain<br>\nhas predominantly focused on natural image re-<br>\ntrieval, targeting datasets of photographs and web<br>\nimages where the primary goal is to match objects,<br>\nscenes, or holistic visual concepts (Wu et al., 2024a;<br>\nArslan et al., 2024).<br>\nHowever, both academia<br>\nand industry begin to turn their attention to a dis-<br>\ntinct yet ubiquitous data type: visual documents1.<br>\n*Project Lead<br>\n†Corresponding Author<br>\n1They are also commonly referred to as visually rich docu-<br>\nments, document images, etc. We use “visual documents” as a<br>\nCat<br>\nSofa<br>\n(Left) natural image<br>\nQuery<br>\nA cat<br>\nsitting on<br>\na sofa<br>\nChart<br>\nNotation<br>\n(Right) visual document<br>\nQuery<br>\nMethod<br>\nsection of<br>\na paper<br>\nMain<br>\nText<br>\nCaption<br>\nFigure 1: Comparison of retrieval of natural image (left) and<br>\nvisual document (right), the focus of this survey.<br>\nThese documents, ranging from scanned PDFs and<br>\nbusiness reports to invoices and academic papers,<br>\nare characterized by a dense interplay of textual<br>\ncontent, complex layouts, and graphical elements<br>\n(Tang et al., 2023; Li et al., 2024d).<br>\nThe pivot towards Visual Document Retrieval<br>\n(VDR) is driven by three fundamental differences<br>\nthat distinguish visual documents from natural<br>\nimages, as illustrated in Figure 1. ❶Informa-<br>\ntion modality and density: unlike natural images<br>\nwhich convey semantic meaning through holistic<br>\nscenes, visual documents are hybrid entities where<br>\nmeaning is co-determined by rich textual informa-<br>\ntion and a structured spatial layout. The informa-<br>\ntion is dense, hierarchical, and multi-modal by na-<br>\nture. ❷Semantic granularity: retrieval in natu-<br>\nral images often targets high-level concepts (e.g.,<br>\n\"a cat sitting on a sofa\"), whereas VDR demands<br>\na much finer-grained understanding. Users may<br>\nquery for specific facts embedded within a table, a<br>\nparticular sentence in a paragraph, or information<br>\ncontingent on its document-level position (e.g., \"the<br>\nmethodology section of a paper\"). ❸User intent<br>\nand task complexity: VDR is typically geared<br>\ntowards precise information-seeking, question an-<br>\nswering, and evidence-based reasoning, rather than<br>\nconceptual or aesthetic matching.<br>\nFurthermore, as the general capabilities of Multi-<br>\nmodal Large Language Models (MLLMs) advance<br>\n(Song et al., 2025; Yan et al., 2025b,a), the VDR<br>\nunifying term. See more illustrative examples in Appendix A.<br>\n1<br>\narXiv:2602.19961v1  [cs.CL]  23 Feb 2026</p>\n", "expectedHtml": ""}, {"id": "layout/3m-2025-global-impact-report_p26", "success": false, "error": "Worker error: Inference output is not LayoutOutput and no provider adapter matched.", "tags": ["layout", "hard"], "productType": "parse", "jobId": "", "parseJobId": "", "parseJobLogsUrl": "", "parseJobLogsLocalPath": "", "parseJobLogsHtmlPath": "", "metrics": {}, "stats": {}, "ruleDetails": {}, "ruleResults": {}, "metricDetails": {}, "predictedOutput": " 3M | 2025 Global Impact Report \n26\nIntroduction \nOur workplace \nInnovation \nCircularity \nClimate \nCommunities \nGovernance \nAppendix\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  \n \n \n \n \n \n \n \n \n  \n \n  \n \n \nScope 1 and 2 emissions \nIn 2002 we calculated our first GHG inventories \nusing IPCC TAR. Since then, our actions have included \njoining RE100 and the Department of Energy’s \n(DOE) Low Carbon Pilot and Better Plants programs, \nworking with the Environmental Protection Agency \n(EPA) on methodology for calculating emissions, \nand co-authoring the IPCC National GHG Inventory \nGuidelines. \nHaving achieved our first emissions reduction goal \nunder EPA Climate Leaders, we’ve met, then reset, \nour goals as we gain momentum: \n2015 – We set a goal to have our scope 1 and 2 \nGHG emissions be at least 50% below our 2002 \nbase year calculation by 2025. \n2021 – We updated our near-term commitment to \na minimum 50% reduction in absolute scope 1 and 2 \nGHG emissions by 2030 in alignment with the IPCC \n1.5 °C pathways. \n2024 – The Science Based  \nTargets initiative (SBTi)  \nvalidated our new near-term  \ntargets and classified our  \nscope 1 and 2 target as in  \nline with a 1.5 ºC trajectory. \nTarget: Reduce absolute scope 1 and 2 GHG \nemissions 52.6% by 2030 from a 2019 base year\n59.1% \nreduction in absolute \nscope 1 and 2 GHG \nemissions since 2019 \nTarget: Reduce absolute scope 3 GHG \nemissions 42% by 2030 from a 2021 base year\n30.7% \nreduction in absolute \nscope 3 GHG emissions \nsince 2021, aligning \nwith SBTi \nScopes defined \nScope 1 – Direct emissions \ngenerated from 3M’s \nactivity. For example, \nmaking a product. \nScope 2 – Indirect \nemissions from our activity. \nFor example, purchasing \nelectricity to light a factory. \nScope 3 – Indirect emissions \nfrom related activity up \nand down our value chain. \nFor example, the emissions \nproduced by a customer \nwhen using our products. \n3M Villach \nOur site in Villach, Austria, implemented an energy repurposing project in 2024 that captures \nwaste heat from production processes to heat the site and supply Villach’s public teleheating grid. \nRecovers up to \n12 GWh \nof waste energy \nannually \nReduces CO₂ \nemissions by up to \n2,978 \nmetric tons \nannually \nAchieves significant cost \nreductions with more savings \nprojected \nUp to \n30% \nof the total investment was \ncovered by EU funding under \nthe Green Deal \nReduces reliance on external \nenergy sources and enhances \noperational resilience \n", "expectedOutput": "", "predictedHtml": "<p>3M | 2025 Global Impact Report<br>\n26<br>\nIntroduction<br>\nOur workplace<br>\nInnovation<br>\nCircularity<br>\nClimate<br>\nCommunities<br>\nGovernance<br>\nAppendix</p>\n\n<p>Scope 1 and 2 emissions<br>\nIn 2002 we calculated our first GHG inventories<br>\nusing IPCC TAR. Since then, our actions have included<br>\njoining RE100 and the Department of Energy’s<br>\n(DOE) Low Carbon Pilot and Better Plants programs,<br>\nworking with the Environmental Protection Agency<br>\n(EPA) on methodology for calculating emissions,<br>\nand co-authoring the IPCC National GHG Inventory<br>\nGuidelines.<br>\nHaving achieved our first emissions reduction goal<br>\nunder EPA Climate Leaders, we’ve met, then reset,<br>\nour goals as we gain momentum:<br>\n2015 – We set a goal to have our scope 1 and 2<br>\nGHG emissions be at least 50% below our 2002<br>\nbase year calculation by 2025.<br>\n2021 – We updated our near-term commitment to<br>\na minimum 50% reduction in absolute scope 1 and 2<br>\nGHG emissions by 2030 in alignment with the IPCC<br>\n1.5 °C pathways.<br>\n2024 – The Science Based<br>\nTargets initiative (SBTi)<br>\nvalidated our new near-term<br>\ntargets and classified our<br>\nscope 1 and 2 target as in<br>\nline with a 1.5 ºC trajectory.<br>\nTarget: Reduce absolute scope 1 and 2 GHG<br>\nemissions 52.6% by 2030 from a 2019 base year<br>\n59.1%<br>\nreduction in absolute<br>\nscope 1 and 2 GHG<br>\nemissions since 2019<br>\nTarget: Reduce absolute scope 3 GHG<br>\nemissions 42% by 2030 from a 2021 base year<br>\n30.7%<br>\nreduction in absolute<br>\nscope 3 GHG emissions<br>\nsince 2021, aligning<br>\nwith SBTi<br>\nScopes defined<br>\nScope 1 – Direct emissions<br>\ngenerated from 3M’s<br>\nactivity. For example,<br>\nmaking a product.<br>\nScope 2 – Indirect<br>\nemissions from our activity.<br>\nFor example, purchasing<br>\nelectricity to light a factory.<br>\nScope 3 – Indirect emissions<br>\nfrom related activity up<br>\nand down our value chain.<br>\nFor example, the emissions<br>\nproduced by a customer<br>\nwhen using our products.<br>\n3M Villach<br>\nOur site in Villach, Austria, implemented an energy repurposing project in 2024 that captures<br>\nwaste heat from production processes to heat the site and supply Villach’s public teleheating grid.<br>\nRecovers up to<br>\n12 GWh<br>\nof waste energy<br>\nannually<br>\nReduces CO₂<br>\nemissions by up to<br>\n2,978<br>\nmetric tons<br>\nannually<br>\nAchieves significant cost<br>\nreductions with more savings<br>\nprojected<br>\nUp to<br>\n30%<br>\nof the total investment was<br>\ncovered by EU funding under<br>\nthe Green Deal<br>\nReduces reliance on external<br>\nenergy sources and enhances<br>\noperational resilience </p>\n", "expectedHtml": ""}], "pdfBaseUrl": "../../../data/test", "runInfo": {"pipelineName": "pymupdf_text", "providerName": "pymupdf", "productType": "parse", "category": "layout", "config": {"text_format": "text"}}};
+</script>
+<script>
+
+(function() {
+"use strict";
+
+// ─── State ───
+var state = {
+    currentMetric: '',
+    sortMode: 'score_desc',  // score_desc, score_asc, alpha
+    searchQuery: '',
+    activeTags: [],
+    rangeMin: 0.0,
+    rangeMax: 1.0,
+    currentPage: 1,
+    perPage: 50,
+    filtered: [],
+    expandedId: null
+};
+
+var metricKeys = Object.keys(DATA.metricNames);
+if (DATA.aggMetrics.length > 0) {
+    state.currentMetric = DATA.aggMetrics[0].name;
+} else if (metricKeys.length > 0) {
+    state.currentMetric = metricKeys[0];
+}
+
+// ─── Helpers ───
+function esc(s) {
+    if (s == null) return '';
+    var d = document.createElement('div');
+    d.textContent = String(s);
+    return d.innerHTML;
+}
+
+  // ─── Metric tooltip system (fixed-position, never clipped) ───
+  var _tipEl = null;
+  var _tipHideTimer = null;
+  function _ensureTip() {
+    if (_tipEl) return _tipEl;
+    _tipEl = document.createElement('div');
+    _tipEl.id = 'metric-tooltip';
+    document.body.appendChild(_tipEl);
+    return _tipEl;
+  }
+  function _getTooltipText(metricKey) {
+    var tips = (typeof DATA !== 'undefined' && DATA.metricTooltips)
+      ? DATA.metricTooltips
+      : (typeof metricTooltips !== 'undefined' ? metricTooltips : {});
+    var text = tips[metricKey] || '';
+    if (!text) {
+      if (metricKey.indexOf('field_accuracy_') === 0) {
+        var field = metricKey.slice(15).replace(/_/g, ' ');
+        text = 'JSON subset match accuracy for the \u201c' + field + '\u201d field.';
+      } else if (metricKey.indexOf('rule_') === 0 && metricKey.lastIndexOf('_pass_rate') === metricKey.length - 10) {
+        var ruleType = metricKey.slice(5, metricKey.length - 10).replace(/_/g, ' ');
+        text = 'Fraction of \u201c' + ruleType + '\u201d rules that pass.';
+      } else if (metricKey.indexOf('f1_') === 0) {
+        var cls = metricKey.slice(3).replace(/_/g, ' ');
+        text = 'F1 score for the \u201c' + cls + '\u201d layout class: 2\u00d7P\u00d7R/(P+R).';
+      } else if (metricKey.indexOf('precision_') === 0) {
+        var cls2 = metricKey.slice(10).replace(/_/g, ' ');
+        text = 'Precision for the \u201c' + cls2 + '\u201d layout class: TP/(TP+FP).';
+      } else if (metricKey.indexOf('recall_') === 0) {
+        var cls3 = metricKey.slice(7).replace(/_/g, ' ');
+        text = 'Recall for the \u201c' + cls3 + '\u201d layout class: TP/(TP+FN).';
+      }
+    }
+    return text;
+  }
+  function _showTip(icon) {
+    clearTimeout(_tipHideTimer);
+    var key = icon.getAttribute('data-metric');
+    var text = _getTooltipText(key);
+    if (!text) return;
+    var tip = _ensureTip();
+    tip.textContent = text;
+    // Reset: position offscreen to measure, remove classes
+    tip.className = '';
+    tip.style.cssText = 'position:fixed;display:block;visibility:hidden;top:-9999px;left:-9999px';
+    // Measure after text is set
+    var iconRect = icon.getBoundingClientRect();
+    var tipW = tip.offsetWidth;
+    var tipH = tip.offsetHeight;
+    var gap = 8;
+    // Default: above
+    var top = iconRect.top - tipH - gap;
+    var arrowDir = 'arrow-bottom';
+    // If not enough room above, go below
+    if (top < 4) {
+      top = iconRect.bottom + gap;
+      arrowDir = 'arrow-top';
+    }
+    // Horizontal: center on icon, but clamp to viewport
+    var left = iconRect.left + iconRect.width / 2 - tipW / 2;
+    var maxLeft = window.innerWidth - tipW - 8;
+    if (left < 8) left = 8;
+    if (left > maxLeft) left = maxLeft;
+    // Arrow position relative to tooltip
+    var arrowLeft = (iconRect.left + iconRect.width / 2 - left);
+    arrowLeft = Math.max(12, Math.min(arrowLeft, tipW - 12));
+    // Apply final position — clear inline styles so CSS classes take effect
+    tip.style.cssText = '';
+    tip.style.top = top + 'px';
+    tip.style.left = left + 'px';
+    tip.style.setProperty('--arrow-left', arrowLeft + 'px');
+    tip.className = arrowDir + ' visible';
+  }
+  function _hideTip() {
+    _tipHideTimer = setTimeout(function() {
+      if (_tipEl) { _tipEl.className = ''; }
+    }, 80);
+  }
+  // Attach listeners via event delegation (mouseover/mouseout bubble, mouseenter/mouseleave do NOT)
+  var _currentHint = null;
+  document.addEventListener('mouseover', function(e) {
+    var icon = e.target.closest ? e.target.closest('.metric-hint') : null;
+    if (icon && icon !== _currentHint) {
+      _currentHint = icon;
+      _showTip(icon);
+    } else if (!icon && _currentHint) {
+      _currentHint = null;
+      _hideTip();
+    }
+  });
+  document.addEventListener('mouseout', function(e) {
+    if (!_currentHint) return;
+    var related = e.relatedTarget;
+    if (!related || !(related.closest && related.closest('.metric-hint') === _currentHint)) {
+      _currentHint = null;
+      _hideTip();
+    }
+  });
+
+  function tooltipIcon(metricKey) {
+    var text = _getTooltipText(metricKey);
+    if (!text) return '';
+    return '<span class="metric-hint" data-metric="' + esc(metricKey) + '"></span>';
+  }
+
+
+// Toggle between raw/rendered markdown view
+window.toggleOutputView = function(panelId, mode) {
+    var panel = document.getElementById(panelId);
+    if (!panel) return;
+    var rawEl = panel.querySelector('.output-raw');
+    var renderedEl = panel.querySelector('.output-rendered');
+    var btns = panel.querySelectorAll('.output-view-btn');
+    btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-mode') === mode); });
+    if (mode === 'rendered') {
+        rawEl.style.display = 'none';
+        renderedEl.style.display = 'block';
+    } else {
+        rawEl.style.display = 'block';
+        renderedEl.style.display = 'none';
+    }
+};
+
+// Copy raw output to clipboard
+window.copyOutput = function(panelId, btn) {
+    var panel = document.getElementById(panelId);
+    if (!panel) return;
+    var rawEl = panel.querySelector('.output-raw');
+    if (!rawEl) return;
+    var text = rawEl.textContent || rawEl.innerText;
+    navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+    });
+};
+
+function scoreColor(v) {
+    if (v >= 0.9) return 'emerald';
+    if (v >= 0.7) return 'amber';
+    return 'red';
+}
+
+function fmt(v, decimals) {
+    if (v == null || isNaN(v)) return '-';
+    return Number(v).toFixed(decimals !== undefined ? decimals : 4);
+}
+
+function fmtStat(v, unit) {
+    if (v == null || isNaN(v)) return '-';
+    var n = Number(v);
+    if (Math.abs(n) >= 1000) return n.toFixed(0) + (unit || '');
+    if (Math.abs(n) >= 1) return n.toFixed(1) + (unit || '');
+    return n.toFixed(3) + (unit || '');
+}
+
+function debounce(fn, ms) {
+    var timer;
+    return function() {
+        var args = arguments, ctx = this;
+        clearTimeout(timer);
+        timer = setTimeout(function() { fn.apply(ctx, args); }, ms);
+    };
+}
+
+function getExampleScore(ex) {
+    if (!state.currentMetric) return null;
+    var v = ex.metrics[state.currentMetric];
+    return (v !== undefined && v !== null) ? v : null;
+}
+
+// ─── Render summary cards ───
+function renderSummary() {
+    var el = document.getElementById('summary-cards');
+    var s = DATA.summary;
+    el.innerHTML =
+        '<div class="summary-card"><div class="label">Total Examples</div><div class="big-number">' + s.total + '</div></div>' +
+        '<div class="summary-card card-success"><div class="label">Successful</div><div class="big-number">' + s.successful + '</div></div>' +
+        '<div class="summary-card card-failed"><div class="label">Failed</div><div class="big-number">' + s.failed + '</div></div>' +
+        '<div class="summary-card card-skipped"><div class="label">Skipped</div><div class="big-number">' + s.skipped + '</div></div>';
+}
+
+// ─── Render aggregate metrics ───
+function renderAggMetrics() {
+    var el = document.getElementById('agg-metrics');
+    if (!DATA.aggMetrics.length) { el.style.display = 'none'; return; }
+    var html = '<h2 class="section-title">Aggregate Metrics</h2><div class="metrics-grid">';
+    for (var i = 0; i < DATA.aggMetrics.length; i++) {
+        var m = DATA.aggMetrics[i];
+        var c = scoreColor(m.avg);
+        html += '<div class="metric-card">' +
+            '<div class="metric-label">' + esc(m.displayName) + tooltipIcon(m.name) + '</div>' +
+            '<div class="metric-avg color-' + c + '">' + fmt(m.avg) + '</div>' +
+            '<div class="metric-bar-track"><div class="metric-bar-fill bar-' + c + '" style="width:' + (m.avg * 100).toFixed(1) + '%"></div></div>' +
+            '<div class="metric-range"><span>Min: ' + fmt(m.min) + '</span><span>Max: ' + fmt(m.max) + '</span></div>' +
+            '</div>';
+    }
+    html += '</div>';
+    el.innerHTML = html;
+}
+
+// ─── Render aggregate stats ───
+function renderAggStats() {
+    var el = document.getElementById('agg-stats');
+    if (!DATA.aggStats.length) { el.style.display = 'none'; return; }
+    var html = '<button class="stats-toggle" id="stats-toggle">' +
+        '<span class="chevron">&#9654;</span> Operational Statistics</button>' +
+        '<div class="stats-body" id="stats-body"><div class="stats-grid">';
+    for (var i = 0; i < DATA.aggStats.length; i++) {
+        var s = DATA.aggStats[i];
+        var u = s.unit || '';
+        html += '<div class="stat-card">' +
+            '<div class="stat-label">' + esc(s.displayName) + (u ? ' (' + esc(u) + ')' : '') + '</div>' +
+            '<div class="stat-avg">' + fmtStat(s.avg, u) + '</div>' +
+            '<div class="stat-detail">' +
+            '<span>Min: ' + fmtStat(s.min, u) + '</span>' +
+            '<span>Max: ' + fmtStat(s.max, u) + '</span>' +
+            '<span>P50: ' + fmtStat(s.p50, u) + '</span>' +
+            '<span>P95: ' + fmtStat(s.p95, u) + '</span>' +
+            '<span>P99: ' + fmtStat(s.p99, u) + '</span>' +
+            '<span>Total: ' + fmtStat(s.total, u) + '</span>' +
+            '<span>Count: ' + s.count + '</span>' +
+            '</div></div>';
+    }
+    html += '</div></div>';
+    el.innerHTML = html;
+
+    document.getElementById('stats-toggle').addEventListener('click', function() {
+        this.classList.toggle('open');
+        document.getElementById('stats-body').classList.toggle('open');
+    });
+}
+
+// ─── Render tag metrics ───
+function renderTagMetrics() {
+    var el = document.getElementById('tag-metrics');
+    var tagKeys = Object.keys(DATA.tagMetrics);
+    if (!tagKeys.length) { el.style.display = 'none'; return; }
+    var html = '<h2 class="section-title">Metrics by Tag</h2><div class="tag-metrics-grid">';
+    tagKeys.sort();
+    for (var t = 0; t < tagKeys.length; t++) {
+        var tag = tagKeys[t];
+        var tm = DATA.tagMetrics[tag];
+        var mKeys = Object.keys(tm).sort();
+        html += '<div class="tag-card"><div class="tag-name">' + esc(tag) + '</div>';
+        for (var mk = 0; mk < mKeys.length; mk++) {
+            var mName = mKeys[mk];
+            // try to find a display name
+            var baseName = mName.replace(/^avg_/, '').replace(/^min_/, '').replace(/^max_/, '');
+            var displayName = DATA.metricNames[baseName] || mName.replace(/_/g, ' ');
+            html += '<div class="tag-metric-row"><span class="tag-metric-name">' + esc(displayName) +
+                '</span><span class="tag-metric-value">' + fmt(tm[mKeys[mk]]) + '</span></div>';
+        }
+        html += '</div>';
+    }
+    html += '</div>';
+    el.innerHTML = html;
+}
+
+// ─── Controls ───
+function renderControls() {
+    var el = document.getElementById('controls');
+    var html = '';
+
+    // Metric selector
+    html += '<div class="control-group"><label>Metric</label><select id="metric-select">';
+    for (var i = 0; i < metricKeys.length; i++) {
+        var k = metricKeys[i];
+        var sel = (k === state.currentMetric) ? ' selected' : '';
+        html += '<option value="' + esc(k) + '"' + sel + '>' + esc(DATA.metricNames[k]) + '</option>';
+    }
+    html += '</select></div>';
+
+    // Sort
+    html += '<div class="control-group"><label>Sort</label><select id="sort-select">' +
+        '<option value="score_desc"' + (state.sortMode === 'score_desc' ? ' selected' : '') + '>Score &#x2193;</option>' +
+        '<option value="score_asc"' + (state.sortMode === 'score_asc' ? ' selected' : '') + '>Score &#x2191;</option>' +
+        '<option value="alpha"' + (state.sortMode === 'alpha' ? ' selected' : '') + '>Name A-Z</option>' +
+        '</select></div>';
+
+    // Score range
+    html += '<div class="control-group range-group"><label>Score Range</label>' +
+        '<span class="range-label" id="range-min-label">' + state.rangeMin.toFixed(1) + '</span>' +
+        '<input type="range" id="range-min" min="0" max="1" step="0.05" value="' + state.rangeMin + '">' +
+        '<input type="range" id="range-max" min="0" max="1" step="0.05" value="' + state.rangeMax + '">' +
+        '<span class="range-label" id="range-max-label">' + state.rangeMax.toFixed(1) + '</span>' +
+        '</div>';
+
+    // Search
+    html += '<div class="control-group"><label>Search</label>' +
+        '<input type="text" id="search-input" placeholder="Filter by test ID..." value="' + esc(state.searchQuery) + '"></div>';
+
+    el.innerHTML = html;
+
+    // Tag pills
+    var tagEl = document.getElementById('tag-filters');
+    if (DATA.tags.length) {
+        var thtml = '';
+        for (var t = 0; t < DATA.tags.length; t++) {
+            var active = state.activeTags.indexOf(DATA.tags[t]) >= 0 ? ' active' : '';
+            thtml += '<span class="tag-pill' + active + '" data-tag="' + esc(DATA.tags[t]) + '">' + esc(DATA.tags[t]) + '</span>';
+        }
+        tagEl.innerHTML = thtml;
+        tagEl.style.display = '';
+    } else {
+        tagEl.style.display = 'none';
+    }
+
+    // Event listeners
+    document.getElementById('metric-select').addEventListener('change', function() {
+        state.currentMetric = this.value;
+        state.currentPage = 1;
+        applyFiltersAndRender();
+    });
+    document.getElementById('sort-select').addEventListener('change', function() {
+        state.sortMode = this.value;
+        state.currentPage = 1;
+        applyFiltersAndRender();
+    });
+    document.getElementById('range-min').addEventListener('input', function() {
+        state.rangeMin = parseFloat(this.value);
+        if (state.rangeMin > state.rangeMax) { state.rangeMin = state.rangeMax; this.value = state.rangeMin; }
+        document.getElementById('range-min-label').textContent = state.rangeMin.toFixed(1);
+    });
+    document.getElementById('range-min').addEventListener('change', function() {
+        state.currentPage = 1;
+        applyFiltersAndRender();
+    });
+    document.getElementById('range-max').addEventListener('input', function() {
+        state.rangeMax = parseFloat(this.value);
+        if (state.rangeMax < state.rangeMin) { state.rangeMax = state.rangeMin; this.value = state.rangeMax; }
+        document.getElementById('range-max-label').textContent = state.rangeMax.toFixed(1);
+    });
+    document.getElementById('range-max').addEventListener('change', function() {
+        state.currentPage = 1;
+        applyFiltersAndRender();
+    });
+    document.getElementById('search-input').addEventListener('input', debounce(function() {
+        state.searchQuery = this.value.toLowerCase();
+        state.currentPage = 1;
+        applyFiltersAndRender();
+    }, 300));
+
+    tagEl.addEventListener('click', function(e) {
+        var pill = e.target.closest('.tag-pill');
+        if (!pill) return;
+        var tag = pill.getAttribute('data-tag');
+        var idx = state.activeTags.indexOf(tag);
+        if (idx >= 0) {
+            state.activeTags.splice(idx, 1);
+            pill.classList.remove('active');
+        } else {
+            state.activeTags.push(tag);
+            pill.classList.add('active');
+        }
+        state.currentPage = 1;
+        applyFiltersAndRender();
+    });
+}
+
+// ─── Filter + sort ───
+function applyFilters() {
+    var results = [];
+    for (var i = 0; i < DATA.examples.length; i++) {
+        var ex = DATA.examples[i];
+        // Search filter
+        if (state.searchQuery && ex.id.toLowerCase().indexOf(state.searchQuery) < 0) continue;
+        // Tag filter
+        if (state.activeTags.length > 0) {
+            var hasTag = false;
+            for (var t = 0; t < state.activeTags.length; t++) {
+                if (ex.tags.indexOf(state.activeTags[t]) >= 0) { hasTag = true; break; }
+            }
+            if (!hasTag) continue;
+        }
+        // Score range filter
+        var score = getExampleScore(ex);
+        if (score !== null) {
+            if (score < state.rangeMin || score > state.rangeMax) continue;
+        }
+        results.push(ex);
+    }
+
+    // Sort
+    results.sort(function(a, b) {
+        if (state.sortMode === 'alpha') {
+            return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+        }
+        var sa = getExampleScore(a);
+        var sb = getExampleScore(b);
+        // Nulls go last
+        if (sa === null && sb === null) return 0;
+        if (sa === null) return 1;
+        if (sb === null) return -1;
+        if (state.sortMode === 'score_desc') return sb - sa;
+        return sa - sb;
+    });
+
+    state.filtered = results;
+}
+
+function applyFiltersAndRender() {
+    applyFilters();
+    state.expandedId = null;
+    renderResultsCount();
+    renderTable();
+    renderPagination();
+}
+
+// ─── Results count ───
+function renderResultsCount() {
+    var el = document.getElementById('results-count');
+    el.textContent = state.filtered.length + ' of ' + DATA.examples.length + ' examples';
+}
+
+// ─── Table ───
+function renderTable() {
+    var tbody = document.getElementById('examples-tbody');
+    var frag = document.createDocumentFragment();
+    var start = (state.currentPage - 1) * state.perPage;
+    var end = Math.min(start + state.perPage, state.filtered.length);
+
+    // Clear
+    tbody.innerHTML = '';
+
+    for (var i = start; i < end; i++) {
+        var ex = state.filtered[i];
+        var score = getExampleScore(ex);
+        var tr = document.createElement('tr');
+        tr.setAttribute('data-id', ex.id);
+        if (ex.id === state.expandedId) tr.className = 'selected';
+
+        // Status
+        var td0 = document.createElement('td');
+        td0.innerHTML = '<span class="status-dot ' + (ex.success ? 'ok' : 'fail') + '"></span>';
+        tr.appendChild(td0);
+
+        // Test ID
+        var td1 = document.createElement('td');
+        td1.textContent = ex.id;
+        td1.style.fontFamily = 'var(--font-mono)';
+        td1.style.fontSize = '0.8rem';
+        td1.style.wordBreak = 'break-all';
+        tr.appendChild(td1);
+
+        // Score
+        var td2 = document.createElement('td');
+        if (score !== null) {
+            var c = scoreColor(score);
+            td2.innerHTML = '<div class="score-cell">' +
+                '<div class="score-bar-track"><div class="score-bar-fill bar-' + c + '" style="width:' + (score * 100).toFixed(1) + '%"></div></div>' +
+                '<span class="score-value color-' + c + '">' + fmt(score) + '</span></div>';
+        } else {
+            td2.innerHTML = '<span style="color:var(--muted-light);font-size:0.8rem">-</span>';
+        }
+        tr.appendChild(td2);
+
+        // Tags
+        var td3 = document.createElement('td');
+        td3.className = 'col-tags-cell';
+        if (ex.tags.length) {
+            var badges = '';
+            for (var t = 0; t < ex.tags.length; t++) {
+                badges += '<span class="tag-badge">' + esc(ex.tags[t]) + '</span>';
+            }
+            td3.innerHTML = '<div class="tag-badges">' + badges + '</div>';
+        }
+        tr.appendChild(td3);
+
+        frag.appendChild(tr);
+
+        // Detail panel if expanded
+        if (ex.id === state.expandedId) {
+            var detailTr = document.createElement('tr');
+            var detailTd = document.createElement('td');
+            detailTd.colSpan = 4;
+            detailTd.style.padding = '0';
+            detailTd.innerHTML = buildDetailPanel(ex);
+            detailTr.appendChild(detailTd);
+            frag.appendChild(detailTr);
+        }
+    }
+
+    tbody.appendChild(frag);
+
+    // Row click handler (delegated)
+    tbody.onclick = function(e) {
+        var tr = e.target.closest('tr[data-id]');
+        if (!tr) return;
+        // Don't toggle if clicking inside detail panel
+        if (e.target.closest('.detail-panel')) return;
+        var id = tr.getAttribute('data-id');
+        if (state.expandedId === id) {
+            state.expandedId = null;
+        } else {
+            state.expandedId = id;
+        }
+        renderTable();
+        initPdfViewerIfNeeded();
+    };
+}
+
+// ─── Detail panel ───
+function buildDetailPanel(ex) {
+    var html = '<div class="detail-panel">';
+    html += '<div class="detail-header"><div class="detail-title">' + esc(ex.id) + '</div>' +
+        '<button class="detail-close" onclick="event.stopPropagation();closeDetail()">Close</button></div>';
+
+    // Job IDs
+    if (ex.parseJobId || ex.jobId) {
+        html += '<div style="font-size:0.8rem;color:var(--muted);margin-bottom:12px">';
+        if (ex.parseJobId) {
+            html += '<span><strong>Parse Job ID:</strong> <span style="font-family:var(--font-mono);font-size:0.78rem">' + esc(ex.parseJobId) + '</span></span>';
+        }
+        if (ex.jobId && ex.jobId !== ex.parseJobId) {
+            if (ex.parseJobId) html += '<span style="margin:0 10px;color:var(--border)">|</span>';
+            html += '<span><strong>Job ID:</strong> <span style="font-family:var(--font-mono);font-size:0.78rem">' + esc(ex.jobId) + '</span></span>';
+        }
+        html += '</div>';
+    }
+
+    if (ex.parseJobLogsUrl || ex.parseJobLogsLocalPath || ex.parseJobLogsHtmlPath) {
+        html += '<div style="font-size:0.8rem;color:var(--muted);margin:-4px 0 12px 0">';
+        html += '<strong>Parse Job Logs:</strong> ';
+        var links = [];
+        if (ex.parseJobLogsUrl) {
+            links.push('<a href="' + esc(ex.parseJobLogsUrl) + '" target="_blank" rel="noopener noreferrer">jobLogs.json (presigned)</a>');
+        }
+        if (ex.parseJobLogsLocalPath) {
+            links.push('<a href="' + esc(ex.parseJobLogsLocalPath) + '" target="_blank" rel="noopener noreferrer">jobLogs.json (local)</a>');
+        }
+        if (ex.parseJobLogsHtmlPath) {
+            links.push('<a href="' + esc(ex.parseJobLogsHtmlPath) + '" target="_blank" rel="noopener noreferrer">Pretty Viewer</a>');
+        }
+        html += links.join(' <span style="color:var(--border);margin:0 8px;">|</span> ');
+        html += '</div>';
+    }
+
+    // Error
+    if (ex.error) {
+        html += '<div class="detail-error">' + esc(ex.error) + '</div>';
+    }
+
+    // All metrics (collapsible, with inline sub-collapsible details per metric)
+    var metricEntries = Object.keys(ex.metrics);
+    if (metricEntries.length) {
+        var metricSummary = metricEntries.length + ' metric' + (metricEntries.length > 1 ? 's' : '');
+        html += '<div class="detail-collapsible">' +
+            '<button class="detail-collapsible-toggle" onclick="event.stopPropagation();toggleCollapsible(this)">' +
+            '<span class="chevron">&#9654;</span> Metrics (' + metricSummary + ')</button>' +
+            '<div class="detail-collapsible-body">';
+        metricEntries.sort();
+        for (var i = 0; i < metricEntries.length; i++) {
+            var mName = metricEntries[i];
+            var mVal = ex.metrics[mName];
+            var c = scoreColor(mVal);
+            var ruleStr = '';
+            if (ex.ruleDetails[mName]) {
+                var rd = ex.ruleDetails[mName];
+                ruleStr = ' <span class="mono" style="margin-left:8px;font-size:0.78rem;color:var(--muted)">' + rd.passed + '/' + rd.total + ' rules</span>';
+            }
+            var hasDetails = ex.metricDetails && ex.metricDetails[mName] && ex.metricDetails[mName].length > 0;
+            if (hasDetails) {
+                html += '<div class="detail-collapsible" style="margin:0;border:none;border-bottom:1px solid var(--border)">' +
+                    '<button class="detail-collapsible-toggle" style="padding:5px 14px;font-size:0.82rem" onclick="event.stopPropagation();toggleCollapsible(this)">' +
+                    '<span class="chevron">&#9654;</span> ' +
+                    '<span style="display:inline-flex;align-items:center;min-width:220px">' + esc(DATA.metricNames[mName] || mName) + tooltipIcon(mName) + '</span>' +
+                    '<span class="mono color-' + c + '" style="margin-left:8px">' + fmt(mVal) + '</span>' +
+                    ruleStr + '</button>' +
+                    '<div class="detail-collapsible-body" style="padding:2px 14px 8px 32px;background:var(--bg)">';
+                var lines = ex.metricDetails[mName];
+                // Check if lines use [SECTION:...] markers for sub-collapsibles
+                var hasSections = false;
+                for (var si = 0; si < lines.length; si++) {
+                    if (lines[si].indexOf('[SECTION:') === 0) { hasSections = true; break; }
+                }
+                if (hasSections) {
+                    var inSection = false;
+                    for (var li = 0; li < lines.length; li++) {
+                        var ln = lines[li];
+                        var secMatch = ln.match(/^\[SECTION:(.+)\]$/);
+                        if (secMatch) {
+                            if (inSection) html += '</div></div></div>';
+                            html += '<div class="detail-collapsible" style="margin:2px 0;border:none;border-bottom:1px solid var(--border)">' +
+                                '<button class="detail-collapsible-toggle" style="padding:3px 10px;font-size:0.78rem" onclick="event.stopPropagation();toggleCollapsible(this)">' +
+                                '<span class="chevron">&#9654;</span> ' + esc(secMatch[1]) + '</button>' +
+                                '<div class="detail-collapsible-body" style="padding:2px 10px 6px 28px;background:var(--bg)">' +
+                                '<div style="font-size:0.75rem;line-height:1.5;font-family:var(--font-mono);white-space:pre-wrap;color:var(--text)">';
+                            inSection = true;
+                        } else {
+                            html += esc(ln) + '\n';
+                        }
+                    }
+                    if (inSection) html += '</div></div></div>';
+                } else {
+                    html += '<div style="font-size:0.78rem;line-height:1.6;font-family:var(--font-mono);white-space:pre-wrap;color:var(--text)">';
+                    for (var li = 0; li < lines.length; li++) {
+                        html += esc(lines[li]) + '\n';
+                    }
+                    html += '</div>';
+                }
+                html += '</div></div>';
+            } else {
+                html += '<div style="padding:5px 14px;font-size:0.82rem;border-bottom:1px solid var(--border)">' +
+                    '<span style="display:inline-block;width:18px"></span>' +
+                    '<span style="display:inline-flex;align-items:center;min-width:220px">' + esc(DATA.metricNames[mName] || mName) + tooltipIcon(mName) + '</span>' +
+                    '<span class="mono color-' + c + '" style="margin-left:8px">' + fmt(mVal) + '</span>' +
+                    ruleStr + '</div>';
+            }
+        }
+        html += '</div></div>';
+    }
+
+    // Rule results (collapsible)
+    var ruleMetrics = Object.keys(ex.ruleResults);
+    if (ruleMetrics.length) {
+        var totalRules = 0;
+        var failedRules = 0;
+        for (var r = 0; r < ruleMetrics.length; r++) {
+            var metricRules = ex.ruleResults[ruleMetrics[r]];
+            totalRules += metricRules.length;
+            for (var fri = 0; fri < metricRules.length; fri++) {
+                if (metricRules[fri].status === 'fail' || metricRules[fri].passed === false) failedRules++;
+            }
+        }
+        if (totalRules > 0) {
+            // Auto-expand when anything failed: the failures are what the
+            // reader opened the example to see.
+            var ruleOpenClass = failedRules > 0 ? ' open' : '';
+            var ruleSummary = failedRules > 0
+                ? '<span class="rule-fail">' + failedRules + ' failed</span> / ' + totalRules + ' rules'
+                : totalRules + ' rules';
+            html += '<div class="detail-collapsible">' +
+                '<button class="detail-collapsible-toggle' + ruleOpenClass + '" onclick="event.stopPropagation();toggleCollapsible(this)">' +
+                '<span class="chevron">&#9654;</span> Rule Results (' + ruleSummary + ')</button>' +
+                '<div class="detail-collapsible-body' + ruleOpenClass + '">';
+            for (var r = 0; r < ruleMetrics.length; r++) {
+                var rmName = ruleMetrics[r];
+                var rules = ex.ruleResults[rmName];
+                if (!rules.length) continue;
+                html += '<div style="padding:8px 14px 4px;font-size:0.75rem;font-weight:600;color:var(--muted)">' + esc(DATA.metricNames[rmName] || rmName) + '</div>';
+                html += '<table class="detail-table"><thead><tr><th>Type</th><th>ID</th><th>Status</th><th>Message</th></tr></thead><tbody>';
+                for (var ri = 0; ri < rules.length; ri++) {
+                    var rule = rules[ri];
+                    var badge = rule.passed
+                        ? '<span class="rule-pass">&#10003; Pass</span>'
+                        : '<span class="rule-fail">&#10007; Fail</span>';
+                    html += '<tr><td>' + esc(rule.type) + '</td><td class="mono">' + esc(rule.id) + '</td>' +
+                        '<td>' + badge + '</td><td>' + esc(rule.message) + '</td></tr>';
+                }
+                html += '</tbody></table>';
+            }
+            html += '</div></div>';
+        }
+    }
+
+    // Stats (collapsible)
+    var statEntries = Object.keys(ex.stats);
+    if (statEntries.length) {
+        html += '<div class="detail-collapsible">' +
+            '<button class="detail-collapsible-toggle" onclick="event.stopPropagation();toggleCollapsible(this)">' +
+            '<span class="chevron">&#9654;</span> Operational Stats</button>' +
+            '<div class="detail-collapsible-body">' +
+            '<table class="detail-table"><thead><tr><th>Stat</th><th>Value</th></tr></thead><tbody>';
+        statEntries.sort();
+        for (var si = 0; si < statEntries.length; si++) {
+            var sName = statEntries[si];
+            html += '<tr><td>' + esc(sName.replace(/_/g, ' ')) + '</td><td class="mono">' + fmt(ex.stats[sName], 2) + '</td></tr>';
+        }
+        html += '</tbody></table></div></div>';
+    }
+
+    // PDF viewer
+    var productType = ex.productType || 'parse';
+    html += '<div class="detail-section pdf-viewer-section">' +
+        '<div class="detail-section-title">PDF Viewer</div>' +
+        '<div class="pdf-url-bar">' +
+        '<label>Base URL</label>' +
+        '<input type="text" id="pdf-base-url" value="' + esc(getPdfBaseUrl()) + '" placeholder="http://localhost:8080/data">' +
+        '<button onclick="event.stopPropagation();savePdfBaseUrl();loadPdf(\'' + esc(ex.id) + '\',\'' + esc(productType) + '\')">Load PDF</button>' +
+        '</div>' +
+        '<div class="pdf-canvas-wrap" id="pdf-canvas-wrap"><div class="pdf-placeholder">Set base path and click Load PDF</div></div>' +
+        '<div class="pdf-nav" id="pdf-nav" style="display:none">' +
+        '<button id="pdf-prev" onclick="event.stopPropagation();pdfPrev()">Prev</button>' +
+        '<span id="pdf-page-info">-</span>' +
+        '<button id="pdf-next" onclick="event.stopPropagation();pdfNext()">Next</button>' +
+        '<span style="margin-left:12px;border-left:1px solid var(--border);padding-left:12px"></span>' +
+        '<button onclick="event.stopPropagation();pdfZoomOut()">−</button>' +
+        '<span id="pdf-zoom-info">150%</span>' +
+        '<button onclick="event.stopPropagation();pdfZoomIn()">+</button>' +
+        '</div></div>';
+
+    // Predicted / Expected output side-by-side
+    html += '<div class="output-columns">';
+
+    // Predicted output panel
+    var predId = 'output-pred-' + ex.id.replace(/[^a-zA-Z0-9]/g, '_');
+    html += '<div class="output-panel" id="' + predId + '">';
+    html += '<div class="output-panel-header"><span>Predicted Output</span>';
+    if (ex.predictedOutput) {
+        html += '<div class="output-view-toggle">' +
+            '<button class="output-view-btn active" data-mode="rendered" onclick="event.stopPropagation();toggleOutputView(\'' + predId + '\',\'rendered\')">Rendered</button>' +
+            '<button class="output-view-btn" data-mode="raw" onclick="event.stopPropagation();toggleOutputView(\'' + predId + '\',\'raw\')">Raw</button>' +
+            '</div>' +
+            '<button class="output-copy-btn" onclick="event.stopPropagation();copyOutput(\'' + predId + '\',this)">Copy</button>';
+    }
+    html += '</div>';
+    if (ex.predictedOutput) {
+        html += '<div class="output-panel-body output-raw" style="display:none">' + esc(ex.predictedOutput) + '</div>';
+        html += '<div class="output-panel-body rendered-md output-rendered">' + (ex.predictedHtml || esc(ex.predictedOutput)) + '</div>';
+    } else {
+        html += '<div class="output-panel-body"><span class="output-empty">No predicted output available</span></div>';
+    }
+    html += '</div>';
+
+    // Expected output panel
+    var expId = 'output-exp-' + ex.id.replace(/[^a-zA-Z0-9]/g, '_');
+    html += '<div class="output-panel" id="' + expId + '">';
+    html += '<div class="output-panel-header"><span>Expected Output</span>';
+    if (ex.expectedOutput) {
+        html += '<div class="output-view-toggle">' +
+            '<button class="output-view-btn active" data-mode="rendered" onclick="event.stopPropagation();toggleOutputView(\'' + expId + '\',\'rendered\')">Rendered</button>' +
+            '<button class="output-view-btn" data-mode="raw" onclick="event.stopPropagation();toggleOutputView(\'' + expId + '\',\'raw\')">Raw</button>' +
+            '</div>' +
+            '<button class="output-copy-btn" onclick="event.stopPropagation();copyOutput(\'' + expId + '\',this)">Copy</button>';
+    }
+    html += '</div>';
+    if (ex.expectedOutput) {
+        html += '<div class="output-panel-body output-raw" style="display:none">' + esc(ex.expectedOutput) + '</div>';
+        html += '<div class="output-panel-body rendered-md output-rendered">' + (ex.expectedHtml || esc(ex.expectedOutput)) + '</div>';
+    } else {
+        html += '<div class="output-panel-body"><span class="output-empty">No expected output available</span></div>';
+    }
+    html += '</div>';
+
+    html += '</div>';
+
+    html += '</div>';
+    return html;
+}
+
+// Close detail (global)
+window.closeDetail = function() {
+    state.expandedId = null;
+    renderTable();
+};
+
+// Toggle collapsible sections
+window.toggleCollapsible = function(btn) {
+    btn.classList.toggle('open');
+    var body = btn.nextElementSibling;
+    if (body) body.classList.toggle('open');
+};
+
+// ─── PDF viewer ───
+var pdfState = { doc: null, page: 1, total: 0, scale: 1.5 };
+
+window.getPdfBaseUrl = function() {
+    try { return DATA.pdfBaseUrl || localStorage.getItem('bench_pdf_base_url') || ''; } catch(e) { return DATA.pdfBaseUrl || ''; }
+};
+window.savePdfBaseUrl = function() {
+    var input = document.getElementById('pdf-base-url');
+    if (input) {
+        try { localStorage.setItem('bench_pdf_base_url', input.value); } catch(e) {}
+    }
+};
+
+function buildPdfDocumentUrl(baseUrl, testId) {
+    baseUrl = String(baseUrl || '').replace(/\/+$/, '');
+    testId = String(testId || '');
+    if (!baseUrl || !testId) return '';
+    // Strip overlapping path segments between baseUrl and testId to avoid duplication
+    // e.g. baseUrl="http://host/data/tables/v1" + testId="tables/v1/file" -> ".../data/tables/v1/file.pdf"
+    var relPath = testId;
+    var baseParts = baseUrl.replace(/^https?:\/\/[^\/]*/i, '').split('/').filter(Boolean);
+    var idParts = testId.split('/');
+    for (var overlap = Math.min(baseParts.length, idParts.length); overlap > 0; overlap--) {
+        var baseTail = baseParts.slice(baseParts.length - overlap).join('/');
+        var idHead = idParts.slice(0, overlap).join('/');
+        if (baseTail === idHead) {
+            relPath = idParts.slice(overlap).join('/');
+            break;
+        }
+    }
+    // Root-relative bases (e.g. "/files/data") are URLs too: a test id with
+    // spaces or unicode in it must be percent-encoded per segment just like
+    // it is for an absolute http(s) base.
+    if (/^https?:\/\//i.test(baseUrl) || baseUrl.charAt(0) === '/') {
+        return baseUrl + '/' + relPath.split('/').map(function(p) { return encodeURIComponent(p); }).join('/') + '.pdf';
+    }
+    return baseUrl + '/' + relPath + '.pdf';
+}
+
+window.loadPdf = function(testId, productType) {
+    var baseUrl = document.getElementById('pdf-base-url').value;
+    var url = buildPdfDocumentUrl(baseUrl, testId);
+    if (!url) return;
+    savePdfBaseUrl();
+    var wrap = document.getElementById('pdf-canvas-wrap');
+    wrap.innerHTML = '<div class="pdf-placeholder">Loading PDF...</div>';
+    document.getElementById('pdf-nav').style.display = 'none';
+
+    if (typeof pdfjsLib === 'undefined') {
+        // Load PDF.js from CDN
+        var script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js';
+        script.onload = function() {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+            doLoadPdf(url);
+        };
+        script.onerror = function() {
+            wrap.innerHTML = '<div class="pdf-placeholder">Failed to load PDF.js library</div>';
+        };
+        document.head.appendChild(script);
+    } else {
+        doLoadPdf(url);
+    }
+};
+
+function doLoadPdf(url) {
+    var wrap = document.getElementById('pdf-canvas-wrap');
+    pdfjsLib.getDocument(url).promise.then(function(doc) {
+        pdfState.doc = doc;
+        pdfState.total = doc.numPages;
+        pdfState.page = 1;
+        renderPdfPage();
+        document.getElementById('pdf-nav').style.display = 'flex';
+    }).catch(function(err) {
+        wrap.innerHTML = '<div class="pdf-placeholder">Failed to load PDF: ' + esc(String(err)) + '</div>';
+    });
+}
+
+function renderPdfPage() {
+    if (!pdfState.doc) return;
+    pdfState.doc.getPage(pdfState.page).then(function(page) {
+        var viewport = page.getViewport({ scale: pdfState.scale });
+        var wrap = document.getElementById('pdf-canvas-wrap');
+        wrap.innerHTML = '';
+        var canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        wrap.appendChild(canvas);
+        page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport });
+        document.getElementById('pdf-page-info').textContent = pdfState.page + ' / ' + pdfState.total;
+        document.getElementById('pdf-zoom-info').textContent = Math.round(pdfState.scale * 100) + '%';
+        document.getElementById('pdf-prev').disabled = pdfState.page <= 1;
+        document.getElementById('pdf-next').disabled = pdfState.page >= pdfState.total;
+    });
+}
+
+window.pdfPrev = function() {
+    if (pdfState.page > 1) { pdfState.page--; renderPdfPage(); }
+};
+window.pdfNext = function() {
+    if (pdfState.page < pdfState.total) { pdfState.page++; renderPdfPage(); }
+};
+window.pdfZoomIn = function() {
+    pdfState.scale = Math.min(pdfState.scale + 0.25, 5.0);
+    renderPdfPage();
+};
+window.pdfZoomOut = function() {
+    pdfState.scale = Math.max(pdfState.scale - 0.25, 0.5);
+    renderPdfPage();
+};
+
+function initPdfViewerIfNeeded() {
+    // Restore saved base URL into input if present
+    var input = document.getElementById('pdf-base-url');
+    if (input) {
+        var saved = getPdfBaseUrl();
+        if (saved && !input.value) input.value = saved;
+        // Auto-load if we have a base URL and a test is expanded
+        if (input.value && state.expandedId) {
+            var ex = null;
+            for (var i = 0; i < DATA.examples.length; i++) {
+                if (DATA.examples[i].id === state.expandedId) { ex = DATA.examples[i]; break; }
+            }
+            if (ex) {
+                loadPdf(ex.id, ex.productType || 'parse');
+            }
+        }
+    }
+}
+
+// ─── Pagination ───
+function totalPages() {
+    return Math.max(1, Math.ceil(state.filtered.length / state.perPage));
+}
+
+function renderPagination() {
+    var el = document.getElementById('pagination');
+    var tp = totalPages();
+    if (tp <= 1) { el.innerHTML = ''; return; }
+
+    var html = '';
+    html += '<button ' + (state.currentPage <= 1 ? 'disabled' : '') + ' data-page="' + (state.currentPage - 1) + '">&laquo; Prev</button>';
+
+    // Page numbers (show max 7 around current)
+    var startP = Math.max(1, state.currentPage - 3);
+    var endP = Math.min(tp, startP + 6);
+    startP = Math.max(1, endP - 6);
+
+    if (startP > 1) {
+        html += '<button data-page="1">1</button>';
+        if (startP > 2) html += '<span class="page-info">...</span>';
+    }
+    for (var p = startP; p <= endP; p++) {
+        html += '<button data-page="' + p + '"' + (p === state.currentPage ? ' class="active"' : '') + '>' + p + '</button>';
+    }
+    if (endP < tp) {
+        if (endP < tp - 1) html += '<span class="page-info">...</span>';
+        html += '<button data-page="' + tp + '">' + tp + '</button>';
+    }
+
+    html += '<button ' + (state.currentPage >= tp ? 'disabled' : '') + ' data-page="' + (state.currentPage + 1) + '">Next &raquo;</button>';
+    html += '<span class="page-info">Page ' + state.currentPage + ' of ' + tp + '</span>';
+
+    el.innerHTML = html;
+
+    el.onclick = function(e) {
+        var btn = e.target.closest('button[data-page]');
+        if (!btn || btn.disabled) return;
+        state.currentPage = parseInt(btn.getAttribute('data-page'));
+        state.expandedId = null;
+        renderTable();
+        renderPagination();
+        // Scroll to table
+        document.getElementById('examples-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+}
+
+// ─── Init ───
+function init() {
+    renderSummary();
+    renderAggMetrics();
+    renderAggStats();
+    renderTagMetrics();
+    renderControls();
+    applyFilters();
+    renderResultsCount();
+    renderTable();
+    renderPagination();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+
+})();
+
+</script>
+</body>
+</html>

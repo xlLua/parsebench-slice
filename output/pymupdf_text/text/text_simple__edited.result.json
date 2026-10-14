@@ -1,0 +1,55 @@
+{
+  "request": {
+    "example_id": "text/text_simple__edited",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/text/text_simple__edited.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "NATIONAL UNION FIRE INSURANCE COMPANY OF PITTSBURGH, PA \nPSYCHIATRISTS PROFESSIONAL LIABILITY INSURANCE PROGRAM \nCALIFORNIA MANUAL RULES \nEd. (6-11) \n \n \n \n \n \nPage 9 of 10 \n \n \nRule 10.  \nSchedule Rating Plan – Group Accounts (cont’d) \n \nMedical Group which would receive a credit would employ a dedicated risk manager and have \nfavorable financial ratios. \n \nEmployees (+/-5) \n \nThe applicant has established a continuing professional education program for its employees and \nencourages certification in their respective specialties.  There must be a statement in the employee \nhandbook advocating continuing education.  The Medical Group agrees to pay all or some of the \ntuition fees and/or related educational expenses.  Further, the composition of the Medical Group \nwill be 50% or greater of the employee population having board certification or similar advanced \ndegrees for a maximum credit to be granted.  If the percentage is lower, but still substantial, and \nthe other criteria described above are met, a lesser credit may be granted.  If none of the above, a \ndebit will be made. \n \nRisk Management (+/-5) \n \nThe applicant has an established and working risk management program to minimize the \nfrequency and severity of claims.  A Medical Group which has an incident reporting system, \noccurrence screening, and other mechanisms to address potential and actual claims would receive \na maximum credit.  If none of these mechanisms are in place, a debit will be made. \n \nMedical Records/Informed Consent (+/-5) \n \nThe applicant has a system in effect for concurrent and retrospective review of medical records \nand informed consent documents.  If the Medical Group has a medical records system only or an \ninformed consent system only, no debit or credit is available.  If both systems are in effect, a \ncredit is available.  If neither system is in effect, a debit will be made. \n \nPerformance of experimental procedures (+5) \n \nIf the medical group practice includes procedures that are considered experimental, but that are \nperformed within the prescribed guidelines, controlled studies, or : “protocol” established by the \nmanufacturer or similar entity, there will be no debit or credit, however if the experimental \nprocedures are not subject to the protocol, a debit of up to 5% will be applied.  Since the \nunderlying program’s rates reflect the assumption that insureds will not be performing \nexperimental procedures, no credit will be given under any circumstances and under this category \ni.e. there will be no credit if experimental procedures are not utilized.  \n \nRule 11.  \nLocum Tenens \n \nA  Locum Tenens (“hold the place of”) works in place of a Named Insured or Additional Named Insured, never \nat the same time.  The Locum Tenens doctor must be underwritten in the same specialty classification as the \nNamed Insured or Additional Named Insured.  The program will allow Locum Tenens coverage for a maximum \ntotal of 45 days each policy year. \nDeleted: 8\nDeleted: -10\n",
+        "width": 612.0,
+        "height": 792.0
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.3",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "",
+      "producer": "macOS Version 15.6.1 (Build 24G90) Quartz PDFContext, AppendMode 1.1",
+      "creationDate": "D:20260316033030Z00'00'",
+      "modDate": "D:20260316033038Z00'00'",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "output": {
+    "task_type": "parse",
+    "example_id": "text/text_simple__edited",
+    "pipeline_name": "pymupdf_text",
+    "pages": [
+      {
+        "page_index": 0,
+        "markdown": "NATIONAL UNION FIRE INSURANCE COMPANY OF PITTSBURGH, PA \nPSYCHIATRISTS PROFESSIONAL LIABILITY INSURANCE PROGRAM \nCALIFORNIA MANUAL RULES \nEd. (6-11) \n \n \n \n \n \nPage 9 of 10 \n \n \nRule 10.  \nSchedule Rating Plan – Group Accounts (cont’d) \n \nMedical Group which would receive a credit would employ a dedicated risk manager and have \nfavorable financial ratios. \n \nEmployees (+/-5) \n \nThe applicant has established a continuing professional education program for its employees and \nencourages certification in their respective specialties.  There must be a statement in the employee \nhandbook advocating continuing education.  The Medical Group agrees to pay all or some of the \ntuition fees and/or related educational expenses.  Further, the composition of the Medical Group \nwill be 50% or greater of the employee population having board certification or similar advanced \ndegrees for a maximum credit to be granted.  If the percentage is lower, but still substantial, and \nthe other criteria described above are met, a lesser credit may be granted.  If none of the above, a \ndebit will be made. \n \nRisk Management (+/-5) \n \nThe applicant has an established and working risk management program to minimize the \nfrequency and severity of claims.  A Medical Group which has an incident reporting system, \noccurrence screening, and other mechanisms to address potential and actual claims would receive \na maximum credit.  If none of these mechanisms are in place, a debit will be made. \n \nMedical Records/Informed Consent (+/-5) \n \nThe applicant has a system in effect for concurrent and retrospective review of medical records \nand informed consent documents.  If the Medical Group has a medical records system only or an \ninformed consent system only, no debit or credit is available.  If both systems are in effect, a \ncredit is available.  If neither system is in effect, a debit will be made. \n \nPerformance of experimental procedures (+5) \n \nIf the medical group practice includes procedures that are considered experimental, but that are \nperformed within the prescribed guidelines, controlled studies, or : “protocol” established by the \nmanufacturer or similar entity, there will be no debit or credit, however if the experimental \nprocedures are not subject to the protocol, a debit of up to 5% will be applied.  Since the \nunderlying program’s rates reflect the assumption that insureds will not be performing \nexperimental procedures, no credit will be given under any circumstances and under this category \ni.e. there will be no credit if experimental procedures are not utilized.  \n \nRule 11.  \nLocum Tenens \n \nA  Locum Tenens (“hold the place of”) works in place of a Named Insured or Additional Named Insured, never \nat the same time.  The Locum Tenens doctor must be underwritten in the same specialty classification as the \nNamed Insured or Additional Named Insured.  The program will allow Locum Tenens coverage for a maximum \ntotal of 45 days each policy year. \nDeleted: 8\nDeleted: -10\n",
+        "line_numbers": []
+      }
+    ],
+    "layout_pages": [],
+    "grounded_pages": [],
+    "markdown": "NATIONAL UNION FIRE INSURANCE COMPANY OF PITTSBURGH, PA \nPSYCHIATRISTS PROFESSIONAL LIABILITY INSURANCE PROGRAM \nCALIFORNIA MANUAL RULES \nEd. (6-11) \n \n \n \n \n \nPage 9 of 10 \n \n \nRule 10.  \nSchedule Rating Plan – Group Accounts (cont’d) \n \nMedical Group which would receive a credit would employ a dedicated risk manager and have \nfavorable financial ratios. \n \nEmployees (+/-5) \n \nThe applicant has established a continuing professional education program for its employees and \nencourages certification in their respective specialties.  There must be a statement in the employee \nhandbook advocating continuing education.  The Medical Group agrees to pay all or some of the \ntuition fees and/or related educational expenses.  Further, the composition of the Medical Group \nwill be 50% or greater of the employee population having board certification or similar advanced \ndegrees for a maximum credit to be granted.  If the percentage is lower, but still substantial, and \nthe other criteria described above are met, a lesser credit may be granted.  If none of the above, a \ndebit will be made. \n \nRisk Management (+/-5) \n \nThe applicant has an established and working risk management program to minimize the \nfrequency and severity of claims.  A Medical Group which has an incident reporting system, \noccurrence screening, and other mechanisms to address potential and actual claims would receive \na maximum credit.  If none of these mechanisms are in place, a debit will be made. \n \nMedical Records/Informed Consent (+/-5) \n \nThe applicant has a system in effect for concurrent and retrospective review of medical records \nand informed consent documents.  If the Medical Group has a medical records system only or an \ninformed consent system only, no debit or credit is available.  If both systems are in effect, a \ncredit is available.  If neither system is in effect, a debit will be made. \n \nPerformance of experimental procedures (+5) \n \nIf the medical group practice includes procedures that are considered experimental, but that are \nperformed within the prescribed guidelines, controlled studies, or : “protocol” established by the \nmanufacturer or similar entity, there will be no debit or credit, however if the experimental \nprocedures are not subject to the protocol, a debit of up to 5% will be applied.  Since the \nunderlying program’s rates reflect the assumption that insureds will not be performing \nexperimental procedures, no credit will be given under any circumstances and under this category \ni.e. there will be no credit if experimental procedures are not utilized.  \n \nRule 11.  \nLocum Tenens \n \nA  Locum Tenens (“hold the place of”) works in place of a Named Insured or Additional Named Insured, never \nat the same time.  The Locum Tenens doctor must be underwritten in the same specialty classification as the \nNamed Insured or Additional Named Insured.  The program will allow Locum Tenens coverage for a maximum \ntotal of 45 days each policy year. \nDeleted: 8\nDeleted: -10\n",
+    "job_id": null
+  },
+  "started_at": "2026-10-14T17:11:00.493588",
+  "completed_at": "2026-10-14T17:11:02.002988",
+  "latency_in_ms": 1509
+}

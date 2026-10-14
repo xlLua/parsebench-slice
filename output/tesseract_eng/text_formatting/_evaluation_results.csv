@@ -1,0 +1,4 @@
+test_id,example_id,pipeline_name,product_type,success,error,tags,latency_ms,latency_ms_per_page,normalized_text_score,normalized_text_styling,normalized_title_accuracy,rule_is_bold_pass_rate,rule_is_mark_pass_rate,rule_is_strikeout_pass_rate,rule_is_title_pass_rate,rule_is_underline_pass_rate,rule_pass_rate,rule_title_hierarchy_percent_pass_rate,semantic_formatting
+text/text_ocr__p4013,text/text_ocr__p4013,tesseract_eng,parse,True,,"text_formatting,ocr,hard",6536.0,6536.0,0.0,0.0,,,,0.0,,0.0,0.0,,0.0
+text/text_simple__results,text/text_simple__results,tesseract_eng,parse,True,,"text_formatting,simple,easy",5535.0,5535.0,0.0,0.0,0.0,0.0,,,0.0,0.0,0.0,0.0,0.0
+text/text_simple__edited,text/text_simple__edited,tesseract_eng,parse,True,,"text_formatting,simple,easy",6506.0,6506.0,0.0,0.0,0.0,0.0,0.0,,0.0,,0.0,0.0,0.0

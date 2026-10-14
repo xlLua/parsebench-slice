@@ -1,0 +1,48 @@
+{
+  "request": {
+    "example_id": "layout/3m-2025-global-impact-report_p26",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/layout/3m-2025-global-impact-report_p26.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "pymupdf_text",
+    "provider_name": "pymupdf",
+    "product_type": "parse",
+    "config": {
+      "text_format": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": " 3M | 2025 Global Impact Report \n26\nIntroduction \nOur workplace \nInnovation \nCircularity \nClimate \nCommunities \nGovernance \nAppendix\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n  \n \n \n \n \n \n \n \n \n  \n \n  \n \n \nScope 1 and 2 emissions \nIn 2002 we calculated our first GHG inventories \nusing IPCC TAR. Since then, our actions have included \njoining RE100 and the Department of Energy’s \n(DOE) Low Carbon Pilot and Better Plants programs, \nworking with the Environmental Protection Agency \n(EPA) on methodology for calculating emissions, \nand co-authoring the IPCC National GHG Inventory \nGuidelines. \nHaving achieved our first emissions reduction goal \nunder EPA Climate Leaders, we’ve met, then reset, \nour goals as we gain momentum: \n2015 – We set a goal to have our scope 1 and 2 \nGHG emissions be at least 50% below our 2002 \nbase year calculation by 2025. \n2021 – We updated our near-term commitment to \na minimum 50% reduction in absolute scope 1 and 2 \nGHG emissions by 2030 in alignment with the IPCC \n1.5 °C pathways. \n2024 – The Science Based  \nTargets initiative (SBTi)  \nvalidated our new near-term  \ntargets and classified our  \nscope 1 and 2 target as in  \nline with a 1.5 ºC trajectory. \nTarget: Reduce absolute scope 1 and 2 GHG \nemissions 52.6% by 2030 from a 2019 base year\n59.1% \nreduction in absolute \nscope 1 and 2 GHG \nemissions since 2019 \nTarget: Reduce absolute scope 3 GHG \nemissions 42% by 2030 from a 2021 base year\n30.7% \nreduction in absolute \nscope 3 GHG emissions \nsince 2021, aligning \nwith SBTi \nScopes defined \nScope 1 – Direct emissions \ngenerated from 3M’s \nactivity. For example, \nmaking a product. \nScope 2 – Indirect \nemissions from our activity. \nFor example, purchasing \nelectricity to light a factory. \nScope 3 – Indirect emissions \nfrom related activity up \nand down our value chain. \nFor example, the emissions \nproduced by a customer \nwhen using our products. \n3M Villach \nOur site in Villach, Austria, implemented an energy repurposing project in 2024 that captures \nwaste heat from production processes to heat the site and supply Villach’s public teleheating grid. \nRecovers up to \n12 GWh \nof waste energy \nannually \nReduces CO₂ \nemissions by up to \n2,978 \nmetric tons \nannually \nAchieves significant cost \nreductions with more savings \nprojected \nUp to \n30% \nof the total investment was \ncovered by EU funding under \nthe Green Deal \nReduces reliance on external \nenergy sources and enhances \noperational resilience \n",
+        "width": 1008.0,
+        "height": 612.0
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.7",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "",
+      "producer": "",
+      "creationDate": "",
+      "modDate": "",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "started_at": "2026-10-14T17:11:00.493695",
+  "completed_at": "2026-10-14T17:11:02.003271",
+  "latency_in_ms": 1509
+}

@@ -1,0 +1,22 @@
+[project]
+name = "parsebench-slice"
+version = "0.1.0"
+description = "Parse-quality inspection on a ParseBench slice, for the document index design"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "huggingface-hub>=2.2.0",
+    "pandas>=3.0.6",
+    "parse-bench[local]>=1.0.4",
+    "pillow>=12.3.0",
+    "pymupdf>=1.28.2",
+    "pyspellchecker>=0.9.1",
+    "pytesseract>=0.3.13",
+]
+
+[project.scripts]
+parsebench-slice = "parsebench_slice:main"
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"

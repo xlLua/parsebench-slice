@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchmark Leaderboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --bg: #f8f7f4;
+    --fg: #1c1917;
+    --card: #ffffff;
+    --border: #e7e5e4;
+    --muted: #78716c;
+    --muted-light: #a8a29e;
+    --cream: #faf9f6;
+    --emerald: #059669;
+    --emerald-bg: #ecfdf5;
+    --emerald-light: #d1fae5;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --blue: #2563eb;
+    --blue-bg: #eff6ff;
+    --gold: #b8860b;
+    --gold-bg: #fef9e7;
+    --gold-border: #e6c547;
+    --font-heading: 'Newsreader', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --shadow-sm: 0 1px 2px rgba(28,25,23,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(28,25,23,0.07), 0 2px 4px -2px rgba(28,25,23,0.05);
+    --shadow-lg: 0 10px 25px -5px rgba(28,25,23,0.1), 0 4px 10px -4px rgba(28,25,23,0.06);
+    --radius: 12px;
+    --radius-sm: 6px;
+}
+html { font-size: 15px; }
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--muted-light); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+.report-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+}
+
+/* ───── Header ───── */
+.report-header { margin-bottom: 40px; }
+.report-header h1 {
+    font-family: var(--font-heading);
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--fg);
+    line-height: 1.15;
+}
+.report-header .subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 0.01em;
+}
+
+/* ───── Table wrapper ───── */
+.leaderboard-wrap {
+    overflow-x: auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+}
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+/* ───── Cells ───── */
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    vertical-align: middle;
+    transition: background 0.12s ease;
+}
+.leaderboard-table th {
+    background: var(--cream);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding: 20px 24px;
+    border-bottom: 2px solid var(--border);
+    vertical-align: bottom;
+}
+
+/* Sticky first column */
+.leaderboard-table th:first-child,
+.leaderboard-table td:first-child {
+    text-align: left;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    min-width: 220px;
+    padding-left: 28px;
+}
+.leaderboard-table th:first-child {
+    background: var(--cream);
+    z-index: 3;
+    vertical-align: bottom;
+}
+.category-header-label {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--fg);
+    text-transform: none;
+    letter-spacing: -0.01em;
+}
+.leaderboard-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Row hover (category label column only) */
+.leaderboard-table tbody tr:not(.overall-row):hover td:first-child {
+    background: #f5f4f1;
+}
+
+/* ───── Pipeline header ───── */
+.pipeline-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 140px;
+}
+.pipeline-header .pipeline-crown {
+    font-size: 1.3rem;
+    line-height: 1;
+    filter: drop-shadow(0 1px 2px rgba(184,134,11,0.3));
+}
+.pipeline-header .pipeline-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+}
+.pipeline-header .pipeline-name a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s, color 0.15s;
+}
+.pipeline-header .pipeline-name a:hover {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+}
+.pipeline-header .pipeline-tier {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--muted-light);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    background: var(--bg);
+    padding: 2px 8px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+}
+
+/* Winner column header glow */
+.pipeline-header.is-winner .pipeline-name a {
+    color: var(--gold);
+}
+.pipeline-header.is-winner .pipeline-tier {
+    background: var(--gold-bg);
+    border-color: var(--gold-border);
+    color: var(--gold);
+}
+
+/* ───── Category cell ───── */
+.category-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.category-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--fg);
+    line-height: 1.3;
+}
+.category-name .file-count {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--muted-light);
+    margin-left: 2px;
+}
+.category-selector {
+    width: 100%;
+    max-width: 210px;
+    padding: 5px 8px;
+    font-family: var(--font-body);
+    font-size: 0.73rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--cream);
+    color: var(--muted);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s;
+}
+.category-selector:focus { border-color: var(--blue); }
+.category-selector:hover { border-color: var(--muted-light); }
+
+/* ───── Column hover: simple bounding box ───── */
+.leaderboard-table th[data-col],
+.leaderboard-table td[data-col] {
+    cursor: pointer;
+}
+.leaderboard-table th[data-col].col-hover {
+    box-shadow: inset 2px 0 0 var(--muted), inset -2px 0 0 var(--muted), inset 0 2px 0 var(--muted);
+}
+.leaderboard-table .overall-row td[data-col].col-hover {
+    box-shadow: inset 2px 0 0 var(--muted), inset -2px 0 0 var(--muted), inset 0 -2px 0 var(--muted);
+}
+.leaderboard-table tbody tr:not(.overall-row) td[data-col].col-hover {
+    box-shadow: inset 2px 0 0 var(--muted), inset -2px 0 0 var(--muted);
+}
+
+/* ───── Score cell ───── */
+.score-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 90px;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s ease;
+}
+.score-wrap.is-best {
+    background: var(--emerald-bg);
+}
+.score-number {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1;
+}
+.score-wrap.is-best .score-number {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+.score-bar-track {
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+.bar-emerald { background: var(--emerald); }
+.bar-amber { background: var(--amber); }
+.bar-red { background: var(--red); }
+.score-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--emerald);
+    line-height: 1;
+}
+.score-na {
+    color: var(--muted-light);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+.color-emerald { color: var(--emerald); }
+.color-amber { color: var(--amber); }
+.color-red { color: var(--red); }
+
+/* ───── Overall row ───── */
+.overall-row td {
+    border-top: 2px solid var(--border);
+    border-bottom: none;
+    background: var(--cream);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.overall-row td:first-child {
+    background: var(--cream) !important;
+    border-right-color: var(--border);
+}
+.overall-row:hover td,
+.overall-row:hover td:first-child {
+    background: #f3f1ec !important;
+}
+.overall-label {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+}
+.overall-sublabel {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+}
+/* Overall score cells */
+.overall-row .score-wrap {
+    background: transparent;
+}
+.overall-row .score-wrap.is-best {
+    background: var(--emerald-bg);
+}
+.overall-row .score-number {
+    color: var(--fg);
+}
+.overall-row .score-wrap.is-best .score-number {
+    color: var(--emerald);
+    font-weight: 600;
+}
+.overall-row .score-bar-track {
+    background: var(--border);
+}
+.overall-row .score-badge {
+    color: var(--emerald);
+}
+.overall-row .score-na {
+    color: var(--muted-light);
+}
+
+@media (max-width: 768px) {
+    .report-container { padding: 20px 16px 48px; }
+    .report-header h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<div class="report-container">
+  <header class="report-header">
+    <h1>Benchmark Leaderboard</h1>
+    <p class="subtitle" id="subtitle"></p>
+  </header>
+
+  <div class="leaderboard-wrap">
+    <table class="leaderboard-table" id="leaderboard-table">
+      <thead id="table-head"></thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const DATA = {"generatedAt": "2026-10-14 15:11:06 UTC", "defaultMetrics": {"chart": "rule_pass_rate", "layout": "", "table": "grits_trm_composite", "text_content": "content_faithfulness", "text_formatting": "semantic_formatting"}, "pipelines": [{"name": "pymupdf_text", "dirName": "pymupdf_text", "displayName": "Pymupdf Text", "provider": "pymupdf", "productType": "parse", "config": {"text_format": "text"}, "dashboardUrl": "pymupdf_text/_evaluation_report_dashboard.html"}, {"name": "tesseract_eng", "dirName": "tesseract_eng", "displayName": "Tesseract Eng", "provider": "tesseract", "productType": "parse", "config": {"lang": "eng", "dpi": 300, "output_type": "text"}, "dashboardUrl": "tesseract_eng/_evaluation_report_dashboard.html"}], "categories": ["chart", "layout", "table", "text_content", "text_formatting"], "categoryDisplayNames": {"chart": "Chart", "layout": "Layout", "table": "Table", "text_content": "Text Content", "text_formatting": "Text Formatting"}, "categoryFiles": {"chart": {"pymupdf_text": 3, "tesseract_eng": 3}, "layout": {"pymupdf_text": 3, "tesseract_eng": 3}, "table": {"pymupdf_text": 3, "tesseract_eng": 3}, "text_content": {"pymupdf_text": 3, "tesseract_eng": 3}, "text_formatting": {"pymupdf_text": 3, "tesseract_eng": 3}}, "scores": {"chart": {"pymupdf_text": {"rule_chart_data_point_pass_rate": 0.0, "rule_pass_rate": 0.0}, "tesseract_eng": {"rule_chart_data_point_pass_rate": 0.0, "rule_pass_rate": 0.0}}, "layout": {"pymupdf_text": {}, "tesseract_eng": {}}, "table": {"pymupdf_text": {"grits_con": 0.0, "grits_trm_composite": 0.0, "table_record_match": 0.0, "table_record_match_perfect": 0.0}, "tesseract_eng": {"grits_con": 0.0, "grits_trm_composite": 0.0, "table_record_match": 0.0, "table_record_match_perfect": 0.0}}, "text_content": {"pymupdf_text": {"content_faithfulness": 0.9450651013308448, "normalized_order": 0.9501424501424501, "normalized_text_correctness": 0.9425264269250423, "normalized_text_score": 0.9463344385337461, "rule_bag_of_digit_percent_pass_rate": 1.0, "rule_is_footer_pass_rate": 0.0, "rule_is_header_pass_rate": 0.0, "rule_missing_sentence_percent_pass_rate": 0.7725404124860646, "rule_missing_specific_sentence_pass_rate": 0.7746108058608058, "rule_missing_specific_word_pass_rate": 0.984375, "rule_missing_word_percent_pass_rate": 0.9865841073271414, "rule_order_pass_rate": 0.9501424501424501, "rule_pass_rate": 0.9479433736845206, "rule_too_many_sentence_occurence_percent_pass_rate": 1.0, "rule_too_many_word_occurence_percent_pass_rate": 0.9679634414776533, "rule_unexpected_sentence_percent_pass_rate": 0.9247076023391813, "rule_unexpected_word_percent_pass_rate": 0.9458894248452557}, "tesseract_eng": {"content_faithfulness": 0.9177873302851469, "normalized_order": 0.9131054131054132, "normalized_text_correctness": 0.9201282888750137, "normalized_text_score": 0.9166168509902134, "rule_bag_of_digit_percent_pass_rate": 0.9235209235209235, "rule_is_footer_pass_rate": 0.0, "rule_is_header_pass_rate": 0.0, "rule_missing_sentence_percent_pass_rate": 0.7688127090301003, "rule_missing_specific_sentence_pass_rate": 0.7764041514041514, "rule_missing_specific_word_pass_rate": 0.9862353030500239, "rule_missing_word_percent_pass_rate": 0.9786673511002416, "rule_order_pass_rate": 0.9131054131054132, "rule_pass_rate": 0.9422138452630806, "rule_too_many_sentence_occurence_percent_pass_rate": 1.0, "rule_too_many_word_occurence_percent_pass_rate": 0.9655172413793104, "rule_unexpected_sentence_percent_pass_rate": 0.8612012987012987, "rule_unexpected_word_percent_pass_rate": 0.9431784983932223}}, "text_formatting": {"pymupdf_text": {"normalized_text_score": 0.0, "normalized_text_styling": 0.0, "normalized_title_accuracy": 0.0, "rule_is_bold_pass_rate": 0.0, "rule_is_mark_pass_rate": 0.0, "rule_is_strikeout_pass_rate": 0.0, "rule_is_title_pass_rate": 0.0, "rule_is_underline_pass_rate": 0.0, "rule_pass_rate": 0.0, "rule_title_hierarchy_percent_pass_rate": 0.0, "semantic_formatting": 0.0}, "tesseract_eng": {"normalized_text_score": 0.0, "normalized_text_styling": 0.0, "normalized_title_accuracy": 0.0, "rule_is_bold_pass_rate": 0.0, "rule_is_mark_pass_rate": 0.0, "rule_is_strikeout_pass_rate": 0.0, "rule_is_title_pass_rate": 0.0, "rule_is_underline_pass_rate": 0.0, "rule_pass_rate": 0.0, "rule_title_hierarchy_percent_pass_rate": 0.0, "semantic_formatting": 0.0}}}, "metricNames": {"rule_is_bold_pass_rate": "Rule Is Bold Pass Rate", "rule_is_underline_pass_rate": "Rule Is Underline Pass Rate", "rule_missing_specific_word_pass_rate": "Rule Missing Specific Word Pass Rate", "normalized_text_correctness": "Normalized Text Correctness", "rule_is_mark_pass_rate": "Rule Is Mark Pass Rate", "rule_too_many_sentence_occurence_percent_pass_rate": "Rule Too Many Sentence Occurence Percent Pass Rate", "rule_is_strikeout_pass_rate": "Rule Is Strikeout Pass Rate", "normalized_text_styling": "Normalized Text Styling", "normalized_order": "Normalized Order", "normalized_text_score": "Normalized Text Score", "rule_missing_word_percent_pass_rate": "Rule Missing Word Percent Pass Rate", "grits_trm_composite": "GTRM", "rule_bag_of_digit_percent_pass_rate": "Rule Bag Of Digit Percent Pass Rate", "rule_unexpected_sentence_percent_pass_rate": "Rule Unexpected Sentence Percent Pass Rate", "table_record_match_perfect": "Table Record Match Perfect", "rule_is_title_pass_rate": "Rule Is Title Pass Rate", "semantic_formatting": "Semantic Formatting", "rule_missing_specific_sentence_pass_rate": "Rule Missing Specific Sentence Pass Rate", "rule_chart_data_point_pass_rate": "Rule Chart Data Point Pass Rate", "content_faithfulness": "Content Faithfulness", "rule_pass_rate": "Rule Pass Rate", "rule_unexpected_word_percent_pass_rate": "Rule Unexpected Word Percent Pass Rate", "normalized_title_accuracy": "Normalized Title Accuracy", "grits_con": "GriTS Con (All)", "rule_is_footer_pass_rate": "Rule Is Footer Pass Rate", "table_record_match": "Table Record Match", "rule_is_header_pass_rate": "Rule Is Header Pass Rate", "rule_missing_sentence_percent_pass_rate": "Rule Missing Sentence Percent Pass Rate", "rule_title_hierarchy_percent_pass_rate": "Rule Title Hierarchy Percent Pass Rate", "rule_too_many_word_occurence_percent_pass_rate": "Rule Too Many Word Occurence Percent Pass Rate", "rule_order_pass_rate": "Rule Order Pass Rate"}, "categoryMetrics": {"chart": ["rule_chart_data_point_pass_rate", "rule_pass_rate"], "layout": [], "table": ["grits_con", "grits_trm_composite", "table_record_match", "table_record_match_perfect"], "text_content": ["content_faithfulness", "normalized_order", "normalized_text_correctness", "normalized_text_score", "rule_bag_of_digit_percent_pass_rate", "rule_is_footer_pass_rate", "rule_is_header_pass_rate", "rule_missing_sentence_percent_pass_rate", "rule_missing_specific_sentence_pass_rate", "rule_missing_specific_word_pass_rate", "rule_missing_word_percent_pass_rate", "rule_order_pass_rate", "rule_pass_rate", "rule_too_many_sentence_occurence_percent_pass_rate", "rule_too_many_word_occurence_percent_pass_rate", "rule_unexpected_sentence_percent_pass_rate", "rule_unexpected_word_percent_pass_rate"], "text_formatting": ["normalized_text_score", "normalized_text_styling", "normalized_title_accuracy", "rule_is_bold_pass_rate", "rule_is_mark_pass_rate", "rule_is_strikeout_pass_rate", "rule_is_title_pass_rate", "rule_is_underline_pass_rate", "rule_pass_rate", "rule_title_hierarchy_percent_pass_rate", "semantic_formatting"]}};
+</script>
+<script>
+(function() {
+  function colorClass(rate) {
+    if (rate >= 80) return 'emerald';
+    if (rate >= 50) return 'amber';
+    return 'red';
+  }
+
+  function pct(val) { return val.toFixed(1) + '%'; }
+
+  function esc(s) {
+    if (s == null) return '';
+    var d = document.createElement('div');
+    d.textContent = String(s);
+    return d.innerHTML;
+  }
+
+  // ─── State ───
+  var selectedMetrics = {};
+  for (var cat in DATA.defaultMetrics) {
+    selectedMetrics[cat] = DATA.defaultMetrics[cat];
+  }
+
+  // Subtitle
+  document.getElementById('subtitle').textContent =
+    DATA.pipelines.length + ' pipeline' + (DATA.pipelines.length !== 1 ? 's' : '') +
+    ' across ' + DATA.categories.length + ' categories';
+
+  // ─── Helpers ───
+  function getScore(category, pipelineName) {
+    var cs = DATA.scores[category];
+    if (!cs) return null;
+    var ps = cs[pipelineName];
+    if (!ps) return null;
+    var v = ps[selectedMetrics[category]];
+    return (v !== undefined && v !== null) ? v : null;
+  }
+
+  function findBest(category) {
+    var bestVal = -1, bestNames = [];
+    for (var i = 0; i < DATA.pipelines.length; i++) {
+      var v = getScore(category, DATA.pipelines[i].name);
+      if (v === null) continue;
+      if (v > bestVal) { bestVal = v; bestNames = [DATA.pipelines[i].name]; }
+      else if (v === bestVal) { bestNames.push(DATA.pipelines[i].name); }
+    }
+    return bestNames;
+  }
+
+  function getOverallScore(pipelineName) {
+    var sum = 0, count = 0;
+    for (var i = 0; i < DATA.categories.length; i++) {
+      var v = getScore(DATA.categories[i], pipelineName);
+      if (v !== null) { sum += v; count++; }
+    }
+    return count > 0 ? sum / count : null;
+  }
+
+  function getOverallWinners() {
+    var best = -1, names = [];
+    for (var i = 0; i < DATA.pipelines.length; i++) {
+      var v = getOverallScore(DATA.pipelines[i].name);
+      if (v === null) continue;
+      if (v > best) { best = v; names = [DATA.pipelines[i].name]; }
+      else if (v === best) { names.push(DATA.pipelines[i].name); }
+    }
+    return names;
+  }
+
+  function getMaxFiles(category) {
+    var files = DATA.categoryFiles[category] || {};
+    var max = 0;
+    for (var p in files) { if (files[p] > max) max = files[p]; }
+    return max;
+  }
+
+  // Extract a clean tier/model label from config
+  function getTierLabel(p) {
+    var cfg = p.config || {};
+    if (cfg.tier) return cfg.tier;
+    if (cfg.model) return cfg.model;
+    if (cfg.ocr_system) return cfg.ocr_system;
+    // Fallback: use first config value that's a short string
+    for (var k in cfg) {
+      var v = cfg[k];
+      if (typeof v === 'string' && v.length < 30) return v;
+    }
+    return p.productType || '';
+  }
+
+  // Build a score cell with progress bar
+  function buildScoreCell(v, isBest, isOverall) {
+    if (v === null) return '<span class="score-na">N/A</span>';
+    var pctVal = v * 100;
+    var c = colorClass(pctVal);
+    var cls = 'score-wrap' + (isBest ? ' is-best' : '');
+    var h = '<div class="' + cls + '">';
+    h += '<span class="score-number color-' + c + '">' + pct(pctVal) + '</span>';
+    h += '<div class="score-bar-track"><div class="score-bar-fill bar-' + c
+      + '" style="width:' + Math.min(pctVal, 100).toFixed(1) + '%"></div></div>';
+    if (isBest) h += '<span class="score-badge">Best</span>';
+    h += '</div>';
+    return h;
+  }
+
+  // ─── Render ───
+  function renderHead() {
+    var winners = getOverallWinners();
+    var thead = document.getElementById('table-head');
+    var html = '<tr><th><span class="category-header-label">Category</span></th>';
+    for (var i = 0; i < DATA.pipelines.length; i++) {
+      var p = DATA.pipelines[i];
+      var isWinner = winners.indexOf(p.name) >= 0;
+      var tierLabel = getTierLabel(p);
+      html += '<th data-col="' + i + '" data-url="' + esc(p.dashboardUrl)
+        + '"><div class="pipeline-header' + (isWinner ? ' is-winner' : '') + '">';
+      if (isWinner) html += '<span class="pipeline-crown">\ud83d\udc51</span>';
+      html += '<span class="pipeline-name">' + esc(p.displayName) + '</span>';
+      var sub = p.provider || '';
+      if (tierLabel && tierLabel !== p.provider) sub += (sub ? ' / ' : '') + tierLabel;
+      if (sub) html += '<span class="pipeline-tier">' + esc(sub) + '</span>';
+      html += '</div></th>';
+    }
+    html += '</tr>';
+    thead.innerHTML = html;
+  }
+
+  function renderBody() {
+    var tbody = document.getElementById('table-body');
+    var html = '';
+
+    // Category rows
+    for (var ci = 0; ci < DATA.categories.length; ci++) {
+      var cat = DATA.categories[ci];
+      var bestPipelines = findBest(cat);
+      var files = getMaxFiles(cat);
+      var metrics = DATA.categoryMetrics[cat] || [];
+
+      html += '<tr>';
+      html += '<td><div class="category-cell">';
+      html += '<span class="category-name">' + esc(DATA.categoryDisplayNames[cat] || cat);
+      html += ' <span class="file-count">' + files + ' files</span></span>';
+      html += '<select class="category-selector" data-cat="' + esc(cat) + '">';
+      for (var mi = 0; mi < metrics.length; mi++) {
+        var m = metrics[mi];
+        var sel = m === selectedMetrics[cat] ? ' selected' : '';
+        html += '<option value="' + esc(m) + '"' + sel + '>' + esc(DATA.metricNames[m] || m) + '</option>';
+      }
+      html += '</select></div></td>';
+
+      for (var pi = 0; pi < DATA.pipelines.length; pi++) {
+        var pName = DATA.pipelines[pi].name;
+        var v = getScore(cat, pName);
+        var isBest = bestPipelines.indexOf(pName) >= 0;
+        html += '<td data-col="' + pi + '" data-url="' + esc(DATA.pipelines[pi].dashboardUrl)
+          + '">' + buildScoreCell(v, isBest, false) + '</td>';
+      }
+      html += '</tr>';
+    }
+
+    // Overall row
+    var overallWinners = getOverallWinners();
+
+    html += '<tr class="overall-row">';
+    html += '<td><span class="overall-label">Overall'
+      + '<span class="overall-sublabel">Average across categories</span></span></td>';
+    for (var opi = 0; opi < DATA.pipelines.length; opi++) {
+      var opName = DATA.pipelines[opi].name;
+      var ov = getOverallScore(opName);
+      var oIsBest = overallWinners.indexOf(opName) >= 0;
+      html += '<td data-col="' + opi + '" data-url="' + esc(DATA.pipelines[opi].dashboardUrl)
+        + '">' + buildScoreCell(ov, oIsBest, true) + '</td>';
+    }
+    html += '</tr>';
+
+    tbody.innerHTML = html;
+
+    // Bind dropdowns
+    var selects = tbody.querySelectorAll('.category-selector');
+    for (var si = 0; si < selects.length; si++) {
+      selects[si].addEventListener('change', function(e) {
+        selectedMetrics[e.target.getAttribute('data-cat')] = e.target.value;
+        render();
+      });
+    }
+  }
+
+  function bindColumnInteractions() {
+    var table = document.getElementById('leaderboard-table');
+    var lastCol = null;
+
+    function highlightCol(colIdx) {
+      if (colIdx === lastCol) return;
+      clearCol();
+      if (colIdx === null) return;
+      lastCol = colIdx;
+      var cells = table.querySelectorAll('[data-col="' + colIdx + '"]');
+      for (var i = 0; i < cells.length; i++) cells[i].classList.add('col-hover');
+    }
+
+    function clearCol() {
+      if (lastCol === null) return;
+      var cells = table.querySelectorAll('[data-col="' + lastCol + '"]');
+      for (var i = 0; i < cells.length; i++) cells[i].classList.remove('col-hover');
+      lastCol = null;
+    }
+
+    table.addEventListener('mouseover', function(e) {
+      var cell = e.target.closest('[data-col]');
+      if (cell) {
+        highlightCol(cell.getAttribute('data-col'));
+      }
+    });
+
+    table.addEventListener('mouseleave', function() {
+      clearCol();
+    });
+
+    table.addEventListener('click', function(e) {
+      // Don't navigate if clicking a dropdown
+      if (e.target.tagName === 'SELECT' || e.target.tagName === 'OPTION') return;
+      var cell = e.target.closest('[data-col]');
+      if (cell && cell.getAttribute('data-url')) {
+        window.location.href = cell.getAttribute('data-url');
+      }
+    });
+  }
+
+  function render() {
+    renderHead();
+    renderBody();
+    bindColumnInteractions();
+  }
+
+  render();
+})();
+
+</script>
+</body>
+</html>

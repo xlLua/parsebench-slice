@@ -1,0 +1,48 @@
+{
+  "request": {
+    "example_id": "chart/US_Professional_Services_Partner_Compensation_Survey_2024_p11",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/chart/US_Professional_Services_Partner_Compensation_Survey_2024_p11.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "pymupdf_text",
+    "provider_name": "pymupdf",
+    "product_type": "parse",
+    "config": {
+      "text_format": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "pymupdf_text",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "Partner turnover (%)\nPartner turnover\nIn response to a slower 2023, wherein \npeople voluntarily or involuntarily \nchose to leave, respondents reported \npartner turnover was higher in 2024 \ncompared to 2022: 49% of respondents \nsaid partner turnover was higher or \nsignificantly higher compared to their \nexpectations at the beginning of the \nyear; only 30% said the same in 2022.\nYear-over-year \nhiring trends\nNote: Numbers may not sum to 100%, because of rounding.\nSource: Heidrick & Struggles US professional services partner compensation survey, 2024, n=144\nSignificantly lower\n5\n9\nLower\n14\n13\nAbout the same\n45\n27\nSignificantly higher\n6\n14\nPrefer not to answer\n6\n1\nHigher\n24\n35\nIn your most recent fiscal year, how much partner turnover was there at your \nfirm compared to your expectations at the beginning of the fiscal year?\n2024\n2022\nDiverse region, inclusive workforces: Diversity and inclusion policy and practice in Asia Pacific\nHEIDRICK & STRUGGLES\n11 \n",
+        "width": 595.2760009765625,
+        "height": 792.0
+      }
+    ],
+    "num_pages": 1,
+    "metadata": {
+      "format": "PDF 1.7",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "",
+      "producer": "",
+      "creationDate": "",
+      "modDate": "",
+      "trapped": "",
+      "encryption": null
+    },
+    "text_format": "text"
+  },
+  "started_at": "2026-10-14T17:11:00.493663",
+  "completed_at": "2026-10-14T17:11:02.003383",
+  "latency_in_ms": 1509
+}

@@ -1,0 +1,4 @@
+test_id,example_id,pipeline_name,product_type,success,error,tags
+layout/20240924_000946_P40U_HOWLKAL1IL81NTE2.1_p44,layout/20240924_000946_P40U_HOWLKAL1IL81NTE2.1_p44,tesseract_eng,parse,False,Worker error: Inference output is not LayoutOutput and no provider adapter matched.,"layout,easy"
+layout/3m-2025-global-impact-report_p26,layout/3m-2025-global-impact-report_p26,tesseract_eng,parse,False,Worker error: Inference output is not LayoutOutput and no provider adapter matched.,"layout,hard"
+layout/2602.19961v1_p1,layout/2602.19961v1_p1,tesseract_eng,parse,False,Worker error: Inference output is not LayoutOutput and no provider adapter matched.,"layout,easy"

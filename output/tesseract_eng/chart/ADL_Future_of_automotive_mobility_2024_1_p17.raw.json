@@ -1,0 +1,41 @@
+{
+  "request": {
+    "example_id": "chart/ADL_Future_of_automotive_mobility_2024_1_p17",
+    "source_file_path": "/Users/dario/projects/Delen/parsebench-slice/data/test/docs/chart/ADL_Future_of_automotive_mobility_2024_1_p17.pdf",
+    "product_type": "parse",
+    "schema_override": null,
+    "config_override": null
+  },
+  "pipeline": {
+    "pipeline_name": "tesseract_eng",
+    "provider_name": "tesseract",
+    "product_type": "parse",
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    },
+    "per_file_timeout": null
+  },
+  "pipeline_name": "tesseract_eng",
+  "product_type": "parse",
+  "raw_output": {
+    "pages": [
+      {
+        "page_index": 0,
+        "text": "This correlation between income and\nacceptance of autonomous driving holds in all\nregions, though the threshold for acceptance\nvaries. In China, we see 34% net approval at\naverage income and city size between1and5\nmillion people, while in the US we need to move\nto cities with 5 million inhabitants and high\nincomes to see similar net approval levels.\n\nEuropean, Northeast Asian, and US respondents\nare the least willing to adopt autonomous\nvehicles, while those in India, China, and the\nMiddle East demonstrate a much more favorable\nattitude (see Figure 10).\n\nTHE IMPORTANCE OF\nSAFETY TO ACCEPTANCE\n\nMirroring the examples cited above from\nCalifornia, the primary concern with\nautonomous driving across all incomes and\nregions is safety, encompassing both machine\nand human errors, as shown in Figure 11.\n\nUser concerns about safety mainly reflect the\nstill-immature technology for L4/L5 autonomous\ndriving and a resulting lack of positive experiences\nreported in the media. People are aware that\ncurrent autonomous vehicles depend on backup\nhuman drivers who are ready to intervene,\n\nmust go slower than a human driver, and only\n\nARTHUR D. LITTLE\n\noperate in dedicated environments with special\ninfrastructure. The promised benefits of\nautomation around convenience and ease of use\nhave not materialized yet. On the contrary, recent\nincidents in the US, which led to pausing trials of\nthe most advanced robo-taxis, coupled with high-\nprofile stories on crashes of private vehicles, have\nnot helped to increase customers’ confidence in\nthe maturity of the technology.\n\nHowever, if these safety fears could be overcome\nby positive user experiences, it would lead to\ngreater usage of personal autonomous vehicles.\nWhen asked whether a fully autonomous car\nwould increase or decrease their car usage,\n\nall respondents globally gave an average\nweighted score of +4, rising to +26 for those\nwho were positive about autonomous driving.\nAgain, this was highest in India, with a score of\n+32 for all respondents and +42 for those open\nto autonomous driving. This increased usage\nwould replace:\n\n— Existing personal non-autonomous vehicle (51%)\n= Public transport (44%)\n= Taxis (32%)\n\nOverall, since 2015, the expectation of the\npercentage of public transport journeys\npotentially replaced with autonomous cars\nhas grown, which would represent a switch\nfrom shared to personal mobility options.\n\nFigure 10. Desire to use auttonomous/semiautonomous cars\n\nDo you, or would you, use cars that are fully or semiautonomous?\n\nWeighted net favorability score (scale: -100 to 100)\n\nct —7,.~ 7\nI I\nI I\nI I\nI I\nI I\nI I\nI I\nI I\n! ! 29 28\n16 2!\nI 23\nI I\nFavorable | l\nattitude\n|\nI I\nInfavorable; ! -17 -17 -2\nattitude | ;\nI\noie\nGlobal China SEA India ME Europe US NEA\n\nSource: Arthur D. Little\n\n17\n",
+        "width": 2481,
+        "height": 3508
+      }
+    ],
+    "num_pages": 1,
+    "config": {
+      "lang": "eng",
+      "dpi": 300,
+      "output_type": "text"
+    }
+  },
+  "started_at": "2026-10-14T17:09:47.541874",
+  "completed_at": "2026-10-14T17:09:54.193892",
+  "latency_in_ms": 6652
+}
